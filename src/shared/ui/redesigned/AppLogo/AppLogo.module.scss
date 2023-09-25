@@ -1,0 +1,29 @@
+.appLogoWrapper {
+  position: relative;
+}
+
+.appLogo {
+  position: relative;
+  z-index: 10;
+}
+
+.gradientBig {
+  position: absolute;
+  background: radial-gradient(57.05% 57.05% at 49.84% 42.95%, rgba(94, 211, 243, 0.2) 0%, rgba(94, 211, 243, 0.132281) 7.81%, rgba(94, 211, 243, 0.0830304) 29.69%, rgba(94, 211, 243, 0.0386116) 56.77%, rgba(94, 211, 243, 0.021875) 77.6%, rgba(94, 211, 243, 0) 100%);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  opacity: 60%;
+  pointer-events: none;
+}
+
+.gradientSmall {
+  pointer-events: none;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(30.29% 30.29% at 50% 50%, rgba(94, 211, 243, 0.18) 0%, rgba(94, 211, 243, 0.106) 25.55%, rgba(94, 211, 243, 0.07) 47.27%, rgba(94, 211, 243, 0.038) 69.66%, rgba(94, 211, 243, 0) 100%);
+  border-radius: 50%;
+  opacity: 60%;
+}
+

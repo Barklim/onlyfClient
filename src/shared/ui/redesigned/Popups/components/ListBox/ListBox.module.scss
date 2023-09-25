@@ -1,0 +1,23 @@
+.trigger {
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+.options {
+    background: var(--dark-bg-redesigned);
+    position: absolute;
+    z-index: 10000;
+    border-radius: 12px;
+    box-shadow: 4px 4px 8px var(--dark-bg-redesigned);
+}
+
+.item {
+    padding: 10px 20px;
+}
+
+.selected {
+    background: var(--light-bg-redesigned);
+}

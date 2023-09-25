@@ -1,0 +1,1125 @@
+{
+  "notifications": [
+    {
+      "id": "1",
+      "title": "Уведомление 1",
+      "description": "Произошло какое-то событие",
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "title": "Уведомление 2",
+      "description": "Произошло какое-то событие",
+      "userId": "1",
+      "href": "http://localhost:3000/admin"
+    },
+    {
+      "id": "3",
+      "title": "Уведомление 3",
+      "description": "Произошло какое-то событие",
+      "userId": "1",
+      "href": "http://localhost:3000/admin"
+    },
+    {
+      "id": "4",
+      "title": "Уведомление 4",
+      "description": "Произошло какое-то событие",
+      "userId": "1"
+    },
+    {
+      "id": "5",
+      "title": "Уведомление 1",
+      "description": "Произошло какое-то событие",
+      "userId": "2"
+    }
+  ],
+  "articles": [
+    {
+      "id": "1",
+      "title": "Javascript news 2023",
+      "subtitle": "Что нового в JS за 2023 год?",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1024px-Unofficial_JavaScript_logo_2.svg.png",
+      "views": 1022,
+      "createdAt": "13.07.2023",
+      "userId": "1",
+      "type": [
+        "OTHER",
+        "ARTICLE"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы.",
+            "Существуют и другие способы запуска JS-кода в браузере. Так, если говорить об обычном использовании программ на JavaScript, они загружаются в браузер для обеспечения работы веб-страниц. Как правило, код оформляют в виде отдельных файлов с расширением .js, которые подключают к веб-страницам, но программный код можно включать и непосредственно в код страницы. Всё это делается с помощью тега <script>. Когда браузер обнаруживает такой код, он выполняет его. Подробности о теге script можно посмотреть на сайте w3school.com. В частности, рассмотрим пример, демонстрирующий работу с веб-страницей средствами JavaScript, приведённый на этом ресурсе. Этот пример можно запустить и средствами данного ресурса (ищите кнопку Try it Yourself), но мы поступим немного иначе. А именно, создадим в каком-нибудь текстовом редакторе (например — в VS Code или в Notepad++) новый файл, который назовём hello.html, и добавим в него следующий код:"
+          ]
+        },
+        {
+          "id": "4",
+          "type": "CODE",
+          "code": "<!DOCTYPE html>\n<html>\n  <body>\n    <p id=\"hello\"></p>\n\n    <script>\n      document.getElementById(\"hello\").innerHTML = \"Hello, world!\";\n    </script>\n  </body>\n</html>;"
+        },
+        {
+          "id": "5",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "Существуют и другие способы запуска JS-кода в браузере. Так, если говорить об обычном использовании программ на JavaScript, они загружаются в браузер для обеспечения работы веб-страниц. Как правило, код оформляют в виде отдельных файлов с расширением .js, которые подключают к веб-страницам, но программный код можно включать и непосредственно в код страницы. Всё это делается с помощью тега <script>. Когда браузер обнаруживает такой код, он выполняет его. Подробности о теге script можно посмотреть на сайте w3school.com. В частности, рассмотрим пример, демонстрирующий работу с веб-страницей средствами JavaScript, приведённый на этом ресурсе. Этот пример можно запустить и средствами данного ресурса (ищите кнопку Try it Yourself), но мы поступим немного иначе. А именно, создадим в каком-нибудь текстовом редакторе (например — в VS Code или в Notepad++) новый файл, который назовём hello.html, и добавим в него следующий код:"
+          ]
+        },
+        {
+          "id": "2",
+          "type": "IMAGE",
+          "src": "https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png",
+          "title": "Рисунок 1 - скриншот сайта"
+        },
+        {
+          "id": "3",
+          "type": "CODE",
+          "code": "const path = require('path');\n\nconst server = jsonServer.create();\n\nconst router = jsonServer.router(path.resolve(__dirname, 'db.json'));\n\nserver.use(jsonServer.defaults({}));\nserver.use(jsonServer.bodyParser);"
+        },
+        {
+          "id": "7",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы.",
+            "Существуют и другие способы запуска JS-кода в браузере. Так, если говорить об обычном использовании программ на JavaScript, они загружаются в браузер для обеспечения работы веб-страниц. Как правило, код оформляют в виде отдельных файлов с расширением .js, которые подключают к веб-страницам, но программный код можно включать и непосредственно в код страницы. Всё это делается с помощью тега <script>. Когда браузер обнаруживает такой код, он выполняет его. Подробности о теге script можно посмотреть на сайте w3school.com. В частности, рассмотрим пример, демонстрирующий работу с веб-страницей средствами JavaScript, приведённый на этом ресурсе. Этот пример можно запустить и средствами данного ресурса (ищите кнопку Try it Yourself), но мы поступим немного иначе. А именно, создадим в каком-нибудь текстовом редакторе (например — в VS Code или в Notepad++) новый файл, который назовём hello.html, и добавим в него следующий код:"
+          ]
+        },
+        {
+          "id": "8",
+          "type": "IMAGE",
+          "src": "https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png",
+          "title": "Рисунок 1 - скриншот сайта"
+        },
+        {
+          "id": "9",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Асинхронное программирование",
+      "subtitle": "Асинхронное программирование",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3sE9VFn5wVOgjXU00X5_ueD6VVKlSF48P312KNPuwY2HQA5OOS4cHLVPFvuIdOwDto4o&usqp=CAU",
+      "chLink": "https://github.com/HowProgrammingWorks/Index/blob/master/Courses/Asynchronous.md",
+      "views": 1022,
+      "createdAt": "20.09.2018",
+      "userId": "1",
+      "type": [
+        "OTHER"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Описание",
+          "paragraphs": [
+            "Объем материала: 24 лекции, 27 репозиториев с примерами кода."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Продвинутый Frontend",
+      "subtitle": "Продвинутый Frontend. В production на React",
+      "img": "https://cdn.coursehunter.net/courses/268x160/prodvinutyy-frontend-v-production-na-react.webp",
+      "chLink": "https://coursehunter.net/course/prodvinutyy-frontend-v-production-na-react",
+      "views": 94002,
+      "createdAt": "05.19.2023",
+      "userId": "1",
+      "type": [
+        "COURSE"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Описание",
+          "paragraphs": [
+            "Курс идеально подойдет 2 категориям людей: 1. Люди, которые в данный момент ищут работу или близки к этому. 2. Действующие junior или middle разработчики, которые хотят повысить профессиональный уровень.\n\nПервая категория получит топовый проект в портфолио + десяток новых технологий и подходов к разработке в резюме.\n\nВторая категория сможет расширить свой кругозор и повысить профессиональный уровень."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "TEXT",
+          "title": "Кому курс не подойдет?",
+          "paragraphs": [
+            "Если вы совсем недавно начали изучать React и абсолютно не понимаете, хотя бы на самом базовом уровне концепцию Redux, то курс вам не подойдет.\n\nЕсли вы понимаете, что происходит в ролике \"Фундаментальный React от А до Я\" и закрепили его на практике, а также понимаете основы Redux, то курс подойдет вам идеально.\n\nТакже плюсом будет минимальное понимание TypeScript (достаточно основ).\n\nЧто представляет из себя курс?\n\nКурс представляет из себя не оторванные от реальности уроки, а последовательную разработку большого production проекта на React, включая настройку всей инфраструктуры, тестовой среды, работу с сервером\\данными и тд. По итогу вы получите большой и сложный с технической точки зрения проект, большое кол-во коммитов в гит. К проекту всегда можно будет вернуться и посмотреть как реализован тот или иной момент.\n\n",
+            "Важно! Курс не про React. React лишь одна из технологий, которая используется в курсе. Курс про Frontend разработку в целом и охватывает более глобальные концепции и подходы, включая конфигурацию, тесты и прочее (про это можно почитать подробнее ниже). Разработчикам на Vue/Svelte/angular курс также подойдет (но со специфичными для реакта моментами)\n\nНабор знаний, который вы получите\n\nP.S. не пугайся незнакомых названий, курс и нужен для того, чтобы это исправить :)"
+          ]
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Конфигурация",
+          "paragraphs": [
+            "Полная конфигурация проекта с нуля (Webpack). Настроим React, Typescript, Babel, scss, css modules, vite, prettier, также настроим тестовую среду, jest, rtl, storybook, loki, Cypress. Большое кол-во плагинов, лоадеров + грамотная декомпозиция конфига."
+          ]
+        },
+        {
+          "id": "4",
+          "type": "TEXT",
+          "title": "UI",
+          "paragraphs": [
+            "Библиотека компонентов. Более 20 UI компонентов, включая модальные окна с порталами, выпадающие списки\\меню, сайдбар, кнопки с разными темами, скелетоны, попапы, ленивые изображения, drawer, аватары, вертикальные и горизонтальные стеки и тд. Будем писать как свои решения так и опробуем headless библиотеки. Все компоненты будем делать доступными и семантичными."
+          ]
+        },
+        {
+          "id": "5",
+          "type": "TEXT",
+          "title": "Архитектура",
+          "paragraphs": [
+            "Архитектура. Модули. Декомпозиция. Бизнес сущности. Слабое зацепление и сильная связность. Переиспользование. Конкретные примеры\n\n"
+          ]
+        },
+        {
+          "id": "6",
+          "type": "TEXT",
+          "title": "Оптимизация",
+          "paragraphs": [
+            "Оптимизация. Перерисовки и как с ними бороться. Анализ размера бандла. Использование бандл анализаторов. Асинхронные компоненты. Асинхронные Redux редюссеры. Reducer manager и создание небольшой библиотечки по внедрению асинхронных редюсеров. Изоляция модулей. Throttle и debounce. Инъекция эндпоинтов для лучшего code splitting. Научимся удобно асинхронно подгружать библиотеки, которые не нужны сразу (для анимаций и драг энд дропа)."
+          ]
+        },
+        {
+          "id": "7",
+          "type": "TEXT",
+          "title": "Реальные задачи",
+          "paragraphs": [
+            "Решение большого кол-ва задач из реальной разработки (фильтры, поиск, сортировки, бесконечные ленты, многоблочные страницы, комментарии и тд). Похоже на то, что было в фундаментальном курсе, но в разы больше и сделано технически интереснее."
+          ]
+        },
+        {
+          "id": "8",
+          "type": "TEXT",
+          "title": "Темы и стили",
+          "paragraphs": [
+            "CSS модули и темизация. Создадим правильную структуру стилей и внедрим 3 цветовые темы нашего приложения (темная, светлая, оранжевая). Организуем стили так, что внедрить новую тему будет стоить 5 минут. Поработаем с scss"
+          ]
+        },
+        {
+          "id": "9",
+          "type": "TEXT",
+          "title": "Сторибук и скриншотные тесты",
+          "paragraphs": [
+            "С нуля настроим Storybook и будем описывать story case для каждого компонента и всех его состояний. Научимся делать скриншотные тесты, что позволит делать регрессионое тестирование нашего интерфейса."
+          ]
+        },
+        {
+          "id": "10",
+          "type": "TEXT",
+          "title": "Unit и RTL тесты",
+          "paragraphs": [
+            "С нуля настроим тестовую среду для unit jest тестов и тестов на компоненты с помощью React Testing Library. Будем тестировать каждый разработанный модуль (селекторы, async thunks, редюсеры, компоненты)."
+          ]
+        },
+        {
+          "id": "11",
+          "type": "TEXT",
+          "title": "e2e тестирование",
+          "paragraphs": [
+            "В самом конце разработки покроем разработанные модули E2E тестами. Разберем кастомные команды, фикстуры, моки, стабы, интерцепторы, скипы. Научимся правильно выполнять запросы и писать end-to-end тесты."
+          ]
+        },
+        {
+          "id": "12",
+          "type": "TEXT",
+          "title": "Линтинг и prettier",
+          "paragraphs": [
+            "Настроим под себя code-style, в частности настроим ESlint и stylelint. Для eslint реализуем самописный плагин в виде отдельного npm пакета. Плагин будет содержать 3 самописных правила, которые будут следить за правилами архитектуры, изоляцией модулей, правильным доступам к слоям. Правила будут обладать автофиксом, который будет автоматически исправлять неправильный код. Для формативания и наведения красоты в коде настроим Prettier."
+          ]
+        },
+        {
+          "id": "13",
+          "type": "TEXT",
+          "title": "Ошибки",
+          "paragraphs": [
+            "Научимся правильно обрабатывать ошибки и реализуем ErrorBoundary. Посмотрим на практике как он работает."
+          ]
+        },
+        {
+          "id": "14",
+          "type": "TEXT",
+          "title": "Роутинг",
+          "paragraphs": [
+            "React-router-dom V6. Конечно в нашем приложении будет несколько страниц, этим никого не удивишь. Настроим доступы для этих страниц, по авторизованности, либо по ролям. Также для сохранения минимального размера бандла научимся выносить страницы в отдельные чанки."
+          ]
+        },
+        {
+          "id": "15",
+          "type": "TEXT",
+          "title": "i18n",
+          "paragraphs": [
+            "Научимся работать с интернационализацией. Внедрим в интерфейс два языка (русский и английский). Также научимся разбивать переводы на чанки и подгружать их порциями, чтобы не увеличивать размер бандла. Поговорим про плюральные формы и рассмотрим конкретные примеры."
+          ]
+        },
+        {
+          "id": "16",
+          "type": "TEXT",
+          "title": "TypeScript",
+          "paragraphs": [
+            "С нуля настроим TS (tsconfig), подружим его с вебпаком, поработаем с union типами, дженерик компонентами, в общем тайпскрипта будет много."
+          ]
+        },
+        {
+          "id": "17",
+          "type": "TEXT",
+          "title": "Babel",
+          "paragraphs": [
+            "Настроим Babel и в качестве тренировки подключим плагинчик, который будет автоматически извлекать ключи для переводов из кода и добавлять в JSON файлики. Также реализуем свой собственный плагин, который будет удалять лишний для нас код из Production сборки. На практике посмотрим как работают babel плагины, поговорим про парсинг АСТ дерева."
+          ]
+        },
+        {
+          "id": "18",
+          "type": "TEXT",
+          "title": "СI/CD и pre-commit хуки",
+          "paragraphs": [
+            "Настроим ci pipeline, который будет прогонять за нас 3 вида тестов, делать сборку проекта, сторибука, прогонять код на линтеры. Также настроим pre commit хуки с помощью husky. Научимся генерировать отчеты для юнит и скриншотных тестов с информацией об успешных/упавших тестах и также научимся сразу их публиковать в ci github pages."
+          ]
+        },
+        {
+          "id": "19",
+          "type": "TEXT",
+          "title": "Нормализация данных",
+          "paragraphs": [
+            "Также уделим внимание нормализации данных. Поговорим про саму концепцию и реализуем пример в коде. Поработаем с EntityAdapter."
+          ]
+        },
+        {
+          "id": "20",
+          "type": "TEXT",
+          "title": "Виртуализация",
+          "paragraphs": [
+            "При работе со списками важно не забыть про Perfomance. Поработаем с виртуальными списками, на примере посмотрим как можно повысить производительность."
+          ]
+        },
+        {
+          "id": "21",
+          "type": "TEXT",
+          "title": "Инфраструктура",
+          "paragraphs": [
+            "Инфраструктуру настроим таким образом, чтобы и сам проект, и тестовое окружение, и сторибук умели использовать все фичи и работать как единное целое. (ts, css modules, глобальные переменные сборки и тд). "
+          ]
+        },
+        {
+          "id": "22",
+          "type": "TEXT",
+          "title": "Рефакторинг",
+          "paragraphs": [
+            "В конце разработки мы проанализируем получившийся код и постараемся его отрефакторить, разберем слабые места, исправим их и поймем на конкретных примерах, как стоит декомпозировать и изолировать модули в приложении."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Microservices",
+      "subtitle": "Microservices - паттерны и практика построения микросервисов",
+      "img": "https://cdn.coursehunter.net/courses/268x160/microservices-patterny-i-praktika-postroeniya-mikroservisov.webp",
+      "chLink": "https://coursehunter.net/course/microservices-patterny-i-praktika-postroeniya-mikroservisov",
+      "views": 94002,
+      "createdAt": "09.24.2022",
+      "userId": "1",
+      "type": [
+        "COURSE"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Описание",
+          "paragraphs": [
+            "Всё больше компаний обращает своё внимание на микросервисную архитектуру, так как она решает множество проблем монолитных приложений: непростое горизонтальное масштабирование, устаревающий стек, высокая связанность и запутанность кода, а так же медленные процессы сборки, тестирования и выкладки. За счёт атомарности, микросервисная архитектура призвана решить все эти проблемы, а так же повысить отказоустойчивость и упростить поддержку. Но для всего есть и обратная сторона.",
+            "Микросервисная архитектура требует совершенно другого подхода в проектировании и реализации.",
+            "В курсы мы как раз посмотрим на все особенность построения микросервисной архитектуры. Мы разберём паттерны взаимодействия, декомпозиции, реализации команд и запросов, модели доменных событий и множество подводных камней, которые вы встретите при внедрении микросервисов. Курс был составлен исходя из моего реального опыта внедрения микросервисов в разных компаниях и тех трудностей, с которыми мне пришлось столкнуться. Несмотря на то, что в курсе мы будем писать код на TypeScript под Node.js, на фреймворке NestJS, он будет полезен и тем, кто пишет на других языках так как содержит много полезного теоретического материала. "
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "ChatGPT Guide",
+      "subtitle": "ChatGPT - The Complete Guide",
+      "img": "https://cdn.coursehunter.net/courses/268x160/chatgpt-polnoe-rukovodstvo.webp",
+      "chLink": "https://coursehunter.net/course/chatgpt-polnoe-rukovodstvo",
+      "views": 10222,
+      "createdAt": "05.10.2023",
+      "userId": "1",
+      "type": [
+        "COURSE"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Description",
+          "paragraphs": [
+            "Unlock the power of AI and gain a huge productivity boost with our comprehensive online video course!",
+            "Are you ready to harness the incredible potential of ChatGPT? Look no further! Our course, 'ChatGPT - The Complete Guide to ChatGPT & OpenAI APIs' is your all-in-one solution to mastering this revolutionary technology."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Full Stack Developer",
+      "subtitle": "PROFESSIONAL Full Stack Developer",
+      "img": "https://cdn.coursehunter.net/courses/268x160/professionalnyy-full-stack-razrabotchik.webp",
+      "chLink": "https://coursehunter.net/course/professionalnyy-full-stack-razrabotchik",
+      "views": 1022,
+      "createdAt": "04.19.2023",
+      "userId": "1",
+      "type": [
+        "COURSE"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Description",
+          "paragraphs": [
+            "Are you ready to level up your coding skills and become a full stack professional? Our new 50+ hours course is designed to equip you with the latest tools and techniques to build impressive, full stack applications that will impress the users and your team."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "title": "NodeJS real-time",
+      "subtitle": "NodeJS. Разработка серверной стороны для real-time коммуникаций",
+      "img": "https://cdn.coursehunter.net/courses/268x160/nodejs-razrabotka-servernoy-storony-dlya-real-time-kommunikaciy.webp",
+      "chLink": "https://coursehunter.net/course/nodejs-razrabotka-servernoy-storony-dlya-real-time-kommunikaciy",
+      "views": 100,
+      "createdAt": "01.15.2023",
+      "userId": "1",
+      "type": [
+        "COURSE"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Описание",
+          "paragraphs": [
+            "Научиться решать с помощью Node.js именно те задачи, в которых он намного лучше конкурентов.",
+            "Нас НЕ интересует генерация html на сервере, работа с файлами и т.п. Наша цель - создание серверной части для real-time коммуникаций ( long polling, server sent events, web sockets ), ведь, например, на чистом PHP это нормально не реализовать."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "title": "Build UI",
+      "subtitle": "Build UI - High-quality videos on frontend development",
+      "img": "https://cdn.coursehunter.net/courses/268x160/build-ui-kachestvennye-video-po-frontend-razrabotke.webp",
+      "chLink": "https://coursehunter.net/course/build-ui-kachestvennye-video-po-frontend-razrabotke",
+      "views": 102222,
+      "createdAt": "01.11.2023",
+      "userId": "1",
+      "type": [
+        "COURSE"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Description",
+          "paragraphs": [
+            "Watch every video, support our work, and get exclusive perks! Build UI is the new home for all our ideas. It will eventually have hundreds of premium videos and a thriving community, but right now it's the early days."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "title": "Асинхронная архитектура",
+      "subtitle": "Асинхронная архитектура",
+      "img": "https://cdn.coursehunter.net/courses/268x160/asinhronnaya-arhitektura.webp",
+      "chLink": "https://coursehunter.net/course/asinhronnaya-arhitektura",
+      "views": 1022,
+      "createdAt": "11.03.2022",
+      "userId": "1",
+      "type": [
+        "COURSE"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Описание",
+          "paragraphs": [
+            "Четырёхнедельный онлайн-курс о том, как строить распределённые сервисы. Мы простым языком расскажем о DDD и об архитектуре больших систем. По итогам курса вы спроектируете распределённую систему, которую добавите в портфолио."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": "Performance Testing",
+      "subtitle": "Setting up DevTools for Performance Testing",
+      "img": "https://cdn.coursehunter.net/courses/268x160/nastroyka-devtools-dlya-testirovaniya-proizvoditelnosti.webp",
+      "chLink": "https://coursehunter.net/course/nastroyka-devtools-dlya-testirovaniya-proizvoditelnosti",
+      "views": 1022,
+      "createdAt": "10.23.2022",
+      "userId": "1",
+      "type": [
+        "COURSE"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Description",
+          "paragraphs": [
+            "Developer tooling within browsers is more powerful than ever, but this brings its own set of problems: there’s just so much! How does it all work? Which bits do I need? What does this even do?"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "title": "Микросервисы на Spring Cloud",
+      "subtitle": "Микросервисы на Spring Cloud",
+      "img": "https://cdn.coursehunter.net/courses/268x160/mikroservisy-na-spring-cloud.webp",
+      "chLink": "https://coursehunter.net/course/mikroservisy-na-spring-cloud",
+      "views": 1022,
+      "createdAt": "10.19.2022",
+      "userId": "1",
+      "type": [
+        "COURSE"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Описание",
+          "paragraphs": [
+            "Практический курс, где вы на основе проекта создадите микросервисную архитектуру с применением всех популярных технологий (Spring Cloud, Config, Eureka, RabbitMQ, GitHub  и др.)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "title": "System Design",
+      "subtitle": "System Design - проектирование систем",
+      "img": "https://cdn.coursehunter.net/courses/268x160/system-design-proektirovanie-sistem.webp",
+      "chLink": "https://coursehunter.net/course/system-design-proektirovanie-sistem",
+      "views": 1022,
+      "createdAt": "09.25.2022",
+      "userId": "1",
+      "type": [
+        "COURSE"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Описание",
+          "paragraphs": [
+            "По мере вашего роста как разработчика от вас все чаще будет требоваться умение выстраивать масштабируемые и оптимальные архитектуры для программных систем. Развитие этого навыка — отличный способ выделиться из массы других разработчиков. А еще интервью по System Design это обязательный этап собеседований в большие технологические компании. Его проходят при отборе как на инженерные позиции (Individual Contributor), так и на менеджерские (Engineering Manager). В большинстве случаев именно по его результатам определяется уровень соискателя и принимается решение о найме. К сожалению, на русском языке практически нет материалов для комплексной подготовки к таким интервью. Чтобы решить эту проблему, мы записали свой курс по System Design."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "title": "Discord Clone",
+      "subtitle": "Discord Clone - Learn MERN Stack with WebRTC and SocketIO",
+      "img": "https://cdn.coursehunter.net/courses/268x160/izuchite-stek-mern-s-pomoshchyu-webrtc-i-socketio-sozdavaya-klon-discord.webp",
+      "chLink": "https://coursehunter.net/course/izuchite-stek-mern-s-pomoshchyu-webrtc-i-socketio-sozdavaya-klon-discord",
+      "views": 1022,
+      "createdAt": "07.27.2022",
+      "userId": "1",
+      "type": [
+        "COURSE"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Description",
+          "paragraphs": [
+            "Learn how to connect MERN Stack with WebRTC and SocketIO.  We will go through all of the steps to create application with group call functionality. We will create WebRTC implementation to show how you can develop WebRTC application thanks to simple-peer.  We will use  SocketIO as our signaling server for our application and for realtime communication. After this course you will be able to create own application which will be using WebRTC."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "title": "Вы приняты",
+      "subtitle": "Вы приняты",
+      "img": "https://cdn.coursehunter.net/courses/268x160/vy-prinyaty.webp",
+      "chLink": "https://coursehunter.net/course/vy-prinyaty",
+      "views": 1022,
+      "createdAt": "06.12.2022",
+      "userId": "1",
+      "type": [
+        "COURSE"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Description",
+          "paragraphs": [
+            "3-недельный интенсив для программистов о поиске работы за рубежом. Составим шорт-лист компаний, где хочется работать, заполним профиль в линкедине, потренируемся в собеседованиях и научимся оценивать офферы."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "title": "Практикум HighLoad",
+      "subtitle": "Архитектор высоких нагрузок | Практикум HighLoad",
+      "img": "https://cdn.coursehunter.net/courses/268x160/arhitektor-vysokih-nagruzok-praktikum-highload.webp",
+      "chLink": "https://coursehunter.net/course/arhitektor-vysokih-nagruzok-praktikum-highload",
+      "views": 1022,
+      "createdAt": "02.04.2022",
+      "userId": "1",
+      "type": [
+        "COURSE"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Описание",
+          "paragraphs": [
+            "С какими задачами поступают к нам на практикум? Хочется работать с масштабными проектами; Есть желание попасть на работу в крупную компанию, но не хватает компетенций; Нужно повысить квалификацию, чтобы продвинуться в должности; На практике познакомиться с актуальным технологическим стеком."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "title": "Build Full-Stack",
+      "subtitle": "Build Full-Stack Apps from Scratch",
+      "img": "https://cdn.coursehunter.net/courses/268x160/sozdavayte-full-stack-prilozheniya-s-nulya.webp",
+      "chLink": "https://coursehunter.net/course/sozdavayte-full-stack-prilozheniya-s-nulya",
+      "views": 1022,
+      "createdAt": "12.17.2021",
+      "userId": "1",
+      "type": [
+        "COURSE"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Description",
+          "paragraphs": [
+            "The best way to learn is to build something. Follow along and build a Spotify clone from scratch. From design spec to deployment. Using React, Node.js, Typescript, and Postgres."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "title": "Microfrontends",
+      "subtitle": "Microfrontends with React: A Complete Developer's Guide",
+      "img": "https://cdn.coursehunter.net/courses/536x320/mikrofrontendy-c-react-polnoe-rukovodstvo.webp",
+      "chLink": "https://coursehunter.net/course/mikrofrontendy-c-react-polnoe-rukovodstvo",
+      "views": 5204,
+      "createdAt": "11.12.2020",
+      "userId": "1",
+      "type": [
+        "COURSE"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Description",
+          "paragraphs": [
+            "Congratulations! You've found the most popular, most complete, and most up-to-date resource online for learning how to use microfrontends! Thousands of other engineers have learned microfrontends, and you can too. This course uses a time-tested, battle-proven method to make sure you understand exactly how microfrontends work, and will get you a new job working as a software engineer or help you build that app you've always been dreaming about.",
+            "The difference between this course and all the others: you will understand the design patterns used by top companies to build massively popular web apps.",
+            "Microfrontends are used to divide a large app into a series of smaller apps. This provides a set of unique benefits to any frontend:"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "title": "Задача трех тел",
+      "subtitle": "Задача трех тел",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbogZC_rgl09o0trczME6CwBzQrTEsSxqqyOfS8x-KapKmGhXvbFu8jSG3_tcYstxKPHc&usqp=CAU",
+      "views": 1022,
+      "createdAt": "14.07.2023",
+      "userId": "1",
+      "type": [
+        "BOOK"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Описание",
+          "paragraphs": [
+            "Роман китайского писателя-фантаста Лю Цысиня в жанре научной фантастики. Является первой частью трилогии автора «Память о прошлом Земли», однако китайские читатели в целом воспринимают трилогию по названию первого романа"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "title": "Шаблоны проектирования Node.js",
+      "subtitle": "Шаблоны проектирования Node.JS | Каскиаро Марио, Маммино Лучано",
+      "img": "https://cv6.litres.ru/pub/c/cover_415/27071860.webp",
+      "views": 1022,
+      "createdAt": "14.07.2023",
+      "userId": "1",
+      "type": [
+        "BOOK"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Описание",
+          "paragraphs": [
+            "В книге описаны асинхронная, однопоточная архитектура платформы, а также шаблоны асинхронного управления потоком выполнения и потоками данных. Рассмотрен подробный список реализаций распространенных, а также некоторых уникальных шаблонов проектирования в Node.js.",
+            "Самые мощные компоненты и шаблоны платформы Node.js для создания масштабируемых модульных приложений!Знакомство с множеством шаблонов проектирования серверных приложений на языке JavaScript..."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "title": "Building Micro-Frontends",
+      "subtitle": "Building Micro-Frontends",
+      "img": "https://mcusercontent.com/74c53dc98237c0f7fa8ee5542/images/fd6b25a8-b9c2-28db-b871-ee0ae65c0408.png",
+      "views": 1022,
+      "createdAt": "14.07.2023",
+      "userId": "1",
+      "type": [
+        "BOOK"
+      ],
+      "blocks": []
+    },
+    {
+      "id": "21",
+      "title": "Пиши, сокращай",
+      "subtitle": "Пиши, сокращай",
+      "img": "https://alpinabook.ru/resize/470x470/upload/iblock/32f/32f33a5cccda478e0481cf78fe157c61.jpg",
+      "views": 1022,
+      "createdAt": "14.07.2023",
+      "userId": "1",
+      "type": [
+        "BOOK"
+      ],
+      "blocks": []
+    },
+    {
+      "id": "22",
+      "title": "Microservice Architecture",
+      "subtitle": "Microservice Architecture",
+      "img": "https://microservices.io/i/Microservice_Architecture.png",
+      "chLink": "https://microservices.io/patterns/data/event-sourcing.html",
+      "views": 1022,
+      "createdAt": "14.07.2023",
+      "userId": "1",
+      "type": [
+        "OTHER"
+      ],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Description",
+          "paragraphs": [
+            "Microservices - also known as the microservice architecture - is an architectural style that structures an application as a collection of services that are:"
+          ]
+        }
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "some comment",
+      "articleId": "1",
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "text": "some comment 2",
+      "articleId": "1",
+      "userId": "1"
+    },
+    {
+      "id": "3",
+      "text": "some comment 3",
+      "articleId": "1",
+      "userId": "1"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "123",
+      "id": "4Cljjzl"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "123asfasf",
+      "id": "AEM4Dvc"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "123asfasf",
+      "id": "IFEOWl0"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "привет мир",
+      "id": "dBacYRZ"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "хехехехе",
+      "id": "rBX_C-e"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "фыафыа",
+      "id": "5k0ApX-"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "sdfsdfsd",
+      "id": "w-HDIRq"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "asdasdasd",
+      "id": "MVvGQoZ"
+    },
+    {
+      "articleId": "3",
+      "userId": "1",
+      "text": "comment 1",
+      "id": "bAs7YBE"
+    },
+    {
+      "articleId": "2",
+      "userId": "1",
+      "text": "python!!!",
+      "id": "p5rMadd"
+    },
+    {
+      "articleId": "3",
+      "userId": "1",
+      "text": "123213",
+      "id": "Zu_RNuF"
+    },
+    {
+      "articleId": "8",
+      "userId": "1",
+      "text": "dfdsf",
+      "id": "4rFHQgJ"
+    },
+    {
+      "articleId": "8",
+      "userId": "1",
+      "text": "sdfsdf",
+      "id": "yYEdTI-"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "123213",
+      "id": "TR1yDY6"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "112",
+      "id": "wSAhqy5"
+    },
+    {
+      "articleId": "18",
+      "userId": "1",
+      "text": "12",
+      "id": "r6b1z-N"
+    },
+    {
+      "articleId": "18",
+      "userId": "2",
+      "text": "привет",
+      "id": "DENfTu6"
+    },
+    {
+      "articleId": "7",
+      "userId": "2",
+      "text": "33",
+      "id": "Ps59wrg"
+    },
+    {
+      "articleId": "7",
+      "userId": "2",
+      "text": "123",
+      "id": "zzYVth3"
+    },
+    {
+      "articleId": "7",
+      "userId": "2",
+      "text": "123",
+      "id": "WjF4c_d"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "privet",
+      "id": "fta748h"
+    },
+    {
+      "articleId": "2",
+      "userId": "2",
+      "text": "питон топ",
+      "id": "ZlmlUrg"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "123",
+      "id": "KmtWJR_"
+    },
+    {
+      "articleId": "8",
+      "userId": "2",
+      "text": "asdasd",
+      "id": "eB1A-7c"
+    },
+    {
+      "articleId": "2",
+      "userId": "1",
+      "text": "class",
+      "id": "wAZ_hJM"
+    },
+    {
+      "articleId": "2",
+      "userId": "1",
+      "text": "asfasf",
+      "id": "SygCNYE"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "213",
+      "id": "bq8YXY2"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate dolores dolorum eaque eius excepturi expedita     ipsa nam, quos rem rerum voluptas voluptate voluptatem? Dicta distinctio dolore explicabo labore magni sit!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate dolores dolorum eaque eius excepturi expedita     ipsa nam, quos rem rerum voluptas voluptate voluptatem? Dicta distinctio dolore explicabo labore magni sit!",
+      "id": "lTD5sA7"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "asd",
+      "id": "NfX84Yo"
+    },
+    {
+      "articleId": "18",
+      "userId": "1",
+      "text": "фыафыа",
+      "id": "Fmg06f6"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "123",
+      "roles": [
+        "ADMIN"
+      ],
+      "features": {
+        "isArticleRatingEnabled": true,
+        "isCounterEnabled": true,
+        "isAppRedesigned": true
+      },
+      "avatar": "https://mobimg.b-cdn.net/v3/fetch/22/2207633df03a819cd72889249c8361a8.jpeg?w=1470&r=0.5625",
+      "jsonSettings": {
+        "isArticlesPageWasOpened": true,
+        "theme": "app_light_theme"
+      }
+    },
+    {
+      "id": "2",
+      "username": "user",
+      "password": "123",
+      "roles": [
+        "USER"
+      ],
+      "features": {
+        "isArticleRatingEnabled": false,
+        "isCounterEnabled": false,
+        "isAppRedesigned": true
+      },
+      "avatar": "https://i.pinimg.com/originals/9a/e0/2d/9ae02d4b4288396108ef77830a59e060.jpg",
+      "jsonSettings": {
+        "isArticlesPageWasOpened": true,
+        "theme": "app_dark_theme"
+      }
+    },
+    {
+      "id": "3",
+      "username": "manager",
+      "password": "123",
+      "roles": [
+        "MANAGER"
+      ],
+      "features": {
+        "isArticleRatingEnabled": false,
+        "isCounterEnabled": true,
+        "isAppRedesigned": false
+      },
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "jsonSettings": {
+        "isArticlesPageWasOpened": true
+      }
+    },
+    {
+      "id": "4",
+      "username": "testuser",
+      "password": "123",
+      "roles": [
+        "ADMIN"
+      ],
+      "features": {
+        "isArticleRatingEnabled": true,
+        "isCounterEnabled": true
+      },
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+    }
+  ],
+  "profile": [
+    {
+      "id": "1",
+      "first": "firstName",
+      "lastname": "lastname",
+      "age": 25,
+      "currency": "EUR",
+      "country": "Ukraine",
+      "city": "Moscow",
+      "username": "admin213",
+      "avatar": "https://mobimg.b-cdn.net/v3/fetch/22/2207633df03a819cd72889249c8361a8.jpeg?w=1470&r=0.5625"
+    },
+    {
+      "id": "2",
+      "first": "pck",
+      "lastname": "asf",
+      "age": 465,
+      "currency": "EUR",
+      "country": "Ukraine",
+      "city": "Moscow",
+      "username": "jojo",
+      "avatar": "https://i.pinimg.com/originals/9a/e0/2d/9ae02d4b4288396108ef77830a59e060.jpg"
+    },
+    {
+      "id": "4",
+      "first": "test",
+      "lastname": "user",
+      "age": 465,
+      "currency": "EUR",
+      "country": "Ukraine",
+      "city": "Moscow",
+      "username": "testuser",
+      "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
+    }
+  ],
+  "article-ratings": [
+    {
+      "id": "1",
+      "rate": 4,
+      "feedback": "Хорошая статья",
+      "userId": "1",
+      "articleId": "1"
+    },
+    {
+      "userId": "1",
+      "articleId": "3",
+      "rate": 3,
+      "feedback": "",
+      "id": "I7ofk1u"
+    },
+    {
+      "userId": "1",
+      "articleId": "9",
+      "rate": 5,
+      "feedback": "asdasdasdasd",
+      "id": "Y7MhPzo"
+    },
+    {
+      "userId": "1",
+      "articleId": "10",
+      "rate": 1,
+      "feedback": "отстой",
+      "id": "II0a75O"
+    },
+    {
+      "userId": "1",
+      "articleId": "7",
+      "rate": 3,
+      "feedback": "",
+      "id": "bcPnbbZ"
+    },
+    {
+      "userId": "2",
+      "articleId": "1",
+      "rate": 4,
+      "feedback": "asdasdasdad",
+      "id": "1I3E5gT"
+    },
+    {
+      "userId": "1",
+      "articleId": "2",
+      "rate": 2,
+      "feedback": "asdasdasd",
+      "id": "xbwnNBF"
+    },
+    {
+      "userId": "1",
+      "articleId": "12",
+      "rate": 5,
+      "feedback": "фыаыфаыаф",
+      "id": "ftXTMSh"
+    }
+  ],
+  "profile-ratings": [
+    {
+      "id": "1",
+      "rate": 4,
+      "feedback": "Хорошая статья",
+      "userId": "1",
+      "profileId": "1"
+    },
+    {
+      "id": "2",
+      "rate": 4,
+      "feedback": "Хорошая статья",
+      "userId": "1",
+      "profileId": "2"
+    }
+  ]
+}

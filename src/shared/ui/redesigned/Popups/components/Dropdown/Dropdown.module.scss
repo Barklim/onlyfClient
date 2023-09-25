@@ -1,0 +1,17 @@
+.menu {
+    background: var(--dark-bg-redesigned);
+    position: absolute;
+    z-index: 10000;
+    flex-direction: column;
+    display: flex;
+}
+
+.item {
+    padding: 10px 25px;
+    width: 100%;
+    border: none;
+    background: none;
+    outline: none;
+    color: var(--text-redesigned);
+    cursor: pointer;
+}

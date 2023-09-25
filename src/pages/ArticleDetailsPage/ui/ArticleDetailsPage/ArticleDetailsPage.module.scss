@@ -1,0 +1,9 @@
+.ArticleDetailsPage {
+    min-height: 100%;
+}
+
+.recommendations {
+    flex-wrap: nowrap;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
