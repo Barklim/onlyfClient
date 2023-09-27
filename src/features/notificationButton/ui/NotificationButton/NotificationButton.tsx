@@ -1,12 +1,6 @@
 import React, { memo, useCallback, useState } from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import {
-    Button as ButtonDeprecated,
-    ButtonTheme,
-} from '@/shared/ui/deprecated/Button';
-import { Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon';
-import NotificationIconDeprecated from '@/shared/assets/icons/notification-20-20.svg';
 import NotificationIcon from '@/shared/assets/icons/notification.svg';
 import { NotificationList } from '@/entities/Notification';
 import { Popover as PopoverDeprecated } from '@/shared/ui/deprecated/Popups';
@@ -15,6 +9,8 @@ import cls from './NotificationButton.module.scss';
 import { ToggleFeatures } from '@/shared/lib/features';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { Popover } from '@/shared/ui/redesigned/Popups';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import { Badge } from '@/shared/ui/material/Badge';
 
 interface NotificationButtonProps {
     className?: string;
@@ -39,12 +35,9 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
                 <Icon Svg={NotificationIcon} clickable onClick={onOpenDrawer} />
             }
             off={
-                <ButtonDeprecated
-                    onClick={onOpenDrawer}
-                    theme={ButtonTheme.CLEAR}
-                >
-                    <IconDeprecated Svg={NotificationIconDeprecated} inverted />
-                </ButtonDeprecated>
+                <Badge badgeContent={4} color="info" >
+                    <NotificationsIcon color='secondary'/>
+                </Badge>
             }
         />
     );

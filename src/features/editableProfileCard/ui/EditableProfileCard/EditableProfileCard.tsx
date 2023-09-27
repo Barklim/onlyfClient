@@ -103,6 +103,13 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         [dispatch],
     );
 
+    const onChangeStopWords = useCallback(
+        (value?: string) => {
+            dispatch(profileActions.updateProfile({ stopWords: value || '' }));
+        },
+        [dispatch],
+    );
+
     const onChangeCurrency = useCallback(
         (currency: Currency) => {
             dispatch(profileActions.updateProfile({ currency }));
@@ -141,6 +148,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
                     onChangeCity={onChangeCity}
                     onChangeUsername={onChangeUsername}
                     onChangeAvatar={onChangeAvatar}
+                    onChangeStopWords={onChangeStopWords}
                     onChangeCurrency={onChangeCurrency}
                     onChangeCountry={onChangeCountry}
                 />

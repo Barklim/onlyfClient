@@ -956,7 +956,7 @@
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true,
-        "isAppRedesigned": true
+        "isAppRedesigned": false
       },
       "avatar": "https://mobimg.b-cdn.net/v3/fetch/22/2207633df03a819cd72889249c8361a8.jpeg?w=1470&r=0.5625",
       "jsonSettings": {
@@ -974,12 +974,12 @@
       "features": {
         "isArticleRatingEnabled": false,
         "isCounterEnabled": false,
-        "isAppRedesigned": true
+        "isAppRedesigned": false
       },
       "avatar": "https://i.pinimg.com/originals/9a/e0/2d/9ae02d4b4288396108ef77830a59e060.jpg",
       "jsonSettings": {
         "isArticlesPageWasOpened": true,
-        "theme": "app_dark_theme"
+        "theme": "app_light_theme"
       }
     },
     {
@@ -1028,13 +1028,14 @@
     {
       "id": "2",
       "first": "pck",
-      "lastname": "asf",
+      "lastname": "asf122sds",
       "age": 465,
       "currency": "EUR",
       "country": "Ukraine",
       "city": "Moscow",
-      "username": "jojo",
-      "avatar": "https://i.pinimg.com/originals/9a/e0/2d/9ae02d4b4288396108ef77830a59e060.jpg"
+      "username": "jojos",
+      "avatar": "https://i.pinimg.com/originals/9a/e0/2d/9ae02d4b4288396108ef77830a59e060.jpg",
+      "stopWords": "Говно залупа пенис хер давалка хуй блядина Головка шлюха жопа член еблан пету Мудила Рукоблуд ссанина очко блядун вагина Сука ебланище влагалище пердун дрочила Пидор пизда туз малафья Гомик мудила пилотка манда Анус вагина путана педрила Шалава хуило мошонка елда      Govno zalupa penis her davalka huj bljadina Golovka shljuha zhopa chlen eblan petu Mudila Rukoblud ssanina ochko bljadun vagina Suka eblanishhe vlagalishhe perdun drochila Pidor pizda tuz malaf'ja Gomik mudila pilotka manda Anus vagina putana pedrila Shalava huilo moshonka elda"
     },
     {
       "id": "4",

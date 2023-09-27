@@ -1,16 +1,10 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
-
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { HStack } from '@/shared/ui/redesigned/Stack';
-import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
-import {
-    Button as ButtonDeprecated,
-    ButtonTheme,
-} from '@/shared/ui/deprecated/Button';
 import { getUserAuthData } from '@/entities/User';
 import { profileActions } from '../../model/slice/profileSlice';
 import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
@@ -19,6 +13,9 @@ import { updateProfileData } from '../../model/services/updateProfileData/update
 import { ToggleFeatures } from '@/shared/lib/features';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Card } from '@/shared/ui/redesigned/Card';
+import { Button as ButtonMui } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import DoneIcon from '@mui/icons-material/Done';
 
 interface EditableProfileCardHeaderProps {
     className?: string;
@@ -94,35 +91,42 @@ export const EditableProfileCardHeader = memo(
                     <HStack
                         max
                         justify="between"
-                        className={classNames('', {}, [className])}
+                        style={{ maxWidth: '631px' }}
                     >
-                        <TextDeprecated title={t('Профиль')} />
+                        <Text title={t('Профиль')} />
                         {canEdit && (
                             <div>
                                 {readonly ? (
-                                    <ButtonDeprecated
-                                        theme={ButtonTheme.OUTLINE}
+                                    <ButtonMui
+                                        variant='outlined'
+                                        size='medium'
                                         onClick={onEdit}
                                         data-testid="EditableProfileCardHeader.EditButton"
                                     >
                                         {t('Редактировать')}
-                                    </ButtonDeprecated>
+                                    </ButtonMui>
                                 ) : (
                                     <HStack gap="8">
-                                        <ButtonDeprecated
-                                            theme={ButtonTheme.OUTLINE_RED}
+                                        <ButtonMui
+                                            variant='outlined'
+                                            size='medium'
                                             onClick={onCancelEdit}
+                                            startIcon={<CloseIcon />}
+                                            color='error'
                                             data-testid="EditableProfileCardHeader.CancelButton"
                                         >
                                             {t('Отменить')}
-                                        </ButtonDeprecated>
-                                        <ButtonDeprecated
-                                            theme={ButtonTheme.OUTLINE}
+                                        </ButtonMui>
+                                        <ButtonMui
+                                            variant='contained'
+                                            size='medium'
                                             onClick={onSave}
+                                            endIcon={<DoneIcon />}
+                                            color='success'
                                             data-testid="EditableProfileCardHeader.SaveButton"
                                         >
                                             {t('Сохранить')}
-                                        </ButtonDeprecated>
+                                        </ButtonMui>
                                     </HStack>
                                 )}
                             </div>

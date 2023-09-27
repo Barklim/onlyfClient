@@ -1,21 +1,18 @@
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from '@/entities/User';
 import MainIconDeprecated from '@/shared/assets/icons/main-20-20.svg';
-import AboutIconDeprecated from '@/shared/assets/icons/about-20-20.svg';
-import ProfileIconDeprecated from '@/shared/assets/icons/profile-20-20.svg';
-import ArticleIconDeprecated from '@/shared/assets/icons/article-20-20.svg';
-
+import SupervisorAccountIcon from '@/shared/assets/icons/SupervisorAccount.svg';
+import CollectionsBookmarkIcon from '@/shared/assets/icons/CollectionsBookmark.svg';
+import MailingIcon from '@/shared/assets/icons/mailing.svg';
+import StatisticsIcon from '@/shared/assets/icons/statistics.svg';
+import AboutIcon from '@/shared/assets/icons/about.svg';
 import MainIcon from '@/shared/assets/icons/home.svg';
-import ArticleIcon from '@/shared/assets/icons/article.svg';
-import AboutIcon from '@/shared/assets/icons/Info.svg';
 import ProfileIcon from '@/shared/assets/icons/avatar.svg';
 
 import { SidebarItemType } from '../types/sidebar';
 import {
-    getRouteAbout,
-    getRouteArticles,
-    getRouteMain,
-    getRouteProfile,
+    getRouteAbout, getRouteAccounts,
+    getRouteMain, getRouteMassMailings,
 } from '@/shared/const/router';
 import { toggleFeatures } from '@/shared/lib/features';
 
@@ -31,41 +28,64 @@ export const useSidebarItems = () => {
             }),
             text: 'Главная',
         },
-        {
-            path: getRouteAbout(),
-            Icon: toggleFeatures({
-                name: 'isAppRedesigned',
-                off: () => AboutIconDeprecated,
-                on: () => AboutIcon,
-            }),
-            text: 'О сайте',
-        },
     ];
 
     if (userData) {
         sidebarItemsList.push(
             {
-                path: getRouteProfile(userData.id),
+                path: getRouteAccounts(),
                 Icon: toggleFeatures({
                     name: 'isAppRedesigned',
-                    off: () => ProfileIconDeprecated,
+                    off: () => SupervisorAccountIcon,
                     on: () => ProfileIcon,
                 }),
-                text: 'Профиль',
+                text: 'Accounts',
                 authOnly: true,
             },
             {
-                path: getRouteArticles(),
+                path: getRouteMassMailings(),
                 Icon: toggleFeatures({
                     name: 'isAppRedesigned',
-                    off: () => ArticleIconDeprecated,
-                    on: () => ArticleIcon,
+                    off: () => MailingIcon,
+                    on: () => ProfileIcon,
                 }),
-                text: 'Статьи',
+                text: 'Mass mailings',
+                authOnly: true,
+            },
+            {
+                path: getRouteMassMailings(),
+                Icon: toggleFeatures({
+                    name: 'isAppRedesigned',
+                    off: () => CollectionsBookmarkIcon,
+                    on: () => ProfileIcon,
+                }),
+                text: 'Collections',
+                authOnly: true,
+            },
+            {
+                path: getRouteMassMailings(),
+                Icon: toggleFeatures({
+                    name: 'isAppRedesigned',
+                    off: () => StatisticsIcon,
+                    on: () => ProfileIcon,
+                }),
+                text: 'Statistics',
                 authOnly: true,
             },
         );
     }
+
+    sidebarItemsList.push(
+        {
+            path: getRouteAbout(),
+            Icon: toggleFeatures({
+                name: 'isAppRedesigned',
+                off: () => AboutIcon,
+                on: () => AboutIcon,
+            }),
+            text: 'О сайте',
+        },
+    )
 
     return sidebarItemsList;
 };

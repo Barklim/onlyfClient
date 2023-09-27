@@ -19,10 +19,12 @@ import {
     getRouteArticles,
     getRouteMain,
     getRouteProfile,
-    getRouteSettings,
+    getRouteSettings, getRouteMassMailings, getRouteAccounts,
 } from '@/shared/const/router';
 import { AppRoutesProps } from '@/shared/types/router';
 import { SettingsPage } from '@/pages/SettingsPage';
+import { MassMailingsPage } from '@/pages/MassMailingsPage';
+import { AccountsPage } from '@/pages/AccountsPage';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -40,6 +42,16 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.PROFILE]: {
         path: getRouteProfile(':id'),
         element: <ProfilePage />,
+        authOnly: true,
+    },
+    [AppRoutes.ACCOUNTS]: {
+        path: getRouteAccounts(),
+        element: <AccountsPage />,
+        authOnly: true,
+    },
+    [AppRoutes.MASS_MAILINGS]: {
+        path: getRouteMassMailings(),
+        element: <MassMailingsPage />,
         authOnly: true,
     },
     [AppRoutes.ARTICLES]: {

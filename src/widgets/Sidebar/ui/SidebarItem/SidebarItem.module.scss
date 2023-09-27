@@ -12,11 +12,26 @@
     fill: var(--inverted-primary-color);
 }
 
+.ListItem {
+    min-width: 200px;
+    display: flex;
+    gap: 13px;
+
+    .ListItemIcon {
+        min-width: 0;
+    }
+}
+
 .collapsed {
     .link {
         opacity: 0;
         transition: 0.2s opacity;
         width: 0;
+    }
+    .ListItem {
+        width: 50px;
+        min-width: 50px;
+        max-height: 50px;
     }
 }
 

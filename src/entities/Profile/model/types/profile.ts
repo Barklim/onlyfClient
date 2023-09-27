@@ -11,4 +11,5 @@ export interface Profile {
     city?: string;
     username?: string;
     avatar?: string;
+    stopWords?: string;
 }

@@ -1,6 +1,5 @@
 .ProfileCard {
-  padding: 20px;
-  border: 2px solid var(--inverted-bg-color);
+  min-width: 600px;
 }
 
 .loading,
@@ -8,6 +7,10 @@
   height: 300px;
 }
 
-.editing {
-  border: 2px solid var(--inverted-primary-color);
+.fullWidth {
+  width: 100%;
+}
+
+.input {
+  min-width: 300px;
 }

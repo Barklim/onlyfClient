@@ -11,6 +11,7 @@
     "Ваш возраст": "Your age",
     "Имя пользователя": "Username",
     "Введите имя пользователя": "Input username",
+    "Введите стоп слова": "Input stop words",
     "Введите ссылку на аватар": "Input avatar link",
     "Серверная ошибка при сохранении": "Server error when saving",
     "Некорректный регион": "Invalid region",

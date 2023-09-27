@@ -4,16 +4,31 @@ import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import cls from './ProfileCardDeprecated.module.scss';
 import { ProfileCardProps } from '../ProfileCard/ProfileCard';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
-import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar';
-import { Input as InputDeprecated } from '@/shared/ui/deprecated/Input';
-import { CurrencySelect } from '@/entities/Currency';
-import { CountrySelect } from '@/entities/Country';
+import { Input as InputMaterial } from '@/shared/ui/material/Input';
 import { Loader } from '@/shared/ui/deprecated/Loader';
 import {
     Text as TextDeprecated,
     TextAlign,
     TextTheme,
 } from '@/shared/ui/deprecated/Text';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+
+function maskWords(inputString: string, n: number): string {
+    const words = inputString.split(" ");
+    const maskedWords = words.map((word) => {
+        if (word.length <= n) {
+            return word; // Если слово короче или равно n, не изменяем его.
+        } else {
+            const firstNLetters = word.slice(0, n);
+            const maskedPart = "*".repeat(word.length - n);
+            return firstNLetters + maskedPart;
+        }
+    });
+
+    return maskedWords.join(" ");
+}
 
 export const ProfileCardDeprecatedError = () => {
     const { t } = useTranslation();
@@ -51,88 +66,78 @@ export const ProfileCardDeprecated = memo((props: ProfileCardProps) => {
         className,
         data,
         readonly,
-        onChangeFirstname,
-        onChangeLastname,
-        onChangeAge,
-        onChangeCity,
-        onChangeAvatar,
         onChangeUsername,
-        onChangeCountry,
-        onChangeCurrency,
+        onChangeAvatar,
+        onChangeStopWords,
     } = props;
     const { t } = useTranslation('profile');
 
-    const mods: Mods = {
-        [cls.editing]: !readonly,
+    const modsFullWidth: Mods = {
+        [cls.fullWidth]: true,
     };
 
+    let newData = data;
+    let rows = 1;
+
+    if (readonly && data) {
+        newData = { ...data, stopWords: maskWords(data.stopWords || '', 2) };
+    }
+
+    if ( data) {
+        if (data && data.stopWords) {
+            rows = Math.ceil(data.stopWords.length / 77.4)
+        }
+    }
+
     return (
-        <VStack
-            gap="8"
-            max
-            className={classNames(cls.ProfileCard, mods, [className])}
-        >
+        <Card sx={{ minWidth: 275 }} className={classNames(cls.ProfileCard, {}, [className])}>
             {data?.avatar && (
-                <HStack justify="center" max className={cls.avatarWrapper}>
-                    <AvatarDeprecated src={data?.avatar} />
-                </HStack>
+                <CardMedia
+                    component="img"
+                    height="194"
+                    image={data?.avatar}
+                    alt="Paella dish"
+                />
             )}
-            <InputDeprecated
-                value={data?.first}
-                placeholder={t('Ваше имя')}
-                className={cls.input}
-                onChange={onChangeFirstname}
-                readonly={readonly}
-                data-testid="ProfileCard.firstname"
-            />
-            <InputDeprecated
-                value={data?.lastname}
-                placeholder={t('Ваша фамилия')}
-                className={cls.input}
-                onChange={onChangeLastname}
-                readonly={readonly}
-                data-testid="ProfileCard.lastname"
-            />
-            <InputDeprecated
-                value={data?.age}
-                placeholder={t('Ваш возраст')}
-                className={cls.input}
-                onChange={onChangeAge}
-                readonly={readonly}
-            />
-            <InputDeprecated
-                value={data?.city}
-                placeholder={t('Город')}
-                className={cls.input}
-                onChange={onChangeCity}
-                readonly={readonly}
-            />
-            <InputDeprecated
-                value={data?.username}
-                placeholder={t('Введите имя пользователя')}
-                className={cls.input}
-                onChange={onChangeUsername}
-                readonly={readonly}
-            />
-            <InputDeprecated
-                value={data?.avatar}
-                placeholder={t('Введите ссылку на аватар')}
-                className={cls.input}
-                onChange={onChangeAvatar}
-                readonly={readonly}
-            />
-            <CurrencySelect
-                className={cls.input}
-                value={data?.currency}
-                onChange={onChangeCurrency}
-                readonly={readonly}
-            />
-            <CountrySelect
-                className={cls.input}
-                value={data?.country}
-                onChange={onChangeCountry}
-                readonly={readonly}
-            />
-        </VStack>
+            <CardContent>
+                <VStack
+                    gap="8"
+                    max
+                    className={classNames(cls.ProfileCard, {}, [className])}
+                >
+                    <InputMaterial
+                        variant="standard"
+                        label={t('Ваше имя')}
+                        fullWidth
+                        value={data?.username}
+                        className={cls.input}
+                        onChange={onChangeUsername}
+                        disabled={readonly}
+                        data-testid="ProfileCard.userName"
+                    />
+                    <InputMaterial
+                        variant="standard"
+                        label={t('Введите ссылку на аватар')}
+                        fullWidth
+                        value={data?.avatar}
+                        className={classNames(cls.input, modsFullWidth, [className])}
+                        onChange={onChangeAvatar}
+                        disabled={readonly}
+                        data-testid="ProfileCard.avatar"
+                    />
+                    <InputMaterial
+                        variant="filled"
+                        label={t('Введите стоп слова')}
+                        fullWidth
+                        value={newData?.stopWords}
+                        className={classNames(cls.input, modsFullWidth, [className])}
+                        onChange={onChangeStopWords}
+                        disabled={readonly}
+                        rows={rows}
+                        data-testid="ProfileCard.stopWords"
+                    />
+                </VStack>
+            </CardContent>
+        </Card>
     );
 });

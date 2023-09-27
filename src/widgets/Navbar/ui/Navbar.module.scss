@@ -24,3 +24,12 @@
     width: var(--sidebar-width);
     margin-left: 15px;
 }
+
+.AppBar {
+    display: flex !important;
+    gap: 13px !important;
+}
+
+.IconButton {
+    margin-right: 13px !important;
+}

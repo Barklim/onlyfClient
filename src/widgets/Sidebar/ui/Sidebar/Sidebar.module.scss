@@ -17,16 +17,10 @@
         margin-left: 20px;
     }
 
-    .collapseBtn {
-        position: absolute;
-        right: -32px;
-        bottom: 32px;
-        z-index: 10;
-    }
-
     .items {
-        margin-top: 20px;
-        margin-left: 30px;
+        margin-left: 20px;
+        //display: flex;
+        //align-items: center;
     }
 }
 
@@ -40,6 +34,12 @@
 
     .lang {
         margin-left: 0;
+    }
+
+    .items {
+        margin-left: 0px;
+        display: flex;
+        align-items: center;
     }
 }
 
@@ -57,14 +57,6 @@
 
     .items {
         margin-top: 40px;
-    }
-
-    .collapseBtn {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        z-index: 10;
-        transform: rotate(90deg);
     }
 
     .switchers {
@@ -92,10 +84,6 @@
 
     .lang {
         margin-left: 0;
-    }
-
-    .collapseBtn {
-        transform: rotate(-90deg);
     }
 
     .switchers {

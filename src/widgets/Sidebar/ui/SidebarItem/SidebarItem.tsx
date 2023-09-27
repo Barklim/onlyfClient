@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { memo } from 'react';
+import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 import {
     AppLink as AppLinkDeprecated,
@@ -12,6 +12,8 @@ import cls from './SidebarItem.module.scss';
 import { ToggleFeatures } from '@/shared/lib/features';
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { Icon } from '@/shared/ui/redesigned/Icon';
+import { List, ListItem, ListItemText } from '@mui/material';
+import { ListItemIcon } from '@/shared/ui/material/ListItemIcon';
 
 interface SidebarItemProps {
     item: SidebarItemType;
@@ -49,8 +51,12 @@ export const SidebarItem = memo(({ item, collapsed }: SidebarItemProps) => {
                         [cls.collapsed]: collapsed,
                     })}
                 >
-                    <item.Icon className={cls.icon} />
-                    <span className={cls.link}>{t(item.text)}</span>
+                    <ListItem className={cls.ListItem} button>
+                        <ListItemIcon color={'secondary'} className={cls.ListItemIcon}>
+                            <item.Icon className={cls.icon} />
+                        </ListItemIcon>
+                        <ListItemText className={cls.link} primary={t(item.text)} />
+                    </ListItem>
                 </AppLinkDeprecated>
             }
         />

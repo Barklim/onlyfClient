@@ -7,6 +7,7 @@ import {
 } from '@/shared/ui/deprecated/Button';
 import { ToggleFeatures } from '@/shared/lib/features';
 import { Button } from '@/shared/ui/redesigned/Button';
+import { Typography } from '@/shared/ui/material/Typography';
 
 interface LangSwitcherProps {
     className?: string;
@@ -34,7 +35,7 @@ export const LangSwitcher = memo(({ className, short }: LangSwitcherProps) => {
                     theme={ButtonTheme.CLEAR}
                     onClick={toggle}
                 >
-                    {t(short ? 'Короткий язык' : 'Язык')}
+                    <Typography color='secondary'>{t(short ? 'Короткий язык' : 'Язык')}</Typography>
                 </ButtonDeprecated>
             }
         />
