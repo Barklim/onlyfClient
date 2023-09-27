@@ -22,6 +22,7 @@ import { getProfileValidateErrors } from '../../model/selectors/getProfileValida
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
+import { getUserAuthData } from '@/entities/User';
 
 interface EditableProfileCardProps {
     className?: string;
@@ -42,6 +43,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadonly);
     const validateErrors = useSelector(getProfileValidateErrors);
+    const userData = useSelector(getUserAuthData);
 
     const validateErrorTranslates = {
         [ValidateProfileError.SERVER_ERROR]: t(
@@ -139,6 +141,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
                     ))}
                 <ProfileCard
                     data={formData}
+                    role={userData?.roles}
                     isLoading={isLoading}
                     error={error}
                     readonly={readonly}

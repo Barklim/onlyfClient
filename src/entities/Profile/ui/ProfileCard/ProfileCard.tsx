@@ -14,9 +14,11 @@ import {
     ProfileCardRedesignedError,
     ProfileCardRedesignedSkeleton,
 } from '../ProfileCardRedesigned/ProfileCardRedesigned';
+import { UserRole } from '@/entities/User';
 
 export interface ProfileCardProps {
     className?: string;
+    role?: Array<UserRole>;
     data?: Profile;
     error?: string;
     isLoading?: boolean;

@@ -11,7 +11,7 @@ import { ToggleFeatures } from '@/shared/lib/features';
 import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
-import { Avatar, Box, Divider, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { Box, List } from '@mui/material';
 import { ContactSupport } from '@mui/icons-material';
 import { IconButton } from '@/shared/ui/material/IconButton';
 

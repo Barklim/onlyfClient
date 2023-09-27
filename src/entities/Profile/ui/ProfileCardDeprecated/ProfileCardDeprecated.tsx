@@ -14,6 +14,7 @@ import {
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import { UserRole } from '@/entities/User';
 
 function maskWords(inputString: string, n: number): string {
     const words = inputString.split(" ");
@@ -65,19 +66,20 @@ export const ProfileCardDeprecated = memo((props: ProfileCardProps) => {
     const {
         className,
         data,
+        role,
         readonly,
         onChangeUsername,
         onChangeAvatar,
         onChangeStopWords,
     } = props;
     const { t } = useTranslation('profile');
+    const isAdmin = role?.includes(UserRole.ADMIN) || false;
+    let newData = data;
+    let rows = 1;
 
     const modsFullWidth: Mods = {
         [cls.fullWidth]: true,
     };
-
-    let newData = data;
-    let rows = 1;
 
     if (readonly && data) {
         newData = { ...data, stopWords: maskWords(data.stopWords || '', 2) };
@@ -125,7 +127,8 @@ export const ProfileCardDeprecated = memo((props: ProfileCardProps) => {
                         disabled={readonly}
                         data-testid="ProfileCard.avatar"
                     />
-                    <InputMaterial
+                    {isAdmin && (
+                        <InputMaterial
                         variant="filled"
                         label={t('Введите стоп слова')}
                         fullWidth
@@ -135,7 +138,8 @@ export const ProfileCardDeprecated = memo((props: ProfileCardProps) => {
                         disabled={readonly}
                         rows={rows}
                         data-testid="ProfileCard.stopWords"
-                    />
+                        />
+                    )}
                 </VStack>
             </CardContent>
         </Card>

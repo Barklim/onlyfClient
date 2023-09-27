@@ -6,7 +6,7 @@ import {
     AppLinkTheme,
 } from '@/shared/ui/deprecated/AppLink';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { getUserAuthData } from '@/entities/User';
+import { getUserAuthData, isUserAdmin, UserRole } from '@/entities/User';
 import { SidebarItemType } from '../../model/types/sidebar';
 import cls from './SidebarItem.module.scss';
 import { ToggleFeatures } from '@/shared/lib/features';
@@ -23,8 +23,14 @@ interface SidebarItemProps {
 export const SidebarItem = memo(({ item, collapsed }: SidebarItemProps) => {
     const { t } = useTranslation();
     const isAuth = useSelector(getUserAuthData);
+    const isAdmin = useSelector(isUserAdmin);
+    const isAdminRouteAvailable = item.roles?.includes(UserRole.ADMIN);
 
     if (item.authOnly && !isAuth) {
+        return null;
+    }
+
+    if (isAdminRouteAvailable && !isAdmin) {
         return null;
     }
 

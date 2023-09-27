@@ -48,11 +48,13 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: getRouteAccounts(),
         element: <AccountsPage />,
         authOnly: true,
+        roles: [UserRole.ADMIN],
     },
     [AppRoutes.MASS_MAILINGS]: {
         path: getRouteMassMailings(),
         element: <MassMailingsPage />,
         authOnly: true,
+        roles: [UserRole.ADMIN],
     },
     [AppRoutes.ARTICLES]: {
         path: getRouteArticles(),

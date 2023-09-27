@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { getUserAuthData } from '@/entities/User';
+import { getUserAuthData, UserRole } from '@/entities/User';
 import MainIconDeprecated from '@/shared/assets/icons/main-20-20.svg';
 import SupervisorAccountIcon from '@/shared/assets/icons/SupervisorAccount.svg';
 import CollectionsBookmarkIcon from '@/shared/assets/icons/CollectionsBookmark.svg';
@@ -10,10 +10,7 @@ import MainIcon from '@/shared/assets/icons/home.svg';
 import ProfileIcon from '@/shared/assets/icons/avatar.svg';
 
 import { SidebarItemType } from '../types/sidebar';
-import {
-    getRouteAbout, getRouteAccounts,
-    getRouteMain, getRouteMassMailings,
-} from '@/shared/const/router';
+import { getRouteAbout, getRouteAccounts, getRouteMain, getRouteMassMailings } from '@/shared/const/router';
 import { toggleFeatures } from '@/shared/lib/features';
 
 export const useSidebarItems = () => {
@@ -41,6 +38,7 @@ export const useSidebarItems = () => {
                 }),
                 text: 'Accounts',
                 authOnly: true,
+                roles: [UserRole.ADMIN]
             },
             {
                 path: getRouteMassMailings(),
@@ -51,6 +49,7 @@ export const useSidebarItems = () => {
                 }),
                 text: 'Mass mailings',
                 authOnly: true,
+                roles: [UserRole.ADMIN]
             },
             {
                 path: getRouteMassMailings(),
@@ -61,6 +60,7 @@ export const useSidebarItems = () => {
                 }),
                 text: 'Collections',
                 authOnly: true,
+                roles: [UserRole.ADMIN]
             },
             {
                 path: getRouteMassMailings(),
@@ -71,6 +71,7 @@ export const useSidebarItems = () => {
                 }),
                 text: 'Statistics',
                 authOnly: true,
+                roles: [UserRole.ADMIN]
             },
         );
     }
