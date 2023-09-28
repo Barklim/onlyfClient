@@ -10,7 +10,13 @@ import MainIcon from '@/shared/assets/icons/home.svg';
 import ProfileIcon from '@/shared/assets/icons/avatar.svg';
 
 import { SidebarItemType } from '../types/sidebar';
-import { getRouteAbout, getRouteAccounts, getRouteMain, getRouteMassMailings } from '@/shared/const/router';
+import {
+    getRouteAbout,
+    getRouteAccounts,
+    getRouteCollections,
+    getRouteMain,
+    getRouteMassMailings, getRouteStatistics,
+} from '@/shared/const/router';
 import { toggleFeatures } from '@/shared/lib/features';
 
 export const useSidebarItems = () => {
@@ -52,7 +58,7 @@ export const useSidebarItems = () => {
                 roles: [UserRole.ADMIN]
             },
             {
-                path: getRouteMassMailings(),
+                path: getRouteCollections(),
                 Icon: toggleFeatures({
                     name: 'isAppRedesigned',
                     off: () => CollectionsBookmarkIcon,
@@ -63,7 +69,7 @@ export const useSidebarItems = () => {
                 roles: [UserRole.ADMIN]
             },
             {
-                path: getRouteMassMailings(),
+                path: getRouteStatistics(),
                 Icon: toggleFeatures({
                     name: 'isAppRedesigned',
                     off: () => StatisticsIcon,

@@ -19,12 +19,15 @@ import {
     getRouteArticles,
     getRouteMain,
     getRouteProfile,
-    getRouteSettings, getRouteMassMailings, getRouteAccounts,
+    getRouteSettings, getRouteMassMailings, getRouteAccounts, getRouteCollections, getRouteStatistics,
 } from '@/shared/const/router';
 import { AppRoutesProps } from '@/shared/types/router';
 import { SettingsPage } from '@/pages/SettingsPage';
 import { MassMailingsPage } from '@/pages/MassMailingsPage';
 import { AccountsPage } from '@/pages/AccountsPage';
+import { Collections } from '@mui/icons-material';
+import { CollectionsPage } from '@/pages/CollectionsPage';
+import { StatisticsPage } from '@/pages/StatisticsPage';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
@@ -53,6 +56,18 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MASS_MAILINGS]: {
         path: getRouteMassMailings(),
         element: <MassMailingsPage />,
+        authOnly: true,
+        roles: [UserRole.ADMIN],
+    },
+    [AppRoutes.COLLECTIONS]: {
+        path: getRouteCollections(),
+        element: <CollectionsPage />,
+        authOnly: true,
+        roles: [UserRole.ADMIN],
+    },
+    [AppRoutes.STATISTICS]: {
+        path: getRouteStatistics(),
+        element: <StatisticsPage />,
         authOnly: true,
         roles: [UserRole.ADMIN],
     },

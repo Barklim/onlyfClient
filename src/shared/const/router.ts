@@ -5,6 +5,8 @@ export enum AppRoutes {
     PROFILE = 'profile',
     ACCOUNTS = 'accounts',
     MASS_MAILINGS = 'mass_mailing',
+    COLLECTIONS = 'collections',
+    STATISTICS = 'statistics',
     ARTICLES = 'articles',
     ARTICLE_DETAILS = 'article_details',
     ARTICLE_CREATE = 'article_create',
@@ -21,6 +23,8 @@ export const getRouteAbout = () => '/about';
 export const getRouteProfile = (id: string) => `/profile/${id}`;
 export const getRouteAccounts = () => `/accounts/`;
 export const getRouteMassMailings = () => `/mass_mailing/`;
+export const getRouteCollections = () => `/collections/`;
+export const getRouteStatistics = () => `/statistics/`;
 export const getRouteArticles = () => '/articles';
 export const getRouteArticleDetails = (id: string) => `/articles/${id}`;
 export const getRouteArticleCreate = () => '/articles/new';
@@ -35,6 +39,8 @@ export const AppRouteByPathPattern: Record<string, AppRoutes> = {
     [getRouteProfile(':id')]: AppRoutes.PROFILE,
     [getRouteAccounts()]: AppRoutes.ACCOUNTS,
     [getRouteMassMailings()]: AppRoutes.MASS_MAILINGS,
+    [getRouteCollections()]: AppRoutes.COLLECTIONS,
+    [getRouteStatistics()]: AppRoutes.STATISTICS,
     [getRouteArticles()]: AppRoutes.ARTICLES,
     [getRouteArticleDetails(':id')]: AppRoutes.ARTICLE_DETAILS,
     [getRouteArticleCreate()]: AppRoutes.ARTICLE_CREATE,
