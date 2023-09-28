@@ -1,11 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import {
-    Button as ButtonDeprecated,
-    ButtonTheme,
-} from '@/shared/ui/deprecated/Button';
+import { Button as ButtonDeprecated, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { LoginModal } from '@/features/AuthByUsername';
 import { getUserAuthData } from '@/entities/User';
 import { HStack } from '@/shared/ui/redesigned/Stack';
@@ -17,15 +14,14 @@ import { Button } from '@/shared/ui/redesigned/Button';
 import { AppBar } from '@/shared/ui/material/AppBar';
 import { Typography } from '@/shared/ui/material/Typography';
 import { IconButton } from '@/shared/ui/material/IconButton';
-import {
-    Toolbar,
-    Box,
-    CssBaseline,
-} from "@mui/material";
-import {
-    Menu,
-} from "@mui/icons-material";
+import LogoDarkIcon from '../../../shared/assets/icons/logo2.png';
+import LogoIcon from '../../../shared/assets/icons/logo.png';
+import { Box, CssBaseline, Toolbar } from '@mui/material';
+import { Menu } from '@mui/icons-material';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
+import { useLocalStorage } from '@/app/lib/useLocalStorage';
+import { Theme } from '@/shared/const/theme';
+import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage';
 
 interface NavbarProps {
     className?: string;
@@ -36,6 +32,8 @@ export const Navbar = memo(({ className, onToggle }: NavbarProps) => {
     const { t } = useTranslation();
     const [isAuthModal, setIsAuthModal] = useState(false);
     const authData = useSelector(getUserAuthData);
+    const { storageTheme } = useLocalStorage();
+    const [lsTheme, setLsTheme] = useState<Theme>(localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme || Theme.LIGHT);
 
     const onCloseModal = useCallback(() => {
         setIsAuthModal(false);
@@ -50,6 +48,10 @@ export const Navbar = memo(({ className, onToggle }: NavbarProps) => {
         on: () => cls.NavbarRedesigned,
         off: () => cls.Navbar,
     });
+
+    useEffect(() => {
+        setLsTheme(storageTheme);
+    }, [storageTheme, lsTheme]);
 
     if (authData) {
         return (
@@ -72,7 +74,14 @@ export const Navbar = memo(({ className, onToggle }: NavbarProps) => {
                                     <IconButton className={classNames(cls.IconButton, {}, [className])} onClick={onToggle}>
                                         <Menu color='secondary'/>
                                     </IconButton>
-                                <Typography color='secondary'>{t('OnlyfTracker')}</Typography>
+                                    <IconButton className={classNames(cls.IconLogoWrapper, {}, [className])}>
+                                        {lsTheme === Theme.ORANGE ? (
+                                            <img className={classNames(cls.IconLogo, {}, [className])} src={LogoIcon} width={24} />
+                                        ) : (
+                                            <img className={classNames(cls.IconLogo, {}, [className])} src={LogoDarkIcon} width={24} />
+                                        )}
+                                    </IconButton>
+                                <Typography color='secondary'>{t('OFTracker')}</Typography>
                                     <HStack gap="16" className={cls.actions}>
                                         <ThemeSwitcher />
                                         <NotificationButton />

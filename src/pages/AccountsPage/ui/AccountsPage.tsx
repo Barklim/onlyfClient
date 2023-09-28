@@ -10,7 +10,7 @@ const AccountsPage = () => {
 
     return <Page data-testid="MassMailingsPage">
         <Typography variant="h5" color='primary'>{t('Accounts')}</Typography>
-        <AccountsList />
+            <AccountsList />
         <Maintenance />
     </Page>;
 };
