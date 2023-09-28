@@ -8,7 +8,7 @@ export const AccountsList = memo(() => {
 
     return <>
         <HStack justify='between'>
-            AccountsList
+            {/*AccountsList*/}
         </HStack>
     </>;
 });
