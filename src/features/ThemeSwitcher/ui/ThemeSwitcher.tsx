@@ -1,7 +1,6 @@
 import React, { memo, useCallback } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import ThemeIcon from '@/shared/assets/icons/theme.svg';
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { saveJsonSettings } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -29,15 +28,9 @@ export const ThemeSwitcher = memo(({ className }: ThemeSwitcherProps) => {
             feature="isAppRedesigned"
             on={<Icon Svg={ThemeIcon} clickable onClick={onToggleHandler} />}
             off={
-                <Button
-                    theme={ButtonTheme.CLEAR}
-                    className={classNames('', {}, [className])}
-                    onClick={onToggleHandler}
-                >
-                    <IconButton >
-                        <DarkMode color='secondary'/>
-                    </IconButton>
-                </Button>
+                <IconButton onClick={onToggleHandler}>
+                    <DarkMode color='secondary'/>
+                </IconButton>
             }
         />
     );
