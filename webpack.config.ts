@@ -8,7 +8,7 @@ function getApiUrl(mode: BuildMode, apiUrl?: string) {
         return apiUrl;
     }
     if (mode === 'production') {
-        return 'https://production-project-server-opal.vercel.app/'
+        return 'https://onlyf-json-server.vercel.app/'
         // TODO: move to environment constants. For hosting case
         // return '/api';
     }

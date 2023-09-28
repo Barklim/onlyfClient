@@ -1,10 +1,9 @@
-## Избранные курсы
+## OnlyfClient
 
-Приложение для размещения и оценки ресурсов для разработки, курсов, книг и прочее.
-Основано на курсе [ulbi](https://ulbitv.ru/frontend)
+Приложение для сбора статистики и трекинга onlyFans.
 
-- Ссылка клиент - [netlify](https://harmonious-heliotrope-135b77.netlify.app/)
-- Ссылка json-server - [vercel](https://production-project-server-opal.vercel.app/)
+- Ссылка клиент - [netlify](https://main--sprightly-toffee-821aa4.netlify.app/)
+- Ссылка json-server - [vercel](https://onlyf-json-server.vercel.app/)
 
 #### Реквизиты для входа
 
