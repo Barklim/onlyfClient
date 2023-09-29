@@ -42,15 +42,18 @@ export const AccountSortSelector = memo((props: ArticleSortSelectorProps) => {
         () => [
             {
                 value: ArticleSortField.CREATED,
-                content: t('дате создания'),
+                // content: t('дате создания'),
+                content: t('диалогам'),
             },
             {
                 value: ArticleSortField.TITLE,
-                content: t('названию'),
+                // content: t('названию'),
+                content: t('имени'),
             },
             {
                 value: ArticleSortField.VIEWS,
-                content: t('просмотрам'),
+                // content: t('просмотрам'),
+                content: t('активности'),
             },
         ],
         [t],
