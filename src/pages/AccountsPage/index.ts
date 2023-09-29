@@ -1,3 +1,3 @@
-import { AccountsPageAsync } from './ui/AccountsPage.async';
+export { AccountsPageAsync as AccountsPage } from './ui/AccountsPage/AccountsPage.async';
 
-export { AccountsPageAsync as AccountsPage };
+export type { AccountsPageSchema } from './model/types/accountsPageSchema';

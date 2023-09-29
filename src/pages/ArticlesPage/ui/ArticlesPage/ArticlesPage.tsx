@@ -15,7 +15,7 @@ import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPag
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 import { articlesPageReducer } from '../../model/slices/articlesPageSlice';
 import cls from './ArticlesPage.module.scss';
-import { ArticlePageGreeting } from '@/features/articlePageGreeting';
+import { AccountPageGreeting } from '@/features/accountPageGreeting';
 import { ToggleFeatures } from '@/shared/lib/features';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorContainer';
@@ -61,7 +61,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
                             )}
                         >
                             <ArticleInfiniteList className={cls.list} />
-                            <ArticlePageGreeting />
+                            <AccountPageGreeting />
                         </Page>
                     }
                 />
@@ -74,7 +74,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
                 >
                     <ArticlesPageFilters />
                     <ArticleInfiniteList className={cls.list} />
-                    <ArticlePageGreeting />
+                    <AccountPageGreeting />
                 </Page>
             }
         />

@@ -33,6 +33,8 @@
     "Комментарии отсутствуют": "There are no comments",
     "Введите текст комментария": "Enter the comment text",
     "Отправить": "Send",
+    "GreetingsText": "Welcome to the users page",
+    "GreetingsSubText": "You can also search for users here",
     "Поиск": "Search",
     "возрастанию": "ascending",
     "по": "in",

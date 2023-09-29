@@ -1,0 +1,9 @@
+.IconButton {
+    color: var(--inverted-bg-color);
+}
+
+.AccountViewSelector {
+    .notSelected {
+        opacity: 0.4;
+    }
+}

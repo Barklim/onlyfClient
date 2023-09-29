@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import cls from './Input.module.scss';
-import TextField, { TextFieldVariants } from '@mui/material/TextField';
+import TextField, { TextFieldPropsSizeOverrides, TextFieldVariants } from '@mui/material/TextField';
 
 type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,
@@ -24,6 +24,8 @@ interface InputProps extends HTMLInputProps {
     rows?: number;
     label?: string | undefined;
     fullWidth?: boolean;
+    placeholder?: string;
+    size?: any;
 }
 
 /**
@@ -43,6 +45,7 @@ export const Input = memo((props: InputProps) => {
         placeholder,
         autofocus,
         readonly,
+        size,
         ...otherProps
     } = props;
     const ref = useRef<HTMLInputElement>(null);
@@ -81,9 +84,6 @@ export const Input = memo((props: InputProps) => {
 
     return (
         <div className={classNames(cls.InputWrapper, {}, [className])}>
-            {placeholder && (
-                <div className={cls.placeholder}>{`${placeholder}>`}</div>
-            )}
             <div className={cls.caretWrapper}>
                 {/* @ts-ignore */}
                 <TextField
@@ -101,6 +101,8 @@ export const Input = memo((props: InputProps) => {
                     onBlur={onBlur}
                     onSelect={onSelect}
                     disabled={readonly}
+                    placeholder={placeholder}
+                    size={size}
                     {...otherProps}
                 />
                 {isCaretVisible && (

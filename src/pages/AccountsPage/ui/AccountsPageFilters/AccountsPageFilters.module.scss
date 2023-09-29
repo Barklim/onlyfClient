@@ -1,0 +1,36 @@
+.headerWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.input {
+    width: 100%;
+}
+
+.sortWrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search {
+    margin-top: 16px;
+}
+
+.tabsWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tabs {
+    margin-top: 16px;
+}
+
+.buttonModal {
+    height: 18px;
+    width: 18px;
+}

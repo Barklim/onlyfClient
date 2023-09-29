@@ -978,7 +978,7 @@
       },
       "avatar": "https://i.pinimg.com/originals/9a/e0/2d/9ae02d4b4288396108ef77830a59e060.jpg",
       "jsonSettings": {
-        "isArticlesPageWasOpened": true,
+        "isArticlesPageWasOpened": false,
         "theme": "app_orange_theme"
       }
     },
@@ -996,7 +996,7 @@
       },
       "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
       "jsonSettings": {
-        "isArticlesPageWasOpened": true
+        "isArticlesPageWasOpened": false
       }
     },
     {

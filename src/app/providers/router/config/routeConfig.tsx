@@ -25,7 +25,6 @@ import { AppRoutesProps } from '@/shared/types/router';
 import { SettingsPage } from '@/pages/SettingsPage';
 import { MassMailingsPage } from '@/pages/MassMailingsPage';
 import { AccountsPage } from '@/pages/AccountsPage';
-import { Collections } from '@mui/icons-material';
 import { CollectionsPage } from '@/pages/CollectionsPage';
 import { StatisticsPage } from '@/pages/StatisticsPage';
 

@@ -4,27 +4,22 @@ import React, {
     useState
 } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Typography.module.scss';
+import cls from './ButtonModal.module.scss';
 import {
-    Typography as TypographyMui,
+    IconButton as IconButtonMui,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { HTMLAttributes } from 'react';
 import { useLocalStorage } from '@/app/lib/useLocalStorage';
 import { Theme } from '@/shared/const/theme';
 import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage';
-import { Variant } from "@mui/material/styles/createTypography";
+import { useTranslation } from 'react-i18next';
+import { Modal } from '@/shared/ui/redesigned/Modal';
+import { Typography } from '@/shared/ui/material/Typography';
 
-interface TypographyProps extends HTMLAttributes<HTMLDivElement> {
+interface IconButtonProps extends HTMLAttributes<HTMLDivElement> {
     className?: string;
-    // https://stackoverflow.com/questions/71797203/how-to-use-material-ui-custom-variants-in-react-with-typescript
-    // variant?: OverridableStringUnion<
-    //     Variant | "inherit" | "caption12r" | "caption12ruc" | "caption12buc",
-    //     TypographyPropsVariantOverrides
-    //     >;
-    variant?: Variant;
-    color?: any;
-    noWrap?: boolean;
+    onClick?: () => void;
     children: ReactNode;
 }
 
@@ -32,15 +27,15 @@ interface TypographyProps extends HTMLAttributes<HTMLDivElement> {
  * Устарел, используем новые компоненты из папки redesigned
  * @deprecated
  */
-export const Typography = ((props: TypographyProps) => {
+export const ButtonModal = ((props: IconButtonProps) => {
     const {
         className,
-        variant,
-        color,
-        noWrap,
+        onClick,
         children,
     } = props;
-    // TODO: execute dublicate code
+    const { t } = useTranslation();
+    const [isOpen, setIsOpen] = useState(false);
+
     const { storageTheme } = useLocalStorage();
     const [lsTheme, setLsTheme] = useState<Theme>(localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme || Theme.LIGHT);
 
@@ -88,16 +83,33 @@ export const Typography = ((props: TypographyProps) => {
         setLsTheme(storageTheme);
     }, [storageTheme, lsTheme]);
 
+    const text = (
+        <div>
+            <Typography variant="h4" color='primary'>{t('GreetingsText')}</Typography>
+            <Typography variant="h6" color='primary'>{t('GreetingsSubText')}</Typography>
+        </div>
+    );
+
+    const onClose = () => {
+        setIsOpen(false);
+    };
+
+    const onOpen = () => {
+        setIsOpen(true);
+    };
+
+
     return (
         <ThemeProvider theme={theme}>
-            <TypographyMui
-                variant={variant}
-                color={color}
-                className={classNames(cls.TypographyWrapper,{}, [className])}
-                noWrap={noWrap}
+            <Modal lazy isOpen={isOpen} onClose={onClose}>
+                {text}
+            </Modal>
+            <IconButtonMui
+                className={classNames(cls.AppBarWrapper,{}, [className])}
+                onClick={onClick ? onClick : onOpen}
             >
                 {children}
-            </TypographyMui>
+            </IconButtonMui>
         </ThemeProvider>
     );
 });
