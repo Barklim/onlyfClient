@@ -1,25 +1,25 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import {
-    getArticlesPageHasMore,
-    getArticlesPageIsLoading,
-    getArticlesPageNum,
+    getAccountsPageHasMore,
+    getAccountsPageIsLoading,
+    getAccountsPageNum,
 } from '../../selectors/accountsPageSelectors';
-import { articlesPageActions } from '../../slices/accountsPageSlice';
-import { fetchArticlesList } from '../fetchAccountsList/fetchArticlesList';
+import { accountsPageActions } from '../../slices/accountsPageSlice';
+import { fetchAccountsList } from '../fetchAccountsList/fetchArticlesList';
 
 export const fetchNextAccountsPage = createAsyncThunk<
     void,
     void,
     ThunkConfig<string>
->('articlesPage/fetchNextAccountsPage', async (_, thunkApi) => {
+>('accountsPage/fetchNextAccountsPage', async (_, thunkApi) => {
     const { getState, dispatch } = thunkApi;
-    const hasMore = getArticlesPageHasMore(getState());
-    const page = getArticlesPageNum(getState());
-    const isLoading = getArticlesPageIsLoading(getState());
+    const hasMore = getAccountsPageHasMore(getState());
+    const page = getAccountsPageNum(getState());
+    const isLoading = getAccountsPageIsLoading(getState());
 
     if (hasMore && !isLoading) {
-        dispatch(articlesPageActions.setPage(page + 1));
-        dispatch(fetchArticlesList({}));
+        dispatch(accountsPageActions.setPage(page + 1));
+        dispatch(fetchAccountsList({}));
     }
 });

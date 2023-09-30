@@ -32,7 +32,7 @@ export const AccountsPageFilters = memo((props: AccountsPageFiltersProps) => {
     } = useAccountFilters();
 
     return (
-        <div className={classNames(cls.ArticlesPageFilters, {}, [className])}>
+        <div className={classNames(cls.AccountsPageFilters, {}, [className])}>
             <div className={cls.headerWrapper}>
                 <div className={cls.sortWrapper}>
                     <AccountSortSelector

@@ -9,6 +9,7 @@ import { AxiosInstance } from 'axios';
 import { LoginSchema } from '@/features/AuthByUsername';
 import { UserSchema } from '@/entities/User';
 import { CounterSchema } from '@/entities/Counter';
+import { AccountsPageSchema } from '@/pages/AccountsPage';
 import { ArticleDetailsSchema } from '@/entities/Article';
 import { ArticleDetailsPageSchema } from '@/pages/ArticleDetailsPage';
 import { AddCommentFormSchema } from '@/features/addCommentForm';
@@ -26,6 +27,7 @@ export interface StateSchema {
     // Асинхронные редюсеры
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
+    accountsPage?: AccountsPageSchema;
     articleDetails?: ArticleDetailsSchema;
     addCommentForm?: AddCommentFormSchema;
     articlesPage?: ArticlesPageSchema;

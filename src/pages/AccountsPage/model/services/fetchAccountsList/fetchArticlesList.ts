@@ -1,32 +1,32 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { Article, ArticleType } from '@/entities/Article';
+import { User, AccountType } from '@/entities/User';
 import { addQueryParams } from '@/shared/lib/url/addQueryParams/addQueryParams';
 import {
-    getArticlesPageLimit,
-    getArticlesPageNum,
-    getArticlesPageOrder,
-    getArticlesPageSearch,
-    getArticlesPageSort,
-    getArticlesPageType,
+    getAccountsPageLimit,
+    getAccountsPageNum,
+    getAccountsPageOrder,
+    getAccountsPageSearch,
+    getAccountsPageSort,
+    getAccountsPageType,
 } from '../../selectors/accountsPageSelectors';
 
-interface FetchArticlesListProps {
+interface FetchAccountsListProps {
     replace?: boolean;
 }
 
-export const fetchArticlesList = createAsyncThunk<
-    Article[],
-    FetchArticlesListProps,
+export const fetchAccountsList = createAsyncThunk<
+    User[],
+    FetchAccountsListProps,
     ThunkConfig<string>
->('articlesPage/fetchAccountsList', async (props, thunkApi) => {
+>('accountsPage/fetchAccountsList', async (props, thunkApi) => {
     const { extra, rejectWithValue, getState } = thunkApi;
-    const limit = getArticlesPageLimit(getState());
-    const sort = getArticlesPageSort(getState());
-    const order = getArticlesPageOrder(getState());
-    const search = getArticlesPageSearch(getState());
-    const page = getArticlesPageNum(getState());
-    const type = getArticlesPageType(getState());
+    const limit = getAccountsPageLimit(getState());
+    const sort = getAccountsPageSort(getState());
+    const order = getAccountsPageOrder(getState());
+    const search = getAccountsPageSearch(getState());
+    const page = getAccountsPageNum(getState());
+    const type = getAccountsPageType(getState());
 
     try {
         addQueryParams({
@@ -35,7 +35,7 @@ export const fetchArticlesList = createAsyncThunk<
             search,
             type,
         });
-        const response = await extra.api.get<Article[]>('/articles', {
+        const response = await extra.api.get<User[]>('/articles', {
             params: {
                 _expand: 'user',
                 _limit: limit,
@@ -43,7 +43,7 @@ export const fetchArticlesList = createAsyncThunk<
                 _sort: sort,
                 _order: order,
                 q: search,
-                type: type === ArticleType.ALL ? undefined : type,
+                type: type === AccountType.ALL ? undefined : type,
             },
         });
 

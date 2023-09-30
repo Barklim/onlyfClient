@@ -1,13 +1,13 @@
 import { EntityState } from '@reduxjs/toolkit';
 import {
-    Article,
-    ArticleView,
-    ArticleSortField,
-    ArticleType,
-} from '@/entities/Article';
+    User,
+    AccountView,
+    AccountSortField,
+    AccountType,
+} from '@/entities/User';
 import { SortOrder } from '@/shared/types/sort';
 
-export interface AccountsPageSchema extends EntityState<Article> {
+export interface AccountsPageSchema extends EntityState<User> {
     isLoading?: boolean;
     error?: string;
 
@@ -16,11 +16,11 @@ export interface AccountsPageSchema extends EntityState<Article> {
     limit: number;
     hasMore: boolean;
     // filters
-    view: ArticleView;
+    view: AccountView;
     order: SortOrder;
-    sort: ArticleSortField;
+    sort: AccountSortField;
     search: string;
-    type: ArticleType;
+    type: AccountType;
 
     _inited: boolean;
 }

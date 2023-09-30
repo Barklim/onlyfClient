@@ -10,15 +10,15 @@ import { Drawer } from '@/shared/ui/redesigned/Drawer';
 export const AccountPageGreeting = memo(() => {
     const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
-    const { isArticlesPageWasOpened } = useJsonSettings();
+    const { isAccountsPageWasOpened } = useJsonSettings();
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (!isArticlesPageWasOpened) {
+        if (!isAccountsPageWasOpened) {
             setIsOpen(true);
-            dispatch(saveJsonSettings({ isArticlesPageWasOpened: true }));
+            dispatch(saveJsonSettings({ isAccountsPageWasOpened: true }));
         }
-    }, [dispatch, isArticlesPageWasOpened]);
+    }, [dispatch, isAccountsPageWasOpened]);
 
     const onClose = () => setIsOpen(false);
 

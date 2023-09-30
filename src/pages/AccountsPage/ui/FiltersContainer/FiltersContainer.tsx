@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { ArticlesFilters } from '@/widgets/ArticlesFilters';
+import { AccountsFilters } from '@/widgets/AccountsFilters';
 import { useAccountFilters } from '../../lib/hooks/useAccountFilters';
 
 interface FiltersContainerProps {
@@ -20,7 +20,7 @@ export const FiltersContainer = memo((props: FiltersContainerProps) => {
     } = useAccountFilters();
 
     return (
-        <ArticlesFilters
+        <AccountsFilters
             type={type}
             onChangeSearch={onChangeSearch}
             order={order}

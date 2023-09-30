@@ -960,8 +960,9 @@
       },
       "avatar": "https://mobimg.b-cdn.net/v3/fetch/22/2207633df03a819cd72889249c8361a8.jpeg?w=1470&r=0.5625",
       "jsonSettings": {
-        "isArticlesPageWasOpened": true,
-        "theme": "app_orange_theme"
+        "theme": "app_orange_theme",
+        "isArticlesPageWasOpened": false,
+        "isAccountsPageWasOpened": false
       }
     },
     {
@@ -979,6 +980,7 @@
       "avatar": "https://i.pinimg.com/originals/9a/e0/2d/9ae02d4b4288396108ef77830a59e060.jpg",
       "jsonSettings": {
         "isArticlesPageWasOpened": false,
+        "isAccountsPageWasOpened": false,
         "theme": "app_orange_theme"
       }
     },
@@ -996,7 +998,8 @@
       },
       "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
       "jsonSettings": {
-        "isArticlesPageWasOpened": false
+        "isArticlesPageWasOpened": false,
+        "isAccountsPageWasOpened": false
       }
     },
     {

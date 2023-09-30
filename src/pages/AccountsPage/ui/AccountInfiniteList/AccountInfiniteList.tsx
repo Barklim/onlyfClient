@@ -1,13 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
-import { ArticleList } from '@/entities/Article';
+// import { ArticleList } from '@/entities/Article';
+import { AccountsList } from '@/entities/User';
 import { Text } from '@/shared/ui/deprecated/Text';
-import { getArticles } from '../../model/slices/accountsPageSlice';
+import { getAccounts } from '../../model/slices/accountsPageSlice';
 import {
-    getArticlesPageError,
-    getArticlesPageIsLoading,
-    getArticlesPageView,
+    getAccountsPageError,
+    getAccountsPageIsLoading,
+    getAccountsPageView,
 } from '../../model/selectors/accountsPageSelectors';
 
 interface AccountInfiniteListProps {
@@ -16,21 +17,22 @@ interface AccountInfiniteListProps {
 
 export const AccountInfiniteList = memo((props: AccountInfiniteListProps) => {
     const { className } = props;
-    const articles = useSelector(getArticles.selectAll);
-    const isLoading = useSelector(getArticlesPageIsLoading);
-    const view = useSelector(getArticlesPageView);
-    const error = useSelector(getArticlesPageError);
+    const accounts = useSelector(getAccounts.selectAll);
+    const isLoading = useSelector(getAccountsPageIsLoading);
+    const view = useSelector(getAccountsPageView);
+    const error = useSelector(getAccountsPageError);
     const { t } = useTranslation();
 
     if (error) {
+        // TODO:
         return <Text text={t('Ошибка при загрузке статей')} />;
     }
 
     return (
-        <ArticleList
+        <AccountsList
             isLoading={isLoading}
             view={view}
-            articles={articles}
+            accounts={accounts}
             className={className}
         />
     );

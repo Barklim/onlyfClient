@@ -9,22 +9,22 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import TableRowsIcon from '@mui/icons-material/TableRows';
 
 import cls from './AccountViewSelector.module.scss';
-import { ArticleView } from '@/entities/Article';
+import { AccountView } from '@/entities/User';
 import { ToggleFeatures, toggleFeatures } from '@/shared/lib/features';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { IconButton } from '@/shared/ui/material/IconButton';
 
-interface ArticleViewSelectorProps {
+interface AccountViewSelectorProps {
     className?: string;
-    view: ArticleView;
-    onViewClick?: (view: ArticleView) => void;
+    view: AccountView;
+    onViewClick?: (view: AccountView) => void;
 }
 
 const viewTypes = [
     {
-        view: ArticleView.SMALL,
+        view: AccountView.SMALL,
         icon: toggleFeatures({
             name: 'isAppRedesigned',
             on: () => TiledIcon,
@@ -33,7 +33,7 @@ const viewTypes = [
         ButtonIcon: GridViewIcon,
     },
     {
-        view: ArticleView.BIG,
+        view: AccountView.BIG,
         icon: toggleFeatures({
             name: 'isAppRedesigned',
             on: () => ListIcon,
@@ -43,10 +43,10 @@ const viewTypes = [
     },
 ];
 
-export const AccountViewSelector = memo((props: ArticleViewSelectorProps) => {
+export const AccountViewSelector = memo((props: AccountViewSelectorProps) => {
     const { className, view, onViewClick } = props;
 
-    const onClick = (newView: ArticleView) => () => {
+    const onClick = (newView: AccountView) => () => {
         onViewClick?.(newView);
     };
 
@@ -56,7 +56,7 @@ export const AccountViewSelector = memo((props: ArticleViewSelectorProps) => {
             on={
                 <Card
                     className={classNames(
-                        cls.ArticleViewSelectorRedesigned,
+                        cls.AccountViewSelectorRedesigned,
                         {},
                         [className],
                     )}

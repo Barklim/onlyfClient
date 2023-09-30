@@ -2,49 +2,45 @@ import { useTranslation } from 'react-i18next';
 import { memo, useCallback, useMemo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { TabItem, Tabs as TabsDeprecated } from '@/shared/ui/deprecated/Tabs';
-import { ArticleType } from '@/entities/Article';
+import { AccountType } from '@/entities/User';
 import { ToggleFeatures } from '@/shared/lib/features';
 import { Tabs } from '@/shared/ui/redesigned/Tabs';
 
-interface ArticleTypeTabsProps {
+interface AccountTypeTabsProps {
     className?: string;
-    value: ArticleType;
-    onChangeType: (type: ArticleType) => void;
+    value: AccountType;
+    onChangeType: (type: AccountType) => void;
 }
 
-export const AccountTypeTabs = memo((props: ArticleTypeTabsProps) => {
+export const AccountTypeTabs = memo((props: AccountTypeTabsProps) => {
     const { className, value, onChangeType } = props;
     const { t } = useTranslation();
 
     const typeTabs = useMemo<TabItem[]>(
         () => [
             {
-                value: ArticleType.ALL,
-                // content: t('Все материалы'),
-                content: t('Все пользователи'),
+                value: AccountType.ALL,
+                content: t('Все материалы'),
             },
             {
-                value: ArticleType.COURSE,
-                // content: t('Курсы'),
-                content: t('модели'),
+                value: AccountType.COURSE,
+                content: t('Курсы'),
             },
             {
-                value: ArticleType.BOOK,
-                // content: t('Книги'),
-                content: t('админы'),
+                value: AccountType.BOOK,
+                content: t('Книги'),
             },
-            // {
-            //     value: ArticleType.OTHER,
-            //     // content: t('Другое'),
-            //     content: t('Другое'),
-            // },
+            {
+                value: AccountType.OTHER,
+                content: t('Другое'),
+            },
         ],
         [t],
     );
 
     const onTabClick = useCallback(
         (tab: TabItem) => {
-            onChangeType(tab.value as ArticleType);
+            onChangeType(tab.value as AccountType);
         },
         [onChangeType],
     );

@@ -1,45 +1,45 @@
 import { useSelector } from 'react-redux';
 import { useCallback } from 'react';
 import {
-    getArticlesPageOrder,
-    getArticlesPageSearch,
-    getArticlesPageSort,
-    getArticlesPageType,
-    getArticlesPageView,
+    getAccountsPageOrder,
+    getAccountsPageSearch,
+    getAccountsPageSort,
+    getAccountsPageType,
+    getAccountsPageView,
 } from '../../model/selectors/accountsPageSelectors';
-import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
-import { articlesPageActions } from '../../model/slices/accountsPageSlice';
+import { AccountSortField, AccountType, AccountView } from '@/entities/User';
+import { accountsPageActions } from '../../model/slices/accountsPageSlice';
 import { SortOrder } from '@/shared/types/sort';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchArticlesList } from '../../model/services/fetchAccountsList/fetchArticlesList';
+import { fetchAccountsList } from '../../model/services/fetchAccountsList/fetchArticlesList';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 
 export function useAccountFilters() {
-    const view = useSelector(getArticlesPageView);
-    const sort = useSelector(getArticlesPageSort);
-    const order = useSelector(getArticlesPageOrder);
-    const search = useSelector(getArticlesPageSearch);
-    const type = useSelector(getArticlesPageType);
+    const view = useSelector(getAccountsPageView);
+    const sort = useSelector(getAccountsPageSort);
+    const order = useSelector(getAccountsPageOrder);
+    const search = useSelector(getAccountsPageSearch);
+    const type = useSelector(getAccountsPageType);
 
     const dispatch = useAppDispatch();
 
     const fetchData = useCallback(() => {
-        dispatch(fetchArticlesList({ replace: true }));
+        dispatch(fetchAccountsList({ replace: true }));
     }, [dispatch]);
 
     const debouncedFetchData = useDebounce(fetchData, 500);
 
     const onChangeView = useCallback(
-        (view: ArticleView) => {
-            dispatch(articlesPageActions.setView(view));
+        (view: AccountView) => {
+            dispatch(accountsPageActions.setView(view));
         },
         [dispatch],
     );
 
     const onChangeSort = useCallback(
-        (newSort: ArticleSortField) => {
-            dispatch(articlesPageActions.setSort(newSort));
-            dispatch(articlesPageActions.setPage(1));
+        (newSort: AccountSortField) => {
+            dispatch(accountsPageActions.setSort(newSort));
+            dispatch(accountsPageActions.setPage(1));
             fetchData();
         },
         [dispatch, fetchData],
@@ -47,8 +47,8 @@ export function useAccountFilters() {
 
     const onChangeOrder = useCallback(
         (newOrder: SortOrder) => {
-            dispatch(articlesPageActions.setOrder(newOrder));
-            dispatch(articlesPageActions.setPage(1));
+            dispatch(accountsPageActions.setOrder(newOrder));
+            dispatch(accountsPageActions.setPage(1));
             fetchData();
         },
         [dispatch, fetchData],
@@ -56,17 +56,17 @@ export function useAccountFilters() {
 
     const onChangeSearch = useCallback(
         (search: string) => {
-            dispatch(articlesPageActions.setSearch(search));
-            dispatch(articlesPageActions.setPage(1));
+            dispatch(accountsPageActions.setSearch(search));
+            dispatch(accountsPageActions.setPage(1));
             debouncedFetchData();
         },
         [dispatch, debouncedFetchData],
     );
 
     const onChangeType = useCallback(
-        (value: ArticleType) => {
-            dispatch(articlesPageActions.setType(value));
-            dispatch(articlesPageActions.setPage(1));
+        (value: AccountType) => {
+            dispatch(accountsPageActions.setType(value));
+            dispatch(accountsPageActions.setPage(1));
             fetchData();
         },
         [dispatch, fetchData],

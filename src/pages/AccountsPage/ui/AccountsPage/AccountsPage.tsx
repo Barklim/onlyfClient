@@ -15,14 +15,14 @@ import { fetchNextAccountsPage } from '../../model/services/fetchNextAccountsPag
 import { initAccountsPage } from '../../model/services/initAccountsPage/initAccountsPage';
 import cls from './AccountsPage.module.scss';
 import { AccountPageGreeting } from '@/features/accountPageGreeting';
-import { articlesPageReducer } from '../../model/slices/accountsPageSlice';
+import { accountsPageReducer } from '../../model/slices/accountsPageSlice';
 
 interface AccountsPageProps {
     className?: string;
 }
 
 const reducers: ReducersList = {
-    articlesPage: articlesPageReducer,
+    accountsPage: accountsPageReducer,
 };
 
 const AccountsPage = (props: AccountsPageProps) => {
@@ -47,7 +47,7 @@ const AccountsPage = (props: AccountsPageProps) => {
                 className={classNames(cls.AccountsPage, {}, [className])}
             >
                 <AccountsPageFilters />
-                {/*<AccountInfiniteList className={cls.list} />*/}
+                <AccountInfiniteList className={cls.list} />
                 <AccountPageGreeting />
             </Page>
         </DynamicModuleLoader>

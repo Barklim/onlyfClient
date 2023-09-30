@@ -1,13 +1,13 @@
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 import { fetchNextAccountsPage } from './fetchNextAccountsPage';
-import { fetchArticlesList } from '../fetchAccountsList/fetchArticlesList';
+import { fetchAccountsList } from '../fetchAccountsList/fetchArticlesList';
 
 jest.mock('../fetchAccountsList/fetchAccountsList');
 
 describe('fetchNextAccountsPage.test', () => {
     test('success', async () => {
         const thunk = new TestAsyncThunk(fetchNextAccountsPage, {
-            articlesPage: {
+            accountsPage: {
                 page: 2,
                 ids: [],
                 entities: {},
@@ -20,11 +20,11 @@ describe('fetchNextAccountsPage.test', () => {
         await thunk.callThunk();
 
         expect(thunk.dispatch).toBeCalledTimes(4);
-        expect(fetchArticlesList).toHaveBeenCalled();
+        expect(fetchAccountsList).toHaveBeenCalled();
     });
     test('fetchAritcleList not called', async () => {
         const thunk = new TestAsyncThunk(fetchNextAccountsPage, {
-            articlesPage: {
+            accountsPage: {
                 page: 2,
                 ids: [],
                 entities: {},
@@ -37,6 +37,6 @@ describe('fetchNextAccountsPage.test', () => {
         await thunk.callThunk();
 
         expect(thunk.dispatch).toBeCalledTimes(2);
-        expect(fetchArticlesList).not.toHaveBeenCalled();
+        expect(fetchAccountsList).not.toHaveBeenCalled();
     });
 });
