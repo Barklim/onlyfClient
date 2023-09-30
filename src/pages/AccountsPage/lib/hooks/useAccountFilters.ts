@@ -11,7 +11,7 @@ import { AccountSortField, AccountType, AccountView } from '@/entities/User';
 import { accountsPageActions } from '../../model/slices/accountsPageSlice';
 import { SortOrder } from '@/shared/types/sort';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchAccountsList } from '../../model/services/fetchAccountsList/fetchArticlesList';
+import { fetchAccountsList } from '../../model/services/fetchAccountsList/fetchAccountsList';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 
 export function useAccountFilters() {

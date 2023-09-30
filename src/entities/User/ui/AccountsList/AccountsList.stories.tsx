@@ -1,12 +1,12 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { ArticleView } from '../../model/consts/articleConsts';
+import { AccountView } from '../../model/consts/userConsts';
 import { AccountsList } from './AccountsList';
-import { Article } from '../../model/types/article';
+import { User } from '../../model/types/user';
 
 export default {
-    title: 'entities/Article/AccountsList',
+    title: 'entities/User/AccountsList',
     component: AccountsList,
     argTypes: {
         backgroundColor: { control: 'color' },
@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof AccountsList> = (args) => (
 );
 
 // TODO
-const article = {
+const account = {
     id: '1',
     title: 'Javascript news asfasjf asfjkask f',
     subtitle: 'Что нового в JS за 2022 год?',
@@ -91,38 +91,38 @@ const article = {
             ],
         },
     ],
-} as Article;
+} as User;
 
 export const LoadingBig = Template.bind({});
 LoadingBig.args = {
-    articles: [],
+    accounts: [],
     isLoading: true,
-    view: ArticleView.BIG,
+    view: AccountView.BIG,
 };
 
 export const LoadingSmall = Template.bind({});
 LoadingSmall.args = {
-    articles: [],
+    accounts: [],
     isLoading: true,
-    view: ArticleView.SMALL,
+    view: AccountView.SMALL,
 };
 
 export const ListSmall = Template.bind({});
 ListSmall.args = {
-    articles: new Array(9).fill(0).map((item, index) => ({
-        ...article,
+    accounts: new Array(9).fill(0).map((item, index) => ({
+        ...account,
         id: String(index),
     })),
     isLoading: false,
-    view: ArticleView.SMALL,
+    view: AccountView.SMALL,
 };
 
 export const ListBig = Template.bind({});
 ListBig.args = {
-    articles: new Array(9).fill(0).map((item, index) => ({
-        ...article,
+    accounts: new Array(9).fill(0).map((item, index) => ({
+        ...account,
         id: String(index),
     })),
     isLoading: false,
-    view: ArticleView.BIG,
+    view: AccountView.BIG,
 };

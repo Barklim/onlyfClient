@@ -4,7 +4,7 @@ import { AccountSortField, AccountType } from '@/entities/User';
 import { SortOrder } from '@/shared/types/sort';
 import { getAccountsPageInited } from '../../selectors/accountsPageSelectors';
 import { accountsPageActions } from '../../slices/accountsPageSlice';
-import { fetchAccountsList } from '../fetchAccountsList/fetchArticlesList';
+import { fetchAccountsList } from '../fetchAccountsList/fetchAccountsList';
 
 export const initAccountsPage = createAsyncThunk<
     void,

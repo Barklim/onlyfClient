@@ -13,7 +13,7 @@ import {
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { SortOrder } from '@/shared/types/sort';
 import { AccountsPageSchema } from '../types/accountsPageSchema';
-import { fetchAccountsList } from '../services/fetchAccountsList/fetchArticlesList';
+import { fetchAccountsList } from '../services/fetchAccountsList/fetchAccountsList';
 
 const accountsAdapter = createEntityAdapter<User>({
     selectId: (account) => account.id,
