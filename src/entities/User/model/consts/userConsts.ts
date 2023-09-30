@@ -5,8 +5,8 @@ export enum UserRole {
 }
 
 export enum AccountSortField {
-    VIEWS = 'views',
-    TITLE = 'title',
+    USERNAME = 'username',
+    ONLINE = 'online',
     CREATED = 'createdAt',
 }
 
@@ -16,12 +16,11 @@ export enum AccountBlockType {
     TEXT = 'TEXT',
 }
 
-// TODO AccountType = USERRole
 export enum AccountType {
     ALL = 'ALL',
-    COURSE = 'COURSE',
-    OTHER = 'OTHER',
-    BOOK = 'BOOK',
+    ADMIN = 'ADMIN',
+    USER = 'USER',
+    MANAGER = 'MANAGER',
 }
 
 export enum AccountView {

@@ -949,6 +949,7 @@
     {
       "id": "1",
       "profileId": "1",
+      "online": true,
       "masterIds": [],
       "accessibleIds": [
         "1",
@@ -975,6 +976,7 @@
     {
       "id": "2",
       "profileId": "2",
+      "online": false,
       "masterIds": [
         "1",
         "2"
@@ -999,6 +1001,7 @@
     {
       "id": "3",
       "profileId": "3",
+      "online": true,
       "masterIds": [
         "1"
       ],
@@ -1021,6 +1024,7 @@
     {
       "id": "4",
       "profileId": "4",
+      "online": false,
       "masterIds": [
         "1"
       ],

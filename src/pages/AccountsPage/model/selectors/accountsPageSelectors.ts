@@ -19,7 +19,7 @@ export const getAccountsPageInited = (state: StateSchema) =>
 export const getAccountsPageOrder = (state: StateSchema) =>
     state.accountsPage?.order ?? 'asc';
 export const getAccountsPageSort = (state: StateSchema) =>
-    state.accountsPage?.sort ?? AccountSortField.CREATED;
+    state.accountsPage?.sort ?? AccountSortField.ONLINE;
 export const getAccountsPageSearch = (state: StateSchema) =>
     state.accountsPage?.search ?? '';
 export const getAccountsPageType = (state: StateSchema) =>

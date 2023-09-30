@@ -20,19 +20,19 @@ export const AccountTypeTabs = memo((props: AccountTypeTabsProps) => {
         () => [
             {
                 value: AccountType.ALL,
-                content: t('Все материалы'),
+                content: t('Все пользователи'),
             },
             {
-                value: AccountType.COURSE,
-                content: t('Курсы'),
+                value: AccountType.USER,
+                content: t('Модели'),
             },
             {
-                value: AccountType.BOOK,
-                content: t('Книги'),
+                value: AccountType.MANAGER,
+                content: t('Мэнеджеры'),
             },
             {
-                value: AccountType.OTHER,
-                content: t('Другое'),
+                value: AccountType.ADMIN,
+                content: t('Админы'),
             },
         ],
         [t],

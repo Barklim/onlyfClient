@@ -35,7 +35,7 @@ const accountsPageSlice = createSlice({
         hasMore: true,
         _inited: false,
         limit: 9,
-        sort: AccountSortField.CREATED,
+        sort: AccountSortField.ONLINE,
         search: '',
         order: 'asc',
         type: AccountType.ALL,

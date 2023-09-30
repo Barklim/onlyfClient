@@ -37,16 +37,16 @@ export const AccountSortSelector = memo((props: AccountSortSelectorProps) => {
     const sortFieldOptions = useMemo<SelectOption<AccountSortField>[]>(
         () => [
             {
+                value: AccountSortField.ONLINE,
+                content: t('активности'),
+            },
+            {
+                value: AccountSortField.USERNAME,
+                content: t('имени'),
+            },
+            {
                 value: AccountSortField.CREATED,
-                content: t('дате создания'),
-            },
-            {
-                value: AccountSortField.TITLE,
-                content: t('названию'),
-            },
-            {
-                value: AccountSortField.VIEWS,
-                content: t('просмотрам'),
+                content: t('дате регистрации'),
             },
         ],
         [t],
