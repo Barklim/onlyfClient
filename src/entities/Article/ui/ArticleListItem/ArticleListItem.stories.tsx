@@ -27,6 +27,7 @@ const article = {
     user: {
         id: '1',
         username: 'Ulbi tv',
+        online: false,
         avatar: 'https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg',
     },
     type: ['COURSE', 'OTHER', 'POLITICS', 'BOOK'],

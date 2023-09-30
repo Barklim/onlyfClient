@@ -12,4 +12,9 @@ export interface Profile {
     username?: string;
     avatar?: string;
     stopWords?: string;
+    verified?: boolean;
+    countViolations?: number;
+    countViolationsPercentage?: number;
+    countViolationsTotal?: number;
+    countActiveDialogs?: number;
 }

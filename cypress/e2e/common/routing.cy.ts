@@ -7,7 +7,7 @@ describe('Роутинг', () => {
             cy.get(selectByTestId('MainPage')).should('exist');
         });
         it('Переход открывает страницу профиля', () => {
-            cy.visit('/profile/1');
+            cy.visit('/profiles/1');
             cy.get(selectByTestId('MainPage')).should('exist');
         });
         it('Переход открывает несуществующий маршрут ', () => {
@@ -20,7 +20,7 @@ describe('Роутинг', () => {
             cy.login();
         });
         it('Переход открывает страницу профиля', () => {
-            cy.visit('/profile/1');
+            cy.visit('/profiles/1');
             cy.get(selectByTestId('ProfilePage')).should('exist');
         });
 

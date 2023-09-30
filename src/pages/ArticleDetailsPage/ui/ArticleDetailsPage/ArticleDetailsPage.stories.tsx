@@ -29,6 +29,7 @@ const article: Article = {
     user: {
         id: '1',
         username: 'Ulbi tv',
+        online: false,
     },
     blocks: [
         {

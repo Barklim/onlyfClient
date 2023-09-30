@@ -19,7 +19,7 @@ const normalArgs = {
     comment: {
         id: '1',
         text: 'hello world',
-        user: { id: '1', username: 'Vasya' },
+        user: { id: '1', username: 'Vasya', online: true },
     },
 };
 
@@ -35,7 +35,7 @@ Loading.args = {
     comment: {
         id: '1',
         text: 'hello world',
-        user: { id: '1', username: 'Vasya' },
+        user: { id: '1', username: 'Vasya', online: true },
     },
     isLoading: true,
 };

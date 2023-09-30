@@ -35,9 +35,9 @@ export const fetchAccountsList = createAsyncThunk<
             search,
             type,
         });
-        const response = await extra.api.get<User[]>('/articles', {
+        const response = await extra.api.get<User[]>('/users', {
             params: {
-                _expand: 'user',
+                _expand: 'profile',
                 _limit: limit,
                 _page: page,
                 _sort: sort,
