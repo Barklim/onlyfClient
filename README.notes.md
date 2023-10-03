@@ -30,7 +30,7 @@
 ### deploy node js to vercel
 
 npm i -g vercel
-vercel --prod 
+vercel --prod
 
 Получаем две ссылки
 https://vercel.com/klimentbarkalov/production-project-server/A2n46994xUbKJZnMfaBm4dAdp6hy

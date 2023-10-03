@@ -970,7 +970,7 @@
       "jsonSettings": {
         "isArticlesPageWasOpened": false,
         "theme": "app_orange_theme",
-        "isAccountsPageWasOpened": false
+        "isAccountsPageWasOpened": true
       }
     },
     {
@@ -996,7 +996,7 @@
       "jsonSettings": {
         "isArticlesPageWasOpened": false,
         "theme": "app_orange_theme",
-        "isAccountsPageWasOpened": false
+        "isAccountsPageWasOpened": true
       }
     },
     {
@@ -1020,7 +1020,7 @@
       "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
       "jsonSettings": {
         "isArticlesPageWasOpened": false,
-        "isAccountsPageWasOpened": false
+        "isAccountsPageWasOpened": true
       }
     },
     {
@@ -1183,7 +1183,7 @@
       "jsonSettings": {
         "isArticlesPageWasOpened": false,
         "theme": "app_orange_theme",
-        "isAccountsPageWasOpened": false
+        "isAccountsPageWasOpened": true
       }
     },
     {
