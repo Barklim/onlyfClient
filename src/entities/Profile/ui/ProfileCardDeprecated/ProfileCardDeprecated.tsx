@@ -65,15 +65,17 @@ export const ProfileCardDeprecatedLoader = () => {
 export const ProfileCardDeprecated = memo((props: ProfileCardProps) => {
     const {
         className,
+        userAuthData,
+        userByIdData,
         data,
-        role,
         readonly,
         onChangeUsername,
         onChangeAvatar,
         onChangeStopWords,
     } = props;
     const { t } = useTranslation('profile');
-    const isAdmin = role?.includes(UserRole.ADMIN) || false;
+    const isAdmin = userAuthData?.roles?.includes(UserRole.ADMIN) || false;
+    const showStopWords = isAdmin && (userByIdData?.id === userAuthData?.id);
     let newData = data;
     let rows = 1;
 
@@ -119,28 +121,34 @@ export const ProfileCardDeprecated = memo((props: ProfileCardProps) => {
                         disabled={readonly}
                         data-testid="ProfileCard.avatar"
                     />
-                    {/*{isAdmin && (*/}
-                    {/*    <InputMaterial*/}
-                    {/*    variant="filled"*/}
-                    {/*    label={t('Введите стоп слова')}*/}
-                    {/*    fullWidth*/}
-                    {/*    value={newData?.stopWords}*/}
-                    {/*    className={classNames(cls.input, modsFullWidth, [className])}*/}
-                    {/*    onChange={onChangeStopWords}*/}
-                    {/*    disabled={readonly}*/}
-                    {/*    rows={rows}*/}
-                    {/*    data-testid="ProfileCard.stopWords"*/}
-                    {/*    />*/}
-                    {/*)}*/}
+                    {showStopWords ?
+                        <InputMaterial
+                            variant="filled"
+                            label={t('Введите стоп слова')}
+                            fullWidth
+                            value={newData?.stopWords}
+                            className={classNames(cls.input, modsFullWidth, [className])}
+                            onChange={onChangeStopWords}
+                            disabled={readonly}
+                            rows={rows}
+                            data-testid="ProfileCard.stopWords"
+                        />
+                        :
+                        null
+                    }
                 </VStack>
             </CardContent>
             {data?.avatar && (
-                <CardMedia
-                    component="img"
-                    height="194"
-                    image={data?.avatar}
-                    alt="Paella dish"
-                />
+                <div className={cls.cardMediaWrapper}>
+                    <CardMedia
+                        className={cls.cardMedia}
+                        component="img"
+                        height={showStopWords ? 'auto' : 194}
+                        width={200}
+                        image={data?.avatar}
+                        alt="Paella dish"
+                    />
+                </div>
             )}
         </Card>
     );

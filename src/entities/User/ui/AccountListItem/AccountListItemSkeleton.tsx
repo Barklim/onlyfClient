@@ -20,26 +20,20 @@ export const AccountListItemSkeleton = memo(
 
         if (view === AccountView.BIG) {
             const cardContent = (
-                <>
-                    <div className={cls.header}>
-                        <Skeleton border="50%" height={30} width={30} />
+                <div className={cls.skeletonBig}>
+                    <div className={cls.skeletonCardMedia}>
                         <Skeleton
-                            width={150}
-                            height={16}
+                            width={300}
+                            height={225}
                             className={cls.username}
                         />
-                        <Skeleton
-                            width={150}
-                            height={16}
-                            className={cls.date}
-                        />
                     </div>
-                    <Skeleton width={250} height={24} className={cls.title} />
-                    <Skeleton height={200} className={cls.img} />
-                    <div className={cls.footer}>
-                        <Skeleton height={36} width={200} />
+                    <div className={cls.skeletonCardTextWrapper}>
+                        <Skeleton width={150} height={24} className={cls.title} />
+                        <Skeleton width={200} height={90} className={cls.img} />
+                        <Skeleton width={90} height={24} />
                     </div>
-                </>
+                </div>
             );
             return (
                 <div
@@ -56,19 +50,18 @@ export const AccountListItemSkeleton = memo(
         }
 
         const cardContent = (
-            <>
-                <div className={cls.imageWrapper}>
+            <div className={cls.skeletonSmall}>
+                <div className={cls.skeletonCardMedia}>
                     <Skeleton
-                        // width={200}
                         height={200}
                         className={cls.img}
                     />
                 </div>
-                <div className={cls.infoWrapper}>
-                    <Skeleton width={130} height={16} />
+                <div className={cls.skeletonCardTextWrapper}>
+                    <Skeleton width={130} height={24} />
+                    <Skeleton width={90} height={24} />
                 </div>
-                <Skeleton width={150} height={16} className={cls.title} />
-            </>
+            </div>
         );
 
         return (

@@ -12,7 +12,7 @@ import { Status, StatusType } from '@/shared/ui/deprecated/Status';
 import { Typography } from '@/shared/ui/material/Typography';
 import cls from './TableTableProfile.module.scss';
 import { useSelector } from 'react-redux';
-import { isUserAdmin, isUserManager } from '@/entities/User';
+import { getUserByIdData, isUserAdmin, isUserManager, UserRole } from '@/entities/User';
 
 function createData(
     number: number,
@@ -36,21 +36,18 @@ const rows = [
 ];
 
 export const TableProfile = memo(() => {
-    const { t } = useTranslation('about');
-    const isAdmin = useSelector(isUserAdmin);
-    const isManager = useSelector(isUserManager);
-    const showStatistics = isAdmin || isManager;
-    // TODO: get user profile data
+    const { t } = useTranslation('profile');
+    const userByIdData = useSelector(getUserByIdData)
+    const isManager = userByIdData?.roles?.includes(UserRole.MANAGER) || false;;
+    const showStatistics = isManager;
 
     return <>
         {showStatistics ?
             <VStack gap='16'>
                 <HStack className={cls.header}>
                     <Typography variant='h5' color='primary'>
-                        Statistics
+                        {t('Violations')}
                     </Typography>
-                    {/* todo */}
-                    {/*ViolationsTotal*/}
                 </HStack>
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">

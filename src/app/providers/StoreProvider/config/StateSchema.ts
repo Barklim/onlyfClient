@@ -17,6 +17,7 @@ import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { UISchema } from '@/features/UI';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { ProfileSchema } from '@/features/editableProfileCard';
+import { UserByIdSchema } from '@/entities/User/model/types/user';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -27,6 +28,7 @@ export interface StateSchema {
     // Асинхронные редюсеры
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
+    userById?: UserByIdSchema;
     accountsPage?: AccountsPageSchema;
     articleDetails?: ArticleDetailsSchema;
     addCommentForm?: AddCommentFormSchema;

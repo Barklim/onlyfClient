@@ -1,5 +1,3 @@
-import { useTranslation } from 'react-i18next';
-
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
 import { Profile } from '../../model/types/profile';
@@ -8,11 +6,12 @@ import {
     ProfileCardDeprecatedError,
     ProfileCardDeprecatedLoader,
 } from '../ProfileCardDeprecated/ProfileCardDeprecated';
-import { UserRole } from '@/entities/User';
+import { User, UserRole } from '@/entities/User';
 
 export interface ProfileCardProps {
     className?: string;
-    role?: Array<UserRole>;
+    userAuthData?: User;
+    userByIdData?: User;
     data?: Profile;
     error?: string;
     isLoading?: boolean;

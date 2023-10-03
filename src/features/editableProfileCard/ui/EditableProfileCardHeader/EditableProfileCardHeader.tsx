@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { HStack } from '@/shared/ui/redesigned/Stack';
-import { getUserAuthData, isUserAdmin } from '@/entities/User';
+import { getUserAuthData, getUserByIdData, isUserAdmin, UserRole } from '@/entities/User';
 import { profileActions } from '../../model/slice/profileSlice';
 import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { getProfileData } from '../../model/selectors/getProfileData/getProfileData';
@@ -20,6 +20,7 @@ interface EditableProfileCardHeaderProps {
     className?: string;
 }
 
+// TODO: fix inline styles here
 export const EditableProfileCardHeader = memo(
     (props: EditableProfileCardHeaderProps) => {
         const { className, id } = props;
@@ -27,8 +28,8 @@ export const EditableProfileCardHeader = memo(
         const { t } = useTranslation('profile');
         const profileData = useSelector(getProfileData);
         const isAdmin = useSelector(isUserAdmin);
-        // TODO: get user data or online status by id, fix inline styles here
-        const userAuthData = useSelector(getUserAuthData);
+        const userByIdData = useSelector(getUserByIdData);
+        const invisibleStatus = userByIdData?.roles?.includes(UserRole.ADMIN) || false;
         const readonly = useSelector(getProfileReadonly);
         const dispatch = useAppDispatch();
 
@@ -48,34 +49,33 @@ export const EditableProfileCardHeader = memo(
             <HStack
                 max
                 justify="between"
-                style={{ maxWidth: '826px' }}
             >
                 <HStack gap={'16'} align={'end'}>
                     <Typography variant='h5' color='primary'>
                         {profileData?.username}
                     </Typography>
-                    {userAuthData?.online ?
-                        <Typography
-                            variant='subtitle1'
-                            color='#9a9a9a'
-                            style={{ paddingLeft: "10px", display: 'flex', verticalAlign: 'end', alignItems: 'end'}}
-                        >
-                            online
-                            <Public style={{ height: '12px', position: 'relative', top: '1px' }} />
-                        </Typography>
+                    {!invisibleStatus ?
+                        userByIdData?.online ?
+                            <Typography
+                                variant='subtitle1'
+                                color='#9a9a9a'
+                                style={{ paddingLeft: "10px", display: 'flex', verticalAlign: 'end', alignItems: 'end'}}
+                            >
+                                online
+                                <Public style={{ height: '12px', position: 'relative', top: '1px' }} />
+                            </Typography>
+                            :
+                            <Typography
+                                variant='subtitle1'
+                                color='#9a9a9a'
+                                style={{ paddingLeft: "10px", display: 'flex', verticalAlign: 'end', alignItems: 'end'}}
+                            >
+                                off
+                                <CloudOff style={{ height: '12px', position: 'relative', top: '1px' }} />
+                            </Typography>
                         :
-                        <Typography
-                            variant='subtitle1'
-                            color='#9a9a9a'
-                            style={{ paddingLeft: "10px", display: 'flex', verticalAlign: 'end', alignItems: 'end'}}
-                        >
-                            off
-                            <CloudOff style={{ height: '12px', position: 'relative', top: '1px' }} />
-                        </Typography>
+                        null
                     }
-                    <div>
-                        {userAuthData?.online}
-                    </div>
                 </HStack>
                 {isAdmin && (
                     <div>

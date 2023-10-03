@@ -2,6 +2,30 @@
 
 }
 
+.skeletonBig {
+  display: flex;
+  height: 100%;
+
+  .skeletonCardTextWrapper {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.skeletonSmall {
+  height: 100px;
+
+  .skeletonCardTextWrapper {
+    height: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
 .cardHeader {
   overflow: hidden;
   max-width: 200px;
@@ -38,6 +62,17 @@
   position: absolute;
   top: -34px;
   right: 7px;
+}
+
+.statusInvisible {
+  opacity: 0.6;
+  height: 30px;
+  display: flex;
+  position: absolute;
+  top: -34px;
+  right: 7px;
+
+  background-color: #777 !important;
 }
 
 .status__big {

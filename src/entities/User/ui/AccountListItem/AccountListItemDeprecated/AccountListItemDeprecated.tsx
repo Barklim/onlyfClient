@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from '../AccountListItem.module.scss';
 import {
-    AccountView,
+    AccountView, UserRole,
 } from '../../../model/consts/userConsts';
 import {
     Card as CardMui,
@@ -20,7 +20,7 @@ import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { getRouteProfile } from '@/shared/const/router';
 import { AccountListItemProps } from '../AccountListItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Public, CloudOff, Done } from '@mui/icons-material';
+import { Public, CloudOff, Done, VisibilityOff } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
 import { isUserAdmin } from '../../../model/selectors/roleSelectors';
 
@@ -29,6 +29,7 @@ const lipsumText = 'Lorem Ipsum is simply dummy text of the printing and typeset
 export const AccountListItemDeprecated = memo((props: AccountListItemProps) => {
     const { className, account, view, target } = props;
     const isAdmin = useSelector(isUserAdmin);
+    const accountIsAdmin = account.roles?.includes(UserRole.ADMIN) || false;
 
     if (view === AccountView.BIG) {
         return (
@@ -63,25 +64,38 @@ export const AccountListItemDeprecated = memo((props: AccountListItemProps) => {
                         </div>
                         <div className={cls.statusContainer}>
                             <div className={cls.statusWrapper}>
-                                {account.online ?
-                                    <Chip
-                                        size="small"
-                                        color={'success'}
-                                        variant={'filled'}
-                                        className={cls.status__big}
-                                        label={'online'}
-                                        onDelete={() => {}}
-                                        deleteIcon={<Public />}
-                                    />
+                                {!accountIsAdmin ?
+                                    account.online ?
+                                        <Chip
+                                            size="small"
+                                            color={'success'}
+                                            variant={'filled'}
+                                            className={cls.status__big}
+                                            label={'online'}
+                                            onDelete={() => {
+                                            }}
+                                            deleteIcon={<Public />}
+                                        />
+                                        :
+                                        <Chip
+                                            size="small"
+                                            color={'error'}
+                                            variant={'filled'}
+                                            className={cls.status__big}
+                                            label={'off'}
+                                            onDelete={() => {
+                                            }}
+                                            deleteIcon={<CloudOff />}
+                                        />
                                     :
                                     <Chip
                                         size="small"
                                         color={'error'}
                                         variant={'filled'}
-                                        className={cls.status__big}
-                                        label={'off'}
+                                        className={cls.statusInvisible}
+                                        label={'hidden'}
                                         onDelete={() => {}}
-                                        deleteIcon={<CloudOff />}
+                                        deleteIcon={<VisibilityOff />}
                                     />
                                 }
                             </div>
@@ -123,38 +137,41 @@ export const AccountListItemDeprecated = memo((props: AccountListItemProps) => {
                                     </Typography>
                                 </AppLink>
                             </ButtonMui>
-                            {isAdmin ?
-                                account.profile?.verified ?
-                                    <Chip
-                                        className={cls.chip}
-                                        size="small"
-                                        color={'success'}
-                                        variant={'outlined'}
-                                        label={'Verified'}
-                                        onDelete={() => {
-                                        }}
-                                    />
+                            {!accountIsAdmin ?
+                                isAdmin ?
+                                    account.profile?.verified ?
+                                        <Chip
+                                            className={cls.chip}
+                                            size="small"
+                                            color={'success'}
+                                            variant={'outlined'}
+                                            label={'Verified'}
+                                            onDelete={() => {
+                                            }}
+                                        />
+                                        :
+                                        <ButtonMui
+                                            size="small"
+                                            color={'warning'}
+                                            variant={'outlined'}
+                                        >
+                                            Verify
+                                        </ButtonMui>
                                     :
-                                    <ButtonMui
-                                        size="small"
-                                        color={'warning'}
-                                        variant={'outlined'}
-                                    >
-                                        Verify
-                                    </ButtonMui>
+                                    account.profile?.verified ?
+                                        <Chip
+                                            className={cls.chip}
+                                            size="medium"
+                                            color={'success'}
+                                            variant={'outlined'}
+                                            label={'Verified'}
+                                            deleteIcon={<Done />}
+                                            onDelete={() => {}}
+                                        />
+                                        :
+                                        null
                                 :
-                                account.profile?.verified ?
-                                    <Chip
-                                        className={cls.chip}
-                                        size="medium"
-                                        color={'success'}
-                                        variant={'outlined'}
-                                        label={'Verified'}
-                                        deleteIcon={<Done />}
-                                        onDelete={() => {}}
-                                    />
-                                    :
-                                    null
+                                null
                             }
                         </CardActions>
                     </Box>
@@ -195,25 +212,36 @@ export const AccountListItemDeprecated = memo((props: AccountListItemProps) => {
                 </AppLink>
                 <div className={cls.statusContainer}>
                     <div className={cls.statusWrapper}>
-                        {account.online ?
-                            <Chip
-                                size="small"
-                                color={'success'}
-                                variant={'filled'}
-                                className={cls.status}
-                                label={'online'}
-                                onDelete={() => {}}
-                                deleteIcon={<Public />}
-                            />
+                        {!accountIsAdmin ?
+                            account.online ?
+                                <Chip
+                                    size="small"
+                                    color={'success'}
+                                    variant={'filled'}
+                                    className={cls.status}
+                                    label={'online'}
+                                    onDelete={() => {}}
+                                    deleteIcon={<Public />}
+                                />
+                                :
+                                <Chip
+                                    size="small"
+                                    color={'error'}
+                                    variant={'filled'}
+                                    className={cls.status}
+                                    label={'off'}
+                                    onDelete={() => {}}
+                                    deleteIcon={<CloudOff />}
+                                />
                             :
                             <Chip
                                 size="small"
-                                color={'error'}
+                                color={'warning'}
                                 variant={'filled'}
-                                className={cls.status}
-                                label={'off'}
+                                className={cls.statusInvisible}
+                                label={'hidden'}
                                 onDelete={() => {}}
-                                deleteIcon={<CloudOff />}
+                                deleteIcon={<VisibilityOff />}
                             />
                         }
                     </div>
@@ -240,38 +268,41 @@ export const AccountListItemDeprecated = memo((props: AccountListItemProps) => {
                             </Typography>
                         </AppLink>
                     </ButtonMui>
-                    {isAdmin ?
-                        account.profile?.verified ?
-                            <Chip
-                                className={cls.chip}
-                                size="small"
-                                color={'success'}
-                                variant={'outlined'}
-                                label={'Verified'}
-                                onDelete={() => {
-                                }}
-                            />
+                    {!accountIsAdmin ?
+                        isAdmin ?
+                            account.profile?.verified ?
+                                <Chip
+                                    className={cls.chip}
+                                    size="small"
+                                    color={'success'}
+                                    variant={'outlined'}
+                                    label={'Verified'}
+                                    onDelete={() => {
+                                    }}
+                                />
+                                :
+                                <ButtonMui
+                                    size="small"
+                                    color={'warning'}
+                                    variant={'outlined'}
+                                >
+                                    Verify
+                                </ButtonMui>
                             :
-                            <ButtonMui
-                                size="small"
-                                color={'warning'}
-                                variant={'outlined'}
-                            >
-                                Verify
-                            </ButtonMui>
+                            account.profile?.verified ?
+                                <Chip
+                                    className={cls.chip}
+                                    size="small"
+                                    color={'success'}
+                                    variant={'outlined'}
+                                    label={'Verified'}
+                                    deleteIcon={<Done />}
+                                    onDelete={() => {}}
+                                />
+                                :
+                                null
                         :
-                        account.profile?.verified ?
-                            <Chip
-                                className={cls.chip}
-                                size="small"
-                                color={'success'}
-                                variant={'outlined'}
-                                label={'Verified'}
-                                deleteIcon={<Done />}
-                                onDelete={() => {}}
-                            />
-                            :
-                            null
+                        null
                     }
                 </CardActions>
             </Box>

@@ -21,3 +21,11 @@ export interface UserSchema {
 
     _inited: boolean;
 }
+
+export interface UserByIdSchema {
+    data?: User;
+    isLoading: boolean;
+    error?: string;
+    readonly: boolean;
+}
+

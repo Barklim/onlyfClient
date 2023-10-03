@@ -17,7 +17,7 @@ interface AccountListProps {
 }
 
 const getSkeletons = (view: AccountView) =>
-    new Array(view === AccountView.SMALL ? 12 : 4)
+    new Array(view === AccountView.SMALL ? 14 : 6)
         .fill(0)
         .map((item, index) => (
             <AccountListItemSkeleton
@@ -66,11 +66,6 @@ export const AccountsList = memo((props: AccountListProps) => {
                     key={item.id}
                     className={cls.card}
                 />
-                // <AccountListItemSkeleton
-                //     className={cls.card}
-                //     key={index}
-                //     view={view}
-                // />
             ))}
             {isLoading && getSkeletons(view)}
         </div>

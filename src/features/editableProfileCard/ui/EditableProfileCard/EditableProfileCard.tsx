@@ -21,8 +21,9 @@ import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/get
 import { getProfileValidateErrors } from '../../model/selectors/getProfileValidateErrors/getProfileValidateErrors';
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
+import { getUserAuthData, getUserByIdData, userByIdReducer } from '@/entities/User';
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
-import { getUserAuthData } from '@/entities/User';
+import { fetchUserData } from '@/entities/User';
 
 interface EditableProfileCardProps {
     className?: string;
@@ -31,6 +32,7 @@ interface EditableProfileCardProps {
 
 const reducers: ReducersList = {
     profile: profileReducer,
+    userById: userByIdReducer,
 };
 
 export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
@@ -43,7 +45,8 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadonly);
     const validateErrors = useSelector(getProfileValidateErrors);
-    const userData = useSelector(getUserAuthData);
+    const userAuthData = useSelector(getUserAuthData)
+    const userByIdData = useSelector(getUserByIdData)
 
     const validateErrorTranslates = {
         [ValidateProfileError.SERVER_ERROR]: t(
@@ -60,6 +63,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     useInitialEffect(() => {
         if (id) {
             dispatch(fetchProfileData(id));
+            dispatch(fetchUserData(id));
         }
     });
 
@@ -128,7 +132,12 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <VStack gap="16" max className={classNames('', {}, [className])}>
+            <VStack
+                gap="16"
+                max
+                className={classNames('', {}, [className])}
+                style={{ maxWidth: '826px' }}
+            >
                 <EditableProfileCardHeader id={id} />
                 {validateErrors?.length &&
                     validateErrors.map((err) => (
@@ -141,7 +150,8 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
                     ))}
                 <ProfileCard
                     data={formData}
-                    role={userData?.roles}
+                    userAuthData={userAuthData}
+                    userByIdData={userByIdData}
                     isLoading={isLoading}
                     error={error}
                     readonly={readonly}
