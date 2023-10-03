@@ -93,14 +93,6 @@ export const ProfileCardDeprecated = memo((props: ProfileCardProps) => {
 
     return (
         <Card sx={{ minWidth: 275 }} className={classNames(cls.ProfileCard, {}, [className])}>
-            {data?.avatar && (
-                <CardMedia
-                    component="img"
-                    height="194"
-                    image={data?.avatar}
-                    alt="Paella dish"
-                />
-            )}
             <CardContent>
                 <VStack
                     gap="8"
@@ -109,7 +101,7 @@ export const ProfileCardDeprecated = memo((props: ProfileCardProps) => {
                 >
                     <InputMaterial
                         variant="standard"
-                        label={t('Ваше имя')}
+                        label={t('Введите имя')}
                         fullWidth
                         value={data?.username}
                         className={cls.input}
@@ -127,21 +119,29 @@ export const ProfileCardDeprecated = memo((props: ProfileCardProps) => {
                         disabled={readonly}
                         data-testid="ProfileCard.avatar"
                     />
-                    {isAdmin && (
-                        <InputMaterial
-                        variant="filled"
-                        label={t('Введите стоп слова')}
-                        fullWidth
-                        value={newData?.stopWords}
-                        className={classNames(cls.input, modsFullWidth, [className])}
-                        onChange={onChangeStopWords}
-                        disabled={readonly}
-                        rows={rows}
-                        data-testid="ProfileCard.stopWords"
-                        />
-                    )}
+                    {/*{isAdmin && (*/}
+                    {/*    <InputMaterial*/}
+                    {/*    variant="filled"*/}
+                    {/*    label={t('Введите стоп слова')}*/}
+                    {/*    fullWidth*/}
+                    {/*    value={newData?.stopWords}*/}
+                    {/*    className={classNames(cls.input, modsFullWidth, [className])}*/}
+                    {/*    onChange={onChangeStopWords}*/}
+                    {/*    disabled={readonly}*/}
+                    {/*    rows={rows}*/}
+                    {/*    data-testid="ProfileCard.stopWords"*/}
+                    {/*    />*/}
+                    {/*)}*/}
                 </VStack>
             </CardContent>
+            {data?.avatar && (
+                <CardMedia
+                    component="img"
+                    height="194"
+                    image={data?.avatar}
+                    alt="Paella dish"
+                />
+            )}
         </Card>
     );
 });

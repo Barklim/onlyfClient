@@ -3,17 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
 import { Profile } from '../../model/types/profile';
-import { ToggleFeatures } from '@/shared/lib/features';
 import {
     ProfileCardDeprecated,
     ProfileCardDeprecatedError,
     ProfileCardDeprecatedLoader,
 } from '../ProfileCardDeprecated/ProfileCardDeprecated';
-import {
-    ProfileCardRedesigned,
-    ProfileCardRedesignedError,
-    ProfileCardRedesignedSkeleton,
-} from '../ProfileCardRedesigned/ProfileCardRedesigned';
 import { UserRole } from '@/entities/User';
 
 export interface ProfileCardProps {
@@ -36,33 +30,20 @@ export interface ProfileCardProps {
 
 export const ProfileCard = (props: ProfileCardProps) => {
     const { isLoading, error } = props;
-    const { t } = useTranslation();
 
     if (isLoading) {
         return (
-            <ToggleFeatures
-                feature="isAppRedesigned"
-                on={<ProfileCardRedesignedSkeleton />}
-                off={<ProfileCardDeprecatedLoader />}
-            />
+            <ProfileCardDeprecatedLoader />
         );
     }
 
     if (error) {
         return (
-            <ToggleFeatures
-                feature="isAppRedesigned"
-                on={<ProfileCardRedesignedError />}
-                off={<ProfileCardDeprecatedError />}
-            />
+            <ProfileCardDeprecatedError />
         );
     }
 
     return (
-        <ToggleFeatures
-            feature="isAppRedesigned"
-            on={<ProfileCardRedesigned {...props} />}
-            off={<ProfileCardDeprecated {...props} />}
-        />
+        <ProfileCardDeprecated {...props} />
     );
 };

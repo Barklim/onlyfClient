@@ -44,7 +44,6 @@ export const useSidebarItems = () => {
                 }),
                 text: 'Accounts',
                 authOnly: true,
-                roles: [UserRole.ADMIN]
             },
             {
                 path: getRouteMassMailings(),

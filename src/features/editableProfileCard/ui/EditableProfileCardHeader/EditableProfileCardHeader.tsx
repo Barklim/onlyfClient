@@ -1,34 +1,34 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useCallback, useEffect } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { HStack } from '@/shared/ui/redesigned/Stack';
-import { Text } from '@/shared/ui/redesigned/Text';
-import { getUserAuthData } from '@/entities/User';
+import { getUserAuthData, isUserAdmin } from '@/entities/User';
 import { profileActions } from '../../model/slice/profileSlice';
 import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { getProfileData } from '../../model/selectors/getProfileData/getProfileData';
 import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
-import { ToggleFeatures } from '@/shared/lib/features';
-import { Button } from '@/shared/ui/redesigned/Button';
-import { Card } from '@/shared/ui/redesigned/Card';
 import { Button as ButtonMui } from '@mui/material';
+import { Typography } from '@/shared/ui/material/Typography'
 import CloseIcon from '@mui/icons-material/Close';
 import DoneIcon from '@mui/icons-material/Done';
+import { CloudOff, Public } from '@mui/icons-material';
 
 interface EditableProfileCardHeaderProps {
+    id?: string;
     className?: string;
 }
 
 export const EditableProfileCardHeader = memo(
     (props: EditableProfileCardHeaderProps) => {
-        const { className } = props;
+        const { className, id } = props;
 
         const { t } = useTranslation('profile');
-        const authData = useSelector(getUserAuthData);
         const profileData = useSelector(getProfileData);
-        const canEdit = authData?.id === profileData?.id;
+        const isAdmin = useSelector(isUserAdmin);
+        // TODO: get user data or online status by id, fix inline styles here
+        const userAuthData = useSelector(getUserAuthData);
         const readonly = useSelector(getProfileReadonly);
         const dispatch = useAppDispatch();
 
@@ -45,95 +45,76 @@ export const EditableProfileCardHeader = memo(
         }, [dispatch]);
 
         return (
-            <ToggleFeatures
-                feature="isAppRedesigned"
-                on={
-                    <Card padding="24" fullWidth border="partial">
-                        <HStack
-                            max
-                            justify="between"
-                            className={classNames('', {}, [className])}
+            <HStack
+                max
+                justify="between"
+                style={{ maxWidth: '826px' }}
+            >
+                <HStack gap={'16'} align={'end'}>
+                    <Typography variant='h5' color='primary'>
+                        {profileData?.username}
+                    </Typography>
+                    {userAuthData?.online ?
+                        <Typography
+                            variant='subtitle1'
+                            color='#9a9a9a'
+                            style={{ paddingLeft: "10px", display: 'flex', verticalAlign: 'end', alignItems: 'end'}}
                         >
-                            <Text title={t('Профиль')} />
-                            {canEdit && (
-                                <div>
-                                    {readonly ? (
-                                        <Button
-                                            onClick={onEdit}
-                                            data-testid="EditableProfileCardHeader.EditButton"
-                                        >
-                                            {t('Редактировать')}
-                                        </Button>
-                                    ) : (
-                                        <HStack gap="8">
-                                            <Button
-                                                onClick={onCancelEdit}
-                                                data-testid="EditableProfileCardHeader.CancelButton"
-                                                color="error"
-                                            >
-                                                {t('Отменить')}
-                                            </Button>
-                                            <Button
-                                                onClick={onSave}
-                                                data-testid="EditableProfileCardHeader.SaveButton"
-                                                color="success"
-                                            >
-                                                {t('Сохранить')}
-                                            </Button>
-                                        </HStack>
-                                    )}
-                                </div>
-                            )}
-                        </HStack>
-                    </Card>
-                }
-                off={
-                    <HStack
-                        max
-                        justify="between"
-                        style={{ maxWidth: '631px' }}
-                    >
-                        <Text title={t('Профиль')} />
-                        {canEdit && (
-                            <div>
-                                {readonly ? (
-                                    <ButtonMui
-                                        variant='outlined'
-                                        size='medium'
-                                        onClick={onEdit}
-                                        data-testid="EditableProfileCardHeader.EditButton"
-                                    >
-                                        {t('Редактировать')}
-                                    </ButtonMui>
-                                ) : (
-                                    <HStack gap="8">
-                                        <ButtonMui
-                                            variant='outlined'
-                                            size='medium'
-                                            onClick={onCancelEdit}
-                                            startIcon={<CloseIcon />}
-                                            color='error'
-                                            data-testid="EditableProfileCardHeader.CancelButton"
-                                        >
-                                            {t('Отменить')}
-                                        </ButtonMui>
-                                        <ButtonMui
-                                            variant='contained'
-                                            size='medium'
-                                            onClick={onSave}
-                                            endIcon={<DoneIcon />}
-                                            color='success'
-                                            data-testid="EditableProfileCardHeader.SaveButton"
-                                        >
-                                            {t('Сохранить')}
-                                        </ButtonMui>
-                                    </HStack>
-                                )}
-                            </div>
+                            online
+                            <Public style={{ height: '12px', position: 'relative', top: '1px' }} />
+                        </Typography>
+                        :
+                        <Typography
+                            variant='subtitle1'
+                            color='#9a9a9a'
+                            style={{ paddingLeft: "10px", display: 'flex', verticalAlign: 'end', alignItems: 'end'}}
+                        >
+                            off
+                            <CloudOff style={{ height: '12px', position: 'relative', top: '1px' }} />
+                        </Typography>
+                    }
+                    <div>
+                        {userAuthData?.online}
+                    </div>
+                </HStack>
+                {isAdmin && (
+                    <div>
+                        {readonly ? (
+                            <ButtonMui
+                                variant='outlined'
+                                size='medium'
+                                onClick={onEdit}
+                                data-testid="EditableProfileCardHeader.EditButton"
+                            >
+                                {t('Редактировать')}
+                            </ButtonMui>
+                        ) : (
+                            <HStack gap="8">
+                                <ButtonMui
+                                    variant='outlined'
+                                    size='medium'
+                                    onClick={onCancelEdit}
+                                    startIcon={<CloseIcon />}
+                                    color='error'
+                                    data-testid="EditableProfileCardHeader.CancelButton"
+                                >
+                                    {t('Отменить')}
+                                </ButtonMui>
+                                <ButtonMui
+                                    variant='contained'
+                                    size='medium'
+                                    onClick={onSave}
+                                    endIcon={<DoneIcon />}
+                                    color='success'
+                                    data-testid="EditableProfileCardHeader.SaveButton"
+                                >
+                                    {t('Сохранить')}
+                                </ButtonMui>
+                            </HStack>
                         )}
-                    </HStack>
-                }
-            />
+                    </div>
+                )}
+            </HStack>
         );
     },
 );

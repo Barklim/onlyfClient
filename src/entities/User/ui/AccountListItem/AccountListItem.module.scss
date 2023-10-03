@@ -1,0 +1,81 @@
+.AccountListItem {
+
+}
+
+.cardHeader {
+  overflow: hidden;
+  max-width: 200px;
+}
+
+.subText {
+  max-height: 50px;
+  overflow: hidden;
+}
+
+.chip {
+  margin-left: 8px !important;
+}
+
+.statusContainer {
+  display: flex;
+  justify-content: end;
+}
+
+.statusWrapper {
+  z-index: 1;
+  display: flex;
+  justify-content: end;
+
+  height: 0;
+  width: 100%;
+  position: relative;
+}
+
+.status {
+  opacity: 0.6;
+  height: 30px;
+  display: flex;
+  position: absolute;
+  top: -34px;
+  right: 7px;
+}
+
+.status__big {
+  opacity: 0.6;
+  height: 30px;
+  display: flex;
+  position: absolute;
+  bottom: 36px;
+  right: 10px;
+}
+
+.AccountListItemRedesigned {
+  &.BIG {
+    //width: 100%;
+  }
+
+  &.SMALL {
+    .card {
+      width: 200px;
+      height: 300px;
+    }
+  }
+}
+
+.cardGradientWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.cardImage {
+  //background-image: url("./src/shared/assets/icons/arrow-bottom.svg");
+  //background-image: url("./public/assets/logo.png");
+}
+
+.cardGradient {
+  width: 100%;
+  height: 126px;
+  background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0, 0.2) 100%);
+  position: absolute;
+  bottom: 0px;
+}

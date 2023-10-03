@@ -3,8 +3,8 @@ import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text, TextSize } from '@/shared/ui/deprecated/Text';
 import { AccountView } from '../../model/consts/userConsts';
-// import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
-// import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
+import { AccountListItemSkeleton } from '../AccountListItem/AccountListItemSkeleton';
+import { AccountListItem } from '../AccountListItem/AccountListItem';
 import cls from './AccountsList.module.scss';
 import { User } from '../../model/types/user';
 
@@ -17,15 +17,14 @@ interface AccountListProps {
 }
 
 const getSkeletons = (view: AccountView) =>
-    new Array(view === AccountView.SMALL ? 9 : 3)
+    new Array(view === AccountView.SMALL ? 12 : 4)
         .fill(0)
         .map((item, index) => (
-            // <ArticleListItemSkeleton
-            //     className={cls.card}
-            //     key={index}
-            //     view={view}
-            // />
-            <div>{index}</div>
+            <AccountListItemSkeleton
+                className={cls.card}
+                key={index}
+                view={view}
+            />
         ));
 
 export const AccountsList = memo((props: AccountListProps) => {
@@ -60,14 +59,18 @@ export const AccountsList = memo((props: AccountListProps) => {
             data-testid="AccountsList"
         >
             {accounts.map((item, index) => (
-                // <ArticleListItem
-                //     article={item}
-                //     view={view}
-                //     target={target}
-                //     key={item.id}
+                <AccountListItem
+                    account={item}
+                    view={view}
+                    target={target}
+                    key={item.id}
+                    className={cls.card}
+                />
+                // <AccountListItemSkeleton
                 //     className={cls.card}
+                //     key={index}
+                //     view={view}
                 // />
-                <div>a {index}</div>
             ))}
             {isLoading && getSkeletons(view)}
         </div>

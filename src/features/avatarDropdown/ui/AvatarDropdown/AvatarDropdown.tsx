@@ -72,7 +72,7 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
                     direction="bottom left"
                     className={classNames('', {}, [className])}
                     items={items}
-                    trigger={<Avatar size={40} src={authData.avatar} />}
+                    trigger={<Avatar size={40} src={authData.profile?.avatar} />}
                 />
             }
             off={
@@ -84,7 +84,7 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
                         <AvatarDeprecated
                             fallbackInverted
                             size={30}
-                            src={authData.avatar}
+                            src={authData.profile?.avatar}
                         />
                     }
                 />

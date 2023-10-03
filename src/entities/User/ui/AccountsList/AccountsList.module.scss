@@ -1,6 +1,11 @@
 .BIG {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+
     .card {
         margin-bottom: 30px;
+        width: calc(50% - 15px);
     }
 }
 
@@ -12,6 +17,7 @@
     .card {
         display: inline-flex;
         height: 300px;
+        width: 200px;
     }
 
     .row {

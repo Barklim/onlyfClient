@@ -11,15 +11,19 @@ import { NotFoundPage } from '@/pages/NotFoundPage';
 import {
     AppRoutes,
     getRouteAbout,
+    getRouteAccounts,
     getRouteAdmin,
     getRouteArticleCreate,
     getRouteArticleDetails,
     getRouteArticleEdit,
-    getRouteForbidden,
     getRouteArticles,
+    getRouteCollections,
+    getRouteForbidden,
     getRouteMain,
+    getRouteMassMailings,
     getRouteProfile,
-    getRouteSettings, getRouteMassMailings, getRouteAccounts, getRouteCollections, getRouteStatistics,
+    getRouteSettings,
+    getRouteStatistics,
 } from '@/shared/const/router';
 import { AppRoutesProps } from '@/shared/types/router';
 import { SettingsPage } from '@/pages/SettingsPage';
@@ -50,7 +54,6 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: getRouteAccounts(),
         element: <AccountsPage />,
         authOnly: true,
-        roles: [UserRole.ADMIN],
     },
     [AppRoutes.MASS_MAILINGS]: {
         path: getRouteMassMailings(),

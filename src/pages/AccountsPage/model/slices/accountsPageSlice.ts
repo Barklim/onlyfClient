@@ -68,7 +68,7 @@ const accountsPageSlice = createSlice({
                 ARTICLES_VIEW_LOCALSTORAGE_KEY,
             ) as AccountView;
             state.view = view;
-            state.limit = view === AccountView.BIG ? 4 : 9;
+            state.limit = view === AccountView.BIG ? 6 : 14;
             state._inited = true;
         },
     },
