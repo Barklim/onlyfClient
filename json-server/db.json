@@ -950,13 +950,8 @@
       "id": "1",
       "profileId": "1",
       "online": true,
-      "masterIds": [],
-      "accessibleIds": [
-        "1",
-        "2",
-        "3"
-      ],
       "username": "admin",
+      "email": "admin@gmail.com",
       "password": "123",
       "roles": [
         "ADMIN"
@@ -971,21 +966,41 @@
         "isArticlesPageWasOpened": false,
         "theme": "app_orange_theme",
         "isAccountsPageWasOpened": true
-      }
+      },
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "admin",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      },
+      "isArticlesPageWasOpened": false,
+      "theme": "app_light_theme",
+      "isAccountsPageWasOpened": true
     },
     {
       "id": "2",
       "profileId": "2",
       "online": true,
-      "masterIds": [
-        "1",
-        "2"
-      ],
-      "accessibleIds": [],
       "username": "user",
+      "email": "user@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": false,
@@ -997,17 +1012,35 @@
         "isArticlesPageWasOpened": false,
         "theme": "app_orange_theme",
         "isAccountsPageWasOpened": true
+      },
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
       }
     },
     {
       "id": "3",
       "profileId": "3",
       "online": true,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "manager",
+      "email": "manager@gmail.com",
       "password": "123",
       "roles": [
         "MANAGER"
@@ -1021,17 +1054,35 @@
       "jsonSettings": {
         "isArticlesPageWasOpened": false,
         "isAccountsPageWasOpened": true
+      },
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "manager",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
       }
     },
     {
       "id": "4",
       "profileId": "4",
       "online": true,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "testuser",
+      "email": "testuser@gmail.com",
       "password": "123",
       "roles": [
         "MANAGER",
@@ -1041,57 +1092,111 @@
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "admin",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "5",
       "profileId": "5",
       "online": true,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "tuser testuser123tes tuser testuser123tes",
+      "email": "testuser123tes@gmail.com",
       "password": "123",
       "roles": [
         "MANAGER",
         "ADMIN",
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "admin",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "6",
       "profileId": "6",
       "online": false,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "testuser123testuser123estuser",
+      "email": "testuser123testuser123estuser@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "7",
       "profileId": "7",
       "online": true,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
-      "username": "testuser123testuser123estuser",
+      "username": "testuser123testuser123estuser2",
+      "email": "testuser123testuser123estuser2@gmail.com",
       "password": "123",
       "roles": [
         "ADMIN"
@@ -1100,79 +1205,150 @@
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "admin",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "8",
       "profileId": "8",
       "online": false,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "testuser123testuser123estuser",
+      "email": "testuser123testuser123estuser3@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "9",
       "profileId": "9",
       "online": false,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "testuser123testuser123estuser",
+      "email": "testuser123testuser123estuser9@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "admin",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      },
+      "isAccountsPageWasOpened": true
     },
     {
       "id": "10",
       "profileId": "10",
       "online": true,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
-      "username": "testuser123testuser123estuser",
+      "username": "testuser123testuser123estuser10",
+      "email": "testuser123testuser123estuser10@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "11",
       "profileId": "11",
       "online": true,
-      "masterIds": [],
-      "accessibleIds": [
-        "1",
-        "2",
-        "3"
-      ],
       "username": "admin",
+      "email": "admin11@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
@@ -1184,21 +1360,38 @@
         "isArticlesPageWasOpened": false,
         "theme": "app_orange_theme",
         "isAccountsPageWasOpened": true
+      },
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
       }
     },
     {
       "id": "12",
       "profileId": "12",
       "online": false,
-      "masterIds": [
-        "1",
-        "2"
-      ],
-      "accessibleIds": [],
       "username": "user",
+      "email": "user12@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": false,
@@ -1209,20 +1402,38 @@
       "jsonSettings": {
         "isArticlesPageWasOpened": false,
         "theme": "app_orange_theme"
+      },
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
       }
     },
     {
       "id": "13",
       "profileId": "13",
       "online": true,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "manager",
+      "email": "manager13@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": false,
@@ -1232,245 +1443,479 @@
       "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
       "jsonSettings": {
         "isArticlesPageWasOpened": false
+      },
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
       }
     },
     {
       "id": "14",
       "profileId": "14",
       "online": false,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "testuser",
+      "email": "testuser14@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "15",
       "profileId": "15",
       "online": false,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "tuser testuser123tes tuser testuser123tes",
+      "email": "testuser123tes15@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "17",
       "profileId": "17",
       "online": true,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "testuser123testuser123estuser",
+      "email": "testuser123testuser123estuser17@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "18",
       "profileId": "18",
       "online": false,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "testuser123testuser123estuser",
+      "email": "testuser123testuser123estuser18@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "19",
       "profileId": "19",
       "online": false,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "testuser123testuser123estuser",
+      "email": "testuser123testuser123estuser19@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "20",
       "profileId": "20",
       "online": true,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "testuser123testuser123estuser",
+      "email": "testuser123testuser123estuser20@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "21",
       "profileId": "21",
       "online": true,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "testuser123testuser123estuser",
+      "email": "testuser123testuser123estuser21@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "22",
       "profileId": "22",
       "online": false,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "testuser123testuser123estuser",
+      "email": "testuser123testuser123estuser22@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "24",
       "profileId": "24",
       "online": true,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "testuser123testuser123estuser",
+      "email": "testuser123testuser123estuser24@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "25",
       "profileId": "25",
       "online": false,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "testuser123testuser123estuser",
+      "email": "testuser123testuser123estuser25@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "26",
       "profileId": "26",
       "online": false,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "testuser123testuser123estuser",
+      "email": "testuser123testuser123estuser26@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "27",
       "profileId": "27",
       "online": false,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "testuser123testuser123estuser",
+      "email": "testuser123testuser123estuser27@gmail.com",
       "password": "123",
       "roles": [
-        "USER"
+        "MODEL"
       ],
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "model",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "100",
       "profileId": "100",
       "online": false,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "manager100",
+      "email": "manager100@gmail.com",
       "password": "123",
       "roles": [
         "MANAGER"
@@ -1479,17 +1924,35 @@
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "manager",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "101",
       "profileId": "101",
       "online": false,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "manager101",
+      "email": "manager101@gmail.com",
       "password": "123",
       "roles": [
         "MANAGER"
@@ -1498,17 +1961,35 @@
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "manager",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "102",
       "profileId": "102",
       "online": false,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "manager102",
+      "email": "manager102@gmail.com",
       "password": "123",
       "roles": [
         "MANAGER"
@@ -1517,17 +1998,35 @@
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "manager",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "103",
       "profileId": "103",
       "online": false,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "manager103",
+      "email": "manager103@gmail.com",
       "password": "123",
       "roles": [
         "MANAGER"
@@ -1536,17 +2035,35 @@
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "manager",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     },
     {
       "id": "104",
       "profileId": "104",
       "online": false,
-      "masterIds": [
-        "1"
-      ],
-      "accessibleIds": [],
       "username": "manager104",
+      "email": "manager104@gmail.com",
       "password": "123",
       "roles": [
         "MANAGER"
@@ -1555,7 +2072,28 @@
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "agencyId": 1,
+      "invitedTo": null,
+      "role": "manager",
+      "isTfaEnabled": false,
+      "tfaSecret": null,
+      "googleId": null,
+      "permissions": [],
+      "settings": {
+        "notifications": {
+          "push": {
+            "info": true,
+            "events": true,
+            "comments": true
+          },
+          "email": {
+            "info": false,
+            "events": false,
+            "comments": false
+          }
+        }
+      }
     }
   ],
   "profiles": [
@@ -1759,7 +2297,7 @@
     },
     {
       "id": "12",
-      "username": "momojype",
+      "username": "momojype1",
       "first": "firstName",
       "lastname": "lastname",
       "verified": false,

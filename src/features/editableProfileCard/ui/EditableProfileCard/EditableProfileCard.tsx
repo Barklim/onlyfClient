@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -46,6 +46,8 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const readonly = useSelector(getProfileReadonly);
     const validateErrors = useSelector(getProfileValidateErrors);
     const userAuthData = useSelector(getUserAuthData)
+    // TODO: can optimize request
+    // const userByIdData = useAccountItemById(String(id))
     const userByIdData = useSelector(getUserByIdData)
 
     const validateErrorTranslates = {
@@ -62,10 +64,16 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
 
     useInitialEffect(() => {
         if (id) {
-            dispatch(fetchProfileData(id));
             dispatch(fetchUserData(id));
         }
     });
+
+    useEffect(() => {
+        if (userByIdData?.profileId) {
+            dispatch(fetchProfileData(userByIdData.profileId as string));
+        }
+
+    }, [userByIdData]);
 
     const onChangeFirstname = useCallback(
         (value?: string) => {

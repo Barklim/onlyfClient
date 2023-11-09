@@ -14,8 +14,8 @@ import {
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
+import { getLoginEmail } from '../../model/selectors/getLoginEmail/getLoginEmail';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
@@ -39,15 +39,15 @@ const initialReducers: ReducersList = {
 const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const username = useSelector(getLoginUsername);
+    const email = useSelector(getLoginEmail);
     const password = useSelector(getLoginPassword);
     const isLoading = useSelector(getLoginIsLoading);
     const error = useSelector(getLoginError);
     const forceUpdate = useForceUpdate();
 
-    const onChangeUsername = useCallback(
+    const onChangeEmail = useCallback(
         (value: string) => {
-            dispatch(loginActions.setUsername(value));
+            dispatch(loginActions.setEmail(value));
         },
         [dispatch],
     );
@@ -60,12 +60,12 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     );
 
     const onLoginClick = useCallback(async () => {
-        const result = await dispatch(loginByUsername({ username, password }));
+        const result = await dispatch(loginByUsername({ email, password }));
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
             forceUpdate();
         }
-    }, [dispatch, username, password, onSuccess, forceUpdate]);
+    }, [dispatch, email, password, onSuccess, forceUpdate]);
 
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
@@ -87,9 +87,9 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                             autofocus
                             type="text"
                             className={cls.input}
-                            placeholder={t('Введите username')}
-                            onChange={onChangeUsername}
-                            value={username}
+                            placeholder={t('Введите email')}
+                            onChange={onChangeEmail}
+                            value={email}
                         />
                         <Input
                             type="text"
@@ -120,9 +120,9 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                             autofocus
                             type="text"
                             className={cls.input}
-                            placeholder={t('Введите username')}
-                            onChange={onChangeUsername}
-                            value={username}
+                            placeholder={t('Введите email')}
+                            onChange={onChangeEmail}
+                            value={email}
                         />
                         <InputDeprecated
                             type="text"

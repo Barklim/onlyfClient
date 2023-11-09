@@ -15,7 +15,8 @@ const userApi = rtkApi.injectEndpoints({
                 method: 'PATCH',
                 params: {
                     _expand: 'profile'
-                }
+                },
+                body: jsonSettings,
             }),
         }),
         getUserDataById: build.query<User, string>({

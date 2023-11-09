@@ -2,6 +2,7 @@ import webpack from 'webpack';
 import path from 'path';
 import { buildWebpackConfig } from './config/build/buildWebpackConfig';
 import { BuildEnv, BuildMode, BuildPaths } from './config/build/types/config';
+import { isJsonModeServer } from './src/shared/const/global';
 
 function getApiUrl(mode: BuildMode, apiUrl?: string) {
     if (apiUrl) {
@@ -13,7 +14,7 @@ function getApiUrl(mode: BuildMode, apiUrl?: string) {
         // return '/api';
     }
 
-    return 'http://localhost:8000';
+    return isJsonModeServer ? 'http://localhost:8000' : 'http://localhost:3000';
 }
 
 export default (env: BuildEnv) => {

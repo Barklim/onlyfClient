@@ -23,7 +23,7 @@ export const AccountTypeTabs = memo((props: AccountTypeTabsProps) => {
                 content: t('Все пользователи'),
             },
             {
-                value: AccountType.USER,
+                value: AccountType.MODEL,
                 content: t('Модели'),
             },
             {

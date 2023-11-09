@@ -23,7 +23,7 @@ const article: Article = {
     chLink: '',
     createdAt: '',
     views: 123,
-    user: { id: '1', username: '123', online: true },
+    user: { id: '1', username: '123', online: true, profileId: '1' },
     blocks: [],
     type: [],
     title: '123',

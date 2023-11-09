@@ -23,10 +23,12 @@ export const initAuthData = createAsyncThunk<User, void, ThunkConfig<string>>(
                 getUserDataByIdQuery(userId),
             ).unwrap();
 
-            localStorage.setItem(
-                LOCAL_STORAGE_LAST_DESIGN_KEY,
-                response.features?.isAppRedesigned ? 'new' : 'old',
-            );
+            // TODO:
+            // localStorage.setItem(
+            //     LOCAL_STORAGE_LAST_DESIGN_KEY,
+            //     response.features?.isAppRedesigned ? 'new' : 'old',
+            // );
+            localStorage.setItem(LOCAL_STORAGE_LAST_DESIGN_KEY, 'new');
 
             return response;
         } catch (e) {

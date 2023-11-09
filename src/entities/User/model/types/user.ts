@@ -5,10 +5,11 @@ import { Profile } from '@/entities/Profile';
 
 export interface User {
     id: string;
+    accessToken?: string;
+    refreshToken?: string;
     username: string;
+    profileId: string;
     online: boolean;
-    masterIds?: [string];
-    accessibleIds?: [string];
     avatar?: string;
     roles?: UserRole[];
     features?: FeatureFlags;
@@ -27,5 +28,10 @@ export interface UserByIdSchema {
     isLoading: boolean;
     error?: string;
     readonly: boolean;
+}
+
+export interface UserToken {
+    accessToken: string;
+    refreshToken: string;
 }
 

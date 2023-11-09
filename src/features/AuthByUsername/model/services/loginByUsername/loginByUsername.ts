@@ -1,9 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { User, userActions } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
+import { isJsonModeServer } from '@/shared/const/global';
 
 interface LoginByUsernameProps {
-    username: string;
+    email: string;
     password: string;
 }
 
@@ -15,8 +16,8 @@ export const loginByUsername = createAsyncThunk<
     const { extra, dispatch, rejectWithValue } = thunkApi;
 
     try {
-        const response = await extra.api.post<User>('/login', authData);
-
+        const url = isJsonModeServer ? '/login' : '/authentication/sign-in';
+        const response = await extra.api.post<User>(url, authData);
         if (!response.data) {
             throw new Error();
         }

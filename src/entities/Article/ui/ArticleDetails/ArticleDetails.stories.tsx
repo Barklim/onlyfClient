@@ -33,7 +33,8 @@ const article: Article = {
     user: {
         id: '1',
         username: 'Ulbi tv',
-        online: true
+        online: true,
+        profileId: '1'
     },
     blocks: [
         {
