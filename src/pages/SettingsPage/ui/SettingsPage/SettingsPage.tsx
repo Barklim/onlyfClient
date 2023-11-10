@@ -24,7 +24,7 @@ const SettingsPage = memo((props: SettingsPageProps) => {
 
                 <Maintenance />
                 {/* TODO: show for user.role admin */}
-                <UiDesignSwitcher />
+                {/*<UiDesignSwitcher />*/}
             </VStack>
         </Page>
     );

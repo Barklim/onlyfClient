@@ -23,7 +23,7 @@
         "id": "1",
         "username": "admin",
         "password": "123",
-        "roles": ["ADMIN"],
+        "roles": ["admin"],
         "avatar": "https://yakutsk.ru/wp-content/uploads/2022/07/12/bystrov_haker.jpeg"
     }
 }

@@ -25,7 +25,7 @@ const account = {
     online: true,
     password: "123",
     roles: [
-        "ADMIN"
+        "admin"
     ],
     features: {
         "isArticleRatingEnabled": true,

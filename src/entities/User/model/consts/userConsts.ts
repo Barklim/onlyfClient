@@ -1,9 +1,9 @@
 export enum UserRole {
-    ADMIN = 'ADMIN',
-    REGULAR = 'REGULAR',
-    MANAGER = 'MANAGER',
-    SUPERUSER = 'SUPERUSER',
-    MODEL = 'MODEL'
+    ADMIN = 'admin',
+    REGULAR = 'regular',
+    MANAGER = 'manager',
+    SUPERUSER = 'superuser',
+    MODEL = 'model'
 }
 
 export enum AccountSortField {

@@ -28,6 +28,7 @@ export const EditableProfileCardHeader = memo(
         const { t } = useTranslation('profile');
         const profileData = useSelector(getProfileData);
         const isAdmin = useSelector(isUserAdmin);
+        const authData = useSelector(getUserAuthData);
         const userByIdData = useSelector(getUserByIdData);
         const invisibleStatus = userByIdData?.roles?.includes(UserRole.ADMIN) || false;
         const readonly = useSelector(getProfileReadonly);

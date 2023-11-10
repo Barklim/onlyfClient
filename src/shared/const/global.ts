@@ -1,1 +1,1 @@
-export const isJsonModeServer = true;
+export const isJsonModeServer = false;
