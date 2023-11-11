@@ -18,6 +18,8 @@ import { UISchema } from '@/features/UI';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { ProfileSchema } from '@/features/editableProfileCard';
 import { UserByIdSchema } from '@/entities/User/model/types/user';
+import { NotificationSchema } from '@/features/notificationButton/model/types/NotificationSchema';
+import { NotificationCountSchema } from '@/features/notificationButton/model/types/NotificationCountSchema';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -30,6 +32,8 @@ export interface StateSchema {
     profile?: ProfileSchema;
     userById?: UserByIdSchema;
     accountsPage?: AccountsPageSchema;
+    notifications?: NotificationSchema;
+    notificationsCount?: NotificationCountSchema;
     articleDetails?: ArticleDetailsSchema;
     addCommentForm?: AddCommentFormSchema;
     articlesPage?: ArticlesPageSchema;
