@@ -1,4 +1,10 @@
-.NotificationItem,
+.NotificationItem {
+    background: #f4f7fe;
+    border-radius: 8px;
+    padding: 16px;
+    //max-height: 100% !important;
+}
+
 .link {
     width: 100%;
 }

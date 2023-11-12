@@ -25,6 +25,9 @@ interface TypographyProps extends HTMLAttributes<HTMLDivElement> {
     variant?: Variant;
     color?: any;
     noWrap?: boolean;
+    lineHeight?: string;
+    fontWeight?: string;
+    fontSize?: string;
     children: ReactNode;
 }
 
@@ -38,6 +41,9 @@ export const Typography = ((props: TypographyProps) => {
         variant,
         color,
         noWrap,
+        lineHeight,
+        fontWeight,
+        fontSize,
         children,
     } = props;
     // TODO: execute dublicate code
@@ -95,6 +101,9 @@ export const Typography = ((props: TypographyProps) => {
                 color={color}
                 className={classNames(cls.TypographyWrapper,{}, [className])}
                 noWrap={noWrap}
+                lineHeight={lineHeight}
+                fontSize={fontSize}
+                fontWeight={fontWeight}
             >
                 {children}
             </TypographyMui>

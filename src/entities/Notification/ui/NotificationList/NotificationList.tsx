@@ -14,6 +14,8 @@ import {
     getNotificationsError,
     getNotificationsIsLoading,
 } from '@/features/notificationButton/model/selectors/notificationsSelector';
+import { Typography } from '@/shared/ui/material/Typography';
+import { useTranslation } from 'react-i18next';
 
 interface NotificationListProps {
     className?: string;
@@ -26,6 +28,7 @@ const reducers: ReducersList = {
 export const NotificationList = memo((props: NotificationListProps) => {
     const { className } = props;
     const dispatch = useAppDispatch();
+    const { t } = useTranslation('main');
     const notifications = useSelector(getNotifications.selectAll)
     const isLoading = useSelector(getNotificationsIsLoading);
     const error = useSelector(getNotificationsError);
@@ -33,7 +36,6 @@ export const NotificationList = memo((props: NotificationListProps) => {
     useInitialEffect(() => {
         dispatch(fetchNotifications({id: ''}));
     });
-
 
     if (error) {
         return (
@@ -43,29 +45,69 @@ export const NotificationList = memo((props: NotificationListProps) => {
 
     if (isLoading) {
         return (
+        <div className={classNames(cls.NotificationWrapper, {}, [className])}>
+            <Typography
+                color='primary'
+                fontWeight={'700'}
+                fontSize={'14px'}
+                className={classNames(cls.NotificationTopTitle, {}, [className])}
+            >{t('Notifications')}</Typography>
             <VStack
-                gap="16"
+                gap="8"
                 max
                 className={classNames(cls.NotificationList, {}, [className])}
             >
-                <SkeletonDeprecated width="100%" border="8px" height="80px" />
-                <SkeletonDeprecated width="100%" border="8px" height="80px" />
-                <SkeletonDeprecated width="100%" border="8px" height="80px" />
+                {
+                    ['145px','124px','170px'].map((item) => (
+                        <NotificationItem
+                            key={item}
+                            skeleton={
+                                <SkeletonDeprecated width="100%" border="8px" height={item} className={classNames(cls.NotificationItemSkeleton, {}, [className])} />
+                            }
+                        />
+                    ))
+
+                }
             </VStack>
+        </div>
         );
     }
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-            <VStack
-                gap="16"
-                max
-                className={classNames(cls.NotificationList, {}, [className])}
-            >
-                {notifications?.map((item) => (
-                    <NotificationItem key={item.id} item={item} />
-                ))}
-            </VStack>
+            <div className={classNames(cls.NotificationWrapper, {}, [className])}>
+                <Typography
+                    color='primary'
+                    fontWeight={'700'}
+                    fontSize={'14px'}
+                    className={classNames(cls.NotificationTopTitle, {}, [className])}
+                >{t('Notifications')}</Typography>
+                <VStack
+                    gap="8"
+                    max
+                    className={classNames(cls.NotificationList, {}, [className])}
+                >
+                    {
+                        notifications.length !== 0 ?
+                            notifications.map((item) => (
+                                <NotificationItem
+                                    key={item.id}
+                                    item={item}
+                                    className={classNames(cls.NotificationItem, {}, [className])}
+                                />
+                            ))
+                            :
+
+                            <Typography
+                                color='primary'
+                                fontWeight={'400'}
+                                fontSize={'16px'}
+                            >
+                                {t('There are no notifications for you yet...')}
+                            </Typography>
+                    }
+                </VStack>
+            </div>
         </DynamicModuleLoader>
     );
 });

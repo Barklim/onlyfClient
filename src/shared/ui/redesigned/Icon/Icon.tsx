@@ -10,10 +10,12 @@ interface IconBaseProps extends SvgProps {
 }
 
 interface NonClickableIconProps extends IconBaseProps {
+    fill?: string;
     clickable?: false;
 }
 
 interface ClickableBaseProps extends IconBaseProps {
+    fill?: string;
     clickable: true;
     onClick: () => void;
 }
@@ -26,6 +28,7 @@ export const Icon = memo((props: IconProps) => {
         Svg,
         width = 32,
         height = 32,
+        fill,
         clickable,
         ...otherProps
     } = props;
@@ -35,6 +38,7 @@ export const Icon = memo((props: IconProps) => {
             className={classNames(cls.Icon, {}, [className])}
             width={width}
             height={height}
+            fill={fill}
             {...otherProps}
             onClick={undefined}
         />

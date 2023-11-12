@@ -1,5 +1,24 @@
+.NotificationWrapper {
+    padding: 24px;
+    overflow-x: hidden;
+    width: auto !important;
+}
+
+.NotificationTopTitle {
+    margin-bottom: 1.5rem !important;
+}
+
 .NotificationList {
-    width: 100%;
-    -webkit-filter: drop-shadow(0px 4px 30px rgba(5, 9, 42, 0.15));
-    filter: drop-shadow(0px 4px 30px rgba(5, 9, 42, 0.15));
+    // TODO:
+    //min-height: 87vh;
+}
+
+.NotificationItem {
+    background: #f4f7fe;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.NotificationItemSkeleton {
+    background: #f4f7fe;
 }
