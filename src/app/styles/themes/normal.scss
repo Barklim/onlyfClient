@@ -1,7 +1,8 @@
 :root {
     --bg-color: #e8e8ea;
     --inverted-bg-color: #00AFF0;
-    --primary-color: #0232c2;
+    //--primary-color: #0232c2;
+    --primary-color: #00AFF0;
     --secondary-color: #0449e0;
     --inverted-primary-color: #e8e8ea;
     --inverted-secondary-color: #049604;
@@ -24,8 +25,12 @@
     // code
     --code-bg: #fff;
 
+    // dropdown
+    --dropdown-bg: #e8e8ea;
+
     // card
-    --card-bg: #d5d5d7;
+    //--card-bg: #e8e8ea;
+    --card-bg: #D7E2EB;
 
     // listbox
     --listbox-bg: #d5d5d7;

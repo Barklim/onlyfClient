@@ -1,28 +1,45 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
-import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
-import { useNotifications } from '../../api/notificationApi';
 import cls from './NotificationList.module.scss';
 import { NotificationItem } from '../NotificationItem/NotificationItem';
-import { toggleFeatures } from '@/shared/lib/features';
+import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { getNotifications, notificationsReducer } from '@/features/notificationButton/model/slices/notificationsSlice';
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { fetchNotifications } from '@/features/notificationButton/model/services/fetchNotifications/fetchNotifications';
+import { useSelector } from 'react-redux';
+import {
+    getNotificationsError,
+    getNotificationsIsLoading,
+} from '@/features/notificationButton/model/selectors/notificationsSelector';
 
 interface NotificationListProps {
     className?: string;
 }
 
+const reducers: ReducersList = {
+    notifications: notificationsReducer,
+};
+
 export const NotificationList = memo((props: NotificationListProps) => {
     const { className } = props;
-    const { data, isLoading } = useNotifications(null, {
-        pollingInterval: 10000,
+    const dispatch = useAppDispatch();
+    const notifications = useSelector(getNotifications.selectAll)
+    const isLoading = useSelector(getNotificationsIsLoading);
+    const error = useSelector(getNotificationsError);
+
+    useInitialEffect(() => {
+        dispatch(fetchNotifications({id: ''}));
     });
 
-    const Skeleton = toggleFeatures({
-        name: 'isAppRedesigned',
-        on: () => SkeletonRedesigned,
-        off: () => SkeletonDeprecated,
-    });
+
+    if (error) {
+        return (
+            <div>Something wrong. Cannot get notifications.</div>
+        );
+    }
 
     if (isLoading) {
         return (
@@ -31,22 +48,24 @@ export const NotificationList = memo((props: NotificationListProps) => {
                 max
                 className={classNames(cls.NotificationList, {}, [className])}
             >
-                <Skeleton width="100%" border="8px" height="80px" />
-                <Skeleton width="100%" border="8px" height="80px" />
-                <Skeleton width="100%" border="8px" height="80px" />
+                <SkeletonDeprecated width="100%" border="8px" height="80px" />
+                <SkeletonDeprecated width="100%" border="8px" height="80px" />
+                <SkeletonDeprecated width="100%" border="8px" height="80px" />
             </VStack>
         );
     }
 
     return (
-        <VStack
-            gap="16"
-            max
-            className={classNames(cls.NotificationList, {}, [className])}
-        >
-            {data?.map((item) => (
-                <NotificationItem key={item.id} item={item} />
-            ))}
-        </VStack>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
+            <VStack
+                gap="16"
+                max
+                className={classNames(cls.NotificationList, {}, [className])}
+            >
+                {notifications?.map((item) => (
+                    <NotificationItem key={item.id} item={item} />
+                ))}
+            </VStack>
+        </DynamicModuleLoader>
     );
 });

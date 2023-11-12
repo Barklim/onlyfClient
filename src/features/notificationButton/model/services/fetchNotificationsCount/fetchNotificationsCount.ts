@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { NotificationCountSchema } from '@/features/notificationButton/model/types/NotificationCountSchema';
-import { ACCESS_TOKEN_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import { isJsonModeServer } from '@/shared/const/global';
 
 interface FetchAccountsListProps {
     id: string;
@@ -15,7 +15,8 @@ export const fetchNotificationsCount = createAsyncThunk<
     const { extra, rejectWithValue, getState } = thunkApi;
 
     try {
-        const response = await extra.api.get<NotificationCountSchema>('/notification/count', {});
+        const url = isJsonModeServer ? '/notificationCount' : '/notification/count';
+        const response = await extra.api.get<NotificationCountSchema>(url, {});
 
         if (!response.data) {
             throw new Error();

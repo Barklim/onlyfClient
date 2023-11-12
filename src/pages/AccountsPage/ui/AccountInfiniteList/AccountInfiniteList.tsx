@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
-// import { ArticleList } from '@/entities/Article';
 import { AccountsList } from '@/entities/User';
 import { Text } from '@/shared/ui/deprecated/Text';
 import { getAccounts } from '../../model/slices/accountsPageSlice';

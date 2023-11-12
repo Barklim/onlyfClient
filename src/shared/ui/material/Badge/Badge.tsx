@@ -63,6 +63,7 @@ export const Badge = ((props: BadgeProps) => {
             mainContrastText = '#0232c2';
             secondary = '#e8e8ea';
             infoMainColor = '#00AFF0'
+            infoMainColor = '#ee1b1b'
             infoContrastText = '#e8e8ea';
             break;
         default:
@@ -70,6 +71,7 @@ export const Badge = ((props: BadgeProps) => {
             mainContrastText = '#0232c2';
             secondary = '#0f0000';
             infoMainColor = '#00AFF0'
+            infoMainColor = '#ee1b1b'
             infoContrastText = '#e8e8ea';
             break;
     }
