@@ -1,14 +1,34 @@
 .LoginForm {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 450px;
 }
 
 .input {
     margin-top: 10px;
 }
 
+.fullWidth {
+    width: 100%;
+}
+
+.loginBtnWrapper {
+
+}
+
 .loginBtn {
     margin-top: 15px;
-    margin-left: auto;
+}
+
+.formControlLabel {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.loginBtnText {
+    color: var(--inverted-primary-color);
+}
+
+.registerBtnText {
+    color: var(--primary-color);
 }

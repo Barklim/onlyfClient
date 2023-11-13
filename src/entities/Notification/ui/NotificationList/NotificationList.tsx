@@ -39,7 +39,12 @@ export const NotificationList = memo((props: NotificationListProps) => {
 
     if (error) {
         return (
-            <div>Something wrong. Cannot get notifications.</div>
+            <Typography
+                color='primary'
+                fontWeight={'700'}
+                fontSize={'14px'}
+                className={classNames(cls.NotificationTopTitle, {}, [className])}
+            >Something wrong. Cannot get notifications.</Typography>
         );
     }
 
