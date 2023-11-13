@@ -28,6 +28,7 @@ import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { getRouteProfile } from '@/shared/const/router';
 import { Button, Typography, Checkbox, FormControlLabel } from '@mui/material';
+import { initAuthData } from '@/entities/User';
 
 export interface LoginFormProps {
     className?: string;
@@ -104,6 +105,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
             forceUpdate();
+            dispatch(initAuthData());
         }
     }, [dispatch, email, password, onSuccess, forceUpdate]);
 
@@ -115,6 +117,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
             forceUpdate();
+            dispatch(initAuthData());
         }
     }, [dispatch, regEmail, regPassword, regAgencyName, onSuccess, forceUpdate]);
 
