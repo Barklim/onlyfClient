@@ -12,8 +12,15 @@ import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLogi
 import { getLoginEmail } from '../../model/selectors/getLoginEmail/getLoginEmail';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
+import { getRegisterEmail } from '../../model/selectors/getRegisterEmail/getRegisterEmail';
+import { getRegisterPassword } from '../../model/selectors/getRegisterPassword/getRegisterPassword';
+import { getRegisterAgencyName } from '../../model/selectors/getRegisterAgencyName/getRegisterAgencyName';
+import { getRegisterIsLoading } from '../../model/selectors/getRegisterIsLoading/getRegisterIsLoading';
+import { getRegisterError } from '../../model/selectors/getRegisterError/getRegisterError';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
+import { registerByUsername } from '../../model/services/registerByUsername/registerByUsername';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
+import { registerActions, registerReducer } from '../../model/slice/registerSlice';
 import cls from './LoginForm.module.scss';
 import { Input } from '@/shared/ui/material/Input';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
@@ -29,6 +36,7 @@ export interface LoginFormProps {
 
 const initialReducers: ReducersList = {
     loginForm: loginReducer,
+    registerForm: registerReducer
 };
 
 const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
@@ -40,11 +48,20 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const password = useSelector(getLoginPassword);
     const isLoading = useSelector(getLoginIsLoading);
     const error = useSelector(getLoginError);
+
+    const regEmail = useSelector(getRegisterEmail);
+    const regPassword = useSelector(getRegisterPassword);
+    const regAgencyName = useSelector(getRegisterAgencyName);
+    const regIsLoading = useSelector(getRegisterIsLoading);
+    const regError = useSelector(getRegisterError);
+
     const forceUpdate = useForceUpdate();
 
     const onCheckboxChange = useCallback(() => {
         setIsOwner((prevIsOwner) => !prevIsOwner); // Toggle isOwner value
-    }, []);
+
+        dispatch(registerActions.setAgencyName(''));
+    }, [dispatch]);
 
 
     const onChangeEmail = useCallback(
@@ -61,6 +78,27 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
         [dispatch],
     );
 
+    const onChangeRegEmail = useCallback(
+        (value: string) => {
+            dispatch(registerActions.setEmail(value));
+        },
+        [dispatch],
+    );
+
+    const onChangeRegPassword = useCallback(
+        (value: string) => {
+            dispatch(registerActions.setPassword(value));
+        },
+        [dispatch],
+    );
+
+    const onChangeRegAgencyName = useCallback(
+        (value: string) => {
+            dispatch(registerActions.setAgencyName(value));
+        },
+        [dispatch],
+    );
+
     const onLoginClick = useCallback(async () => {
         const result = await dispatch(loginByUsername({ email, password }));
         if (result.meta.requestStatus === 'fulfilled') {
@@ -68,6 +106,17 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
             forceUpdate();
         }
     }, [dispatch, email, password, onSuccess, forceUpdate]);
+
+    const onRegisterClick = useCallback(async () => {
+        const email = regEmail;
+        const password = regPassword;
+        const agencyName = regAgencyName;
+        const result = await dispatch(registerByUsername({ email, password, agencyName }));
+        if (result.meta.requestStatus === 'fulfilled') {
+            onSuccess();
+            forceUpdate();
+        }
+    }, [dispatch, regEmail, regPassword, regAgencyName, onSuccess, forceUpdate]);
 
     const modsFullWidth: Mods = {
         [cls.fullWidth]: true,
@@ -82,11 +131,17 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                 {isSignUp ? (
                     <>
                         <Text title={t('Форма регистрации')} />
-                        {error && (
-                            <Text
-                                text={t('Вы ввели неверный логин или пароль')}
-                                variant="error"
-                            />
+                        {regError && (
+                            <>
+                                <Text
+                                    text={t('Вы ввели неверный логин или пароль')}
+                                    variant="error"
+                                />
+                                <Text
+                                    text={regError}
+                                    variant="error"
+                                />
+                            </>
                         )}
                         <Input
                             autofocus
@@ -94,9 +149,9 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                             variant="filled"
                             label={t('Введите email')}
                             fullWidth
-                            value={email}
+                            value={regEmail}
                             className={classNames(cls.input, modsFullWidth, [className])}
-                            onChange={onChangeEmail}
+                            onChange={onChangeRegEmail}
                             type="text"
                             placeholder={t('Введите email')}
                         />
@@ -105,9 +160,9 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                             size={'medium'}
                             label={t('Введите пароль')}
                             fullWidth
-                            value={password}
+                            value={regPassword}
                             className={classNames(cls.input, modsFullWidth, [className])}
-                            onChange={onChangePassword}
+                            onChange={onChangeRegPassword}
                             type="text"
                             placeholder={t('Введите пароль')}
                         />
@@ -117,9 +172,9 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                                 size={'medium'}
                                 label={t('Введите название агенства')}
                                 fullWidth
-                                value={password}
+                                value={regAgencyName}
                                 className={classNames(cls.input, modsFullWidth, [className])}
-                                onChange={onChangePassword}
+                                onChange={onChangeRegAgencyName}
                                 type="text"
                                 placeholder={t('Введите название агенства')}
                             />
@@ -142,7 +197,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                                     size="medium"
                                     className={cls.loginBtn}
                                     onClick={() => { setIsSignUp(false) }}
-                                    disabled={isLoading}
+                                    disabled={regIsLoading}
                                     variant={'outlined'}
                                 >
                                     <AppLink
@@ -162,8 +217,8 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                                 <Button
                                     size="medium"
                                     className={cls.loginBtn}
-                                    onClick={onLoginClick}
-                                    disabled={isLoading}
+                                    onClick={onRegisterClick}
+                                    disabled={regIsLoading}
                                     variant={'contained'}
                                 >
                                     <AppLink
@@ -186,10 +241,16 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                     <>
                         <Text title={t('Форма авторизации')} />
                         {error && (
-                            <Text
-                                text={t('Вы ввели неверный логин или пароль')}
-                                variant="error"
-                            />
+                            <>
+                                <Text
+                                    text={t('Вы ввели неверный логин или пароль')}
+                                    variant="error"
+                                />
+                                <Text
+                                    text={error}
+                                    variant="error"
+                                />
+                            </>
                         )}
                         <Input
                             autofocus

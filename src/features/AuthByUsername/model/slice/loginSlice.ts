@@ -4,12 +4,13 @@ import { loginByUsername } from '../services/loginByUsername/loginByUsername';
 
 const initialState: LoginSchema = {
     isLoading: false,
+    error: '',
     username: '',
     email: '',
     password: '',
 };
 
-export const loginSlice = createSlice({
+    export const loginSlice = createSlice({
     name: 'login',
     initialState,
     reducers: {
@@ -22,11 +23,14 @@ export const loginSlice = createSlice({
         setPassword: (state, action: PayloadAction<string>) => {
             state.password = action.payload;
         },
+        setError: (state, action: PayloadAction<string>) => {
+            state.error = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
             .addCase(loginByUsername.pending, (state) => {
-                state.error = undefined;
+                state.error = '';
                 state.isLoading = true;
             })
             .addCase(loginByUsername.fulfilled, (state) => {
@@ -34,7 +38,7 @@ export const loginSlice = createSlice({
             })
             .addCase(loginByUsername.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload;
+                state.error = action.payload as string;
             });
     },
 });

@@ -3,20 +3,21 @@ import { User, userActions } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { isJsonModeServer } from '@/shared/const/global';
 
-interface LoginByUsernameProps {
+interface RegisterByUsernameProps {
     email: string;
     password: string;
+    agencyName?: string;
 }
 
-export const loginByUsername = createAsyncThunk<
+export const registerByUsername = createAsyncThunk<
     User,
-    LoginByUsernameProps,
+    RegisterByUsernameProps,
     ThunkConfig<string>
->('login/loginByUsername', async (authData, thunkApi) => {
+    >('register/registerByUsername', async (authData, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
 
     try {
-        const url = isJsonModeServer ? '/login' : '/authentication/sign-in';
+        const url = isJsonModeServer ? '/register' : '/authentication/sign-up';
         const response = await extra.api.post<User>(url, authData);
         if (!response.data) {
             throw new Error();

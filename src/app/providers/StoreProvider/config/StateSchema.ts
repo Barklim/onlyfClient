@@ -20,6 +20,7 @@ import { ProfileSchema } from '@/features/editableProfileCard';
 import { UserByIdSchema } from '@/entities/User/model/types/user';
 import { NotificationSchema } from '@/features/notificationButton/model/types/NotificationSchema';
 import { NotificationCountSchema } from '@/features/notificationButton/model/types/NotificationCountSchema';
+import { RegisterSchema } from '@/features/AuthByUsername/model/types/registerSchema';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -29,6 +30,7 @@ export interface StateSchema {
 
     // Асинхронные редюсеры
     loginForm?: LoginSchema;
+    registerForm?: RegisterSchema;
     profile?: ProfileSchema;
     userById?: UserByIdSchema;
     accountsPage?: AccountsPageSchema;
