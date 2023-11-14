@@ -40,7 +40,7 @@ const AccountsPage = (props: AccountsPageProps) => {
     });
 
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={true}>
             <Page
                 data-testid="AccountsPage"
                 onScrollEnd={onLoadNextPart}

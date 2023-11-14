@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from '../AccountListItem.module.scss';
 import {
-    AccountView, UserRole,
+    AccountView, UserRole, UserRoleOptions,
 } from '../../../model/consts/userConsts';
 import {
     Card as CardMui,
@@ -23,6 +23,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Public, CloudOff, Done, VisibilityOff } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
 import { isUserAdmin } from '../../../model/selectors/roleSelectors';
+import { ButtonSplit } from '@/shared/ui/material/ButtonSplit';
 
 const lipsumText = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard.'
 
@@ -199,7 +200,7 @@ export const AccountListItemDeprecated = memo((props: AccountListItemProps) => {
                     <CardMedia
                         component="div"
                         sx={{
-                            width: 200,
+                            width: 220,
                             height: '100%'
                         }}
                         image={account.profile?.avatar}
@@ -256,18 +257,37 @@ export const AccountListItemDeprecated = memo((props: AccountListItemProps) => {
                     subheader={account?.profile?.username}
                 />
                 <CardActions>
-                    <ButtonMui
-                        size="small"
-                    >
-                        <AppLink
-                            data-testid="AccountListItem"
-                            to={getRouteProfile(account.id)}
-                        >
-                            <Typography variant="subtitle2" color="primary">
-                                View
-                            </Typography>
-                        </AppLink>
-                    </ButtonMui>
+                    {
+                        isAdmin ?
+                            account.profile?.verified ?
+                                <ButtonMui
+                                    size="small"
+                                >
+                                    <AppLink
+                                        data-testid="AccountListItem"
+                                        to={getRouteProfile(account.id)}
+                                    >
+                                        <Typography variant="subtitle2" color="primary">
+                                            View
+                                        </Typography>
+                                    </AppLink>
+                                </ButtonMui>
+                                :
+                                null
+                            :
+                            <ButtonMui
+                                size="small"
+                            >
+                                <AppLink
+                                    data-testid="AccountListItem"
+                                    to={getRouteProfile(account.id)}
+                                >
+                                    <Typography variant="subtitle2" color="primary">
+                                        View
+                                    </Typography>
+                                </AppLink>
+                            </ButtonMui>
+                    }
                     {!accountIsAdmin ?
                         isAdmin ?
                             account.profile?.verified ?
@@ -281,13 +301,7 @@ export const AccountListItemDeprecated = memo((props: AccountListItemProps) => {
                                     }}
                                 />
                                 :
-                                <ButtonMui
-                                    size="small"
-                                    color={'warning'}
-                                    variant={'outlined'}
-                                >
-                                    Verify
-                                </ButtonMui>
+                                <ButtonSplit options={[UserRoleOptions.MODEL, UserRoleOptions.MANAGER, UserRoleOptions.ADMIN]}>Verify</ButtonSplit>
                             :
                             account.profile?.verified ?
                                 <Chip
