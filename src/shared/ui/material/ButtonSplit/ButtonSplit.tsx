@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, memo, ReactNode } from 'react';
+import { ButtonHTMLAttributes, memo, ReactNode, MouseEventHandler } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import cls from './ButtonSplit.module.scss';
 import * as React from 'react';
@@ -17,15 +17,24 @@ import {
     UserRoleOptionsReverseMap,
 } from '@/entities/User/model/consts/userConsts';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type InviteObj = {
+    id: string,
+    role: UserRole
+}
+
+interface ButtonProps {
     className?: string;
+    id?: string;
     options: UserRoleOptions[];
     children?: ReactNode;
+    onClick?: (value: InviteObj) => void;
 }
 
 export const ButtonSplit = memo((props: ButtonProps) => {
     const {
         className,
+        id,
+        onClick,
         options,
         children,
         ...otherProps
@@ -39,7 +48,13 @@ export const ButtonSplit = memo((props: ButtonProps) => {
         const selectedOption = options[selectedIndex];
         const userRoleKey = UserRoleOptionsReverseMap[selectedOption] as keyof typeof UserRole;
 
-        console.log('UserRole:', UserRole[userRoleKey]);
+        if (onClick) {
+            const inviteObj = {
+                id: id,
+                role: UserRole[userRoleKey]
+            } as InviteObj;
+            onClick(inviteObj);
+        }
     };
 
     const handleMenuItemClick = (

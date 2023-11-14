@@ -32,6 +32,81 @@ export const AccountListItemDeprecated = memo((props: AccountListItemProps) => {
     const isAdmin = useSelector(isUserAdmin);
     const accountIsAdmin = account.roles?.includes(UserRole.ADMIN) || false;
 
+    const handleClick = (value: any) => {
+        console.log(value);
+    }
+
+    const cardActions =
+        <CardActions>
+            {
+                isAdmin ?
+                    account.profile?.verified ?
+                        <ButtonMui
+                            size="small"
+                        >
+                            <AppLink
+                                data-testid="AccountListItem"
+                                to={getRouteProfile(account.id)}
+                            >
+                                <Typography variant="subtitle2" color="primary">
+                                    View
+                                </Typography>
+                            </AppLink>
+                        </ButtonMui>
+                        :
+                        null
+                    :
+                    <ButtonMui
+                        size="small"
+                    >
+                        <AppLink
+                            data-testid="AccountListItem"
+                            to={getRouteProfile(account.id)}
+                        >
+                            <Typography variant="subtitle2" color="primary">
+                                View
+                            </Typography>
+                        </AppLink>
+                    </ButtonMui>
+            }
+            {!accountIsAdmin ?
+                isAdmin ?
+                    account.profile?.verified ?
+                        <Chip
+                            className={cls.chip}
+                            size="small"
+                            color={'success'}
+                            variant={'outlined'}
+                            label={'Verified'}
+                            onDelete={() => {
+                            }}
+                        />
+                        :
+                        <ButtonSplit
+                            options={[UserRoleOptions.MODEL, UserRoleOptions.MANAGER, UserRoleOptions.ADMIN]}
+                            id={account.id}
+                            onClick={handleClick}
+                        >
+                            Verify
+                        </ButtonSplit>
+                    :
+                    account.profile?.verified ?
+                        <Chip
+                            className={cls.chip}
+                            size="small"
+                            color={'success'}
+                            variant={'outlined'}
+                            label={'Verified'}
+                            deleteIcon={<Done />}
+                            onDelete={() => {}}
+                        />
+                        :
+                        null
+                :
+                null
+            }
+        </CardActions>
+
     if (view === AccountView.BIG) {
         return (
             <div
@@ -125,56 +200,7 @@ export const AccountListItemDeprecated = memo((props: AccountListItemProps) => {
                                 {lipsumText}
                             </Typography>
                         </CardContent>
-                        <CardActions>
-                            <ButtonMui
-                                size="medium"
-                            >
-                                <AppLink
-                                    data-testid="AccountListItem"
-                                    to={getRouteProfile(account.id)}
-                                >
-                                    <Typography variant="subtitle2" color="primary">
-                                        View
-                                    </Typography>
-                                </AppLink>
-                            </ButtonMui>
-                            {!accountIsAdmin ?
-                                isAdmin ?
-                                    account.profile?.verified ?
-                                        <Chip
-                                            className={cls.chip}
-                                            size="small"
-                                            color={'success'}
-                                            variant={'outlined'}
-                                            label={'Verified'}
-                                            onDelete={() => {
-                                            }}
-                                        />
-                                        :
-                                        <ButtonMui
-                                            size="small"
-                                            color={'warning'}
-                                            variant={'outlined'}
-                                        >
-                                            Verify
-                                        </ButtonMui>
-                                    :
-                                    account.profile?.verified ?
-                                        <Chip
-                                            className={cls.chip}
-                                            size="medium"
-                                            color={'success'}
-                                            variant={'outlined'}
-                                            label={'Verified'}
-                                            deleteIcon={<Done />}
-                                            onDelete={() => {}}
-                                        />
-                                        :
-                                        null
-                                :
-                                null
-                            }
-                        </CardActions>
+                        {cardActions}
                     </Box>
                 </CardMui>
             </div>
@@ -256,69 +282,7 @@ export const AccountListItemDeprecated = memo((props: AccountListItemProps) => {
                     }
                     subheader={account?.profile?.username}
                 />
-                <CardActions>
-                    {
-                        isAdmin ?
-                            account.profile?.verified ?
-                                <ButtonMui
-                                    size="small"
-                                >
-                                    <AppLink
-                                        data-testid="AccountListItem"
-                                        to={getRouteProfile(account.id)}
-                                    >
-                                        <Typography variant="subtitle2" color="primary">
-                                            View
-                                        </Typography>
-                                    </AppLink>
-                                </ButtonMui>
-                                :
-                                null
-                            :
-                            <ButtonMui
-                                size="small"
-                            >
-                                <AppLink
-                                    data-testid="AccountListItem"
-                                    to={getRouteProfile(account.id)}
-                                >
-                                    <Typography variant="subtitle2" color="primary">
-                                        View
-                                    </Typography>
-                                </AppLink>
-                            </ButtonMui>
-                    }
-                    {!accountIsAdmin ?
-                        isAdmin ?
-                            account.profile?.verified ?
-                                <Chip
-                                    className={cls.chip}
-                                    size="small"
-                                    color={'success'}
-                                    variant={'outlined'}
-                                    label={'Verified'}
-                                    onDelete={() => {
-                                    }}
-                                />
-                                :
-                                <ButtonSplit options={[UserRoleOptions.MODEL, UserRoleOptions.MANAGER, UserRoleOptions.ADMIN]}>Verify</ButtonSplit>
-                            :
-                            account.profile?.verified ?
-                                <Chip
-                                    className={cls.chip}
-                                    size="small"
-                                    color={'success'}
-                                    variant={'outlined'}
-                                    label={'Verified'}
-                                    deleteIcon={<Done />}
-                                    onDelete={() => {}}
-                                />
-                                :
-                                null
-                        :
-                        null
-                    }
-                </CardActions>
+                {cardActions}
             </Box>
         </CardMui>
     );
