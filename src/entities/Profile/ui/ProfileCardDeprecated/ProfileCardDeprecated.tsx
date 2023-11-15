@@ -75,7 +75,8 @@ export const ProfileCardDeprecated = memo((props: ProfileCardProps) => {
     } = props;
     const { t } = useTranslation('profile');
     const isAdmin = userAuthData?.roles?.includes(UserRole.ADMIN) || false;
-    const showStopWords = isAdmin && (userByIdData?.id === userAuthData?.id);
+    // const showStopWords = isAdmin && (userByIdData?.id === userAuthData?.id);
+    const showStopWords = false;
     let newData = data;
     let rows = 1;
 

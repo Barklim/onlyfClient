@@ -4,8 +4,10 @@ import { Page } from '@/widgets/Page';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { UiDesignSwitcher } from '@/features/uiDesignSwitcher';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Typography } from '@/shared/ui/material/Typography';
 import { Maintenance } from '@/shared/ui/material/Maintenance';
+import { SettingsStopWords } from '@/features/SettingsStopWords';
+import { useSelector } from 'react-redux';
+import { isUserAdmin } from '@/entities/User';
 
 interface SettingsPageProps {
     className?: string;
@@ -14,17 +16,14 @@ interface SettingsPageProps {
 const SettingsPage = memo((props: SettingsPageProps) => {
     const { className } = props;
     const { t } = useTranslation();
+    const isAdmin = useSelector(isUserAdmin);
 
     return (
         <Page>
             <VStack gap="16">
-                <Typography variant="h5" color='primary'>
-                    {t('Настройки пользователя')}
-                </Typography>
-
-                <Maintenance />
                 {/* TODO: show for user.role admin */}
                 {/*<UiDesignSwitcher />*/}
+                {isAdmin ? <SettingsStopWords /> : <Maintenance/>}
             </VStack>
         </Page>
     );

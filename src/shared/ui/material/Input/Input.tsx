@@ -22,16 +22,13 @@ interface InputProps extends HTMLInputProps {
     readonly?: boolean;
     variant?: TextFieldVariants | undefined;
     rows?: number;
+    multiline?: boolean;
     label?: string | undefined;
     fullWidth?: boolean;
     placeholder?: string;
     size?: any;
 }
 
-/**
- * Устарел, используем новые компоненты из папки redesigned
- * @deprecated
- */
 export const Input = memo((props: InputProps) => {
     const {
         className,
@@ -40,6 +37,7 @@ export const Input = memo((props: InputProps) => {
         type = 'text',
         variant = 'standard',
         rows = 1,
+        multiline,
         label,
         fullWidth,
         placeholder,
@@ -92,8 +90,8 @@ export const Input = memo((props: InputProps) => {
                     value={value}
                     onChange={onChangeHandler}
                     variant={variant}
-                    multiline
-                    rows={rows}
+                    multiline={multiline}
+                    rows={multiline ? undefined : rows}
                     label={label}
                     fullWidth={fullWidth}
                     className={cls.input}

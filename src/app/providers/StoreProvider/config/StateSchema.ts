@@ -21,6 +21,7 @@ import { UserByIdSchema } from '@/entities/User/model/types/user';
 import { NotificationSchema } from '@/features/notificationButton/model/types/NotificationSchema';
 import { NotificationCountSchema } from '@/features/notificationButton/model/types/NotificationCountSchema';
 import { RegisterSchema } from '@/features/AuthByUsername/model/types/registerSchema';
+import { SettingsSchema } from '@/features/SettingsStopWords/model/types/settingsSchema';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -31,6 +32,7 @@ export interface StateSchema {
     // Асинхронные редюсеры
     loginForm?: LoginSchema;
     registerForm?: RegisterSchema;
+    settings?: SettingsSchema;
     profile?: ProfileSchema;
     userById?: UserByIdSchema;
     accountsPage?: AccountsPageSchema;

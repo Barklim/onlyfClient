@@ -31,10 +31,6 @@ interface TypographyProps extends HTMLAttributes<HTMLDivElement> {
     children: ReactNode;
 }
 
-/**
- * Устарел, используем новые компоненты из папки redesigned
- * @deprecated
- */
 export const Typography = ((props: TypographyProps) => {
     const {
         className,
