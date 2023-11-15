@@ -14,6 +14,8 @@ import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { SortOrder } from '@/shared/types/sort';
 import { AccountsPageSchema } from '../types/accountsPageSchema';
 import { fetchAccountsList } from '../services/fetchAccountsList/fetchAccountsList';
+import { fetchInvite } from '@/entities/User/model/services/fetchInvite';
+import { fetchInviteCancel } from '@/entities/User/model/services/fetchInviteCancel';
 
 const accountsAdapter = createEntityAdapter<User>({
     selectId: (account) => account.id,
@@ -95,6 +97,114 @@ const accountsPageSlice = createSlice({
             .addCase(fetchAccountsList.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
+            })
+
+            .addCase(fetchInvite.pending, (state, action) => {
+                const id = action.meta.arg.id;
+
+                const existingAccount = accountsAdapter.getSelectors().selectById(state, id);
+
+                if (existingAccount) {
+                    accountsAdapter.updateOne(state, {
+                        id: id,
+                        changes: {
+                            profile: {
+                                ...existingAccount.profile,
+                                isLoadingInvite: true
+                            },
+                        },
+                    });
+                }
+            })
+            .addCase(fetchInvite.fulfilled, (state, action) => {
+                const id = action.meta.arg.id;
+
+                const existingAccount = accountsAdapter.getSelectors().selectById(state, id);
+
+                if (existingAccount) {
+                    accountsAdapter.updateOne(state, {
+                        id: id,
+                        changes: {
+                            profile: {
+                                ...existingAccount.profile,
+                                verified: true,
+                                isLoadingInvite: false
+                            },
+                        },
+                    });
+                }
+            })
+            .addCase(fetchInvite.rejected, (state, action) => {
+                const id = action.meta.arg.id;
+
+                const existingAccount = accountsAdapter.getSelectors().selectById(state, id);
+
+                if (existingAccount) {
+                    accountsAdapter.updateOne(state, {
+                        id: id,
+                        changes: {
+                            profile: {
+                                ...existingAccount.profile,
+                                verified: false,
+                                isLoadingInvite: false
+                            },
+                        },
+                    });
+                }
+            })
+
+            .addCase(fetchInviteCancel.pending, (state, action) => {
+                const id = action.meta.arg;
+
+                const existingAccount = accountsAdapter.getSelectors().selectById(state, id);
+
+                if (existingAccount) {
+                    accountsAdapter.updateOne(state, {
+                        id: id,
+                        changes: {
+                            profile: {
+                                ...existingAccount.profile,
+                                isLoadingInviteCancel: true
+                            },
+                        },
+                    });
+                }
+            })
+            .addCase(fetchInviteCancel.fulfilled, (state, action) => {
+                const id = action.meta.arg;
+
+                const existingAccount = accountsAdapter.getSelectors().selectById(state, id);
+
+                if (existingAccount) {
+                    accountsAdapter.updateOne(state, {
+                        id: id,
+                        changes: {
+                            profile: {
+                                ...existingAccount.profile,
+                                verified: false,
+                                isLoadingInviteCancel: false
+                            },
+                        },
+                    });
+                }
+            })
+            .addCase(fetchInviteCancel.rejected, (state, action) => {
+                const id = action.meta.arg;
+
+                const existingAccount = accountsAdapter.getSelectors().selectById(state, id);
+
+                if (existingAccount) {
+                    accountsAdapter.updateOne(state, {
+                        id: id,
+                        changes: {
+                            profile: {
+                                ...existingAccount.profile,
+                                verified: true,
+                                isLoadingInviteCancel: false
+                            },
+                        },
+                    });
+                }
             });
     },
 });

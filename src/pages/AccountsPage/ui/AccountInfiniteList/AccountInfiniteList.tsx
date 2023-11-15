@@ -24,7 +24,7 @@ export const AccountInfiniteList = memo((props: AccountInfiniteListProps) => {
 
     if (error) {
         // TODO:
-        return <Text text={t('Ошибка при загрузке статей')} />;
+        return <Text text={t('Ошибка при загрузке аккаунтов')} />;
     }
 
     return (

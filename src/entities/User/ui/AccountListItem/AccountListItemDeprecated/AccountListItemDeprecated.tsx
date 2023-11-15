@@ -24,16 +24,24 @@ import { Public, CloudOff, Done, VisibilityOff } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
 import { isUserAdmin } from '../../../model/selectors/roleSelectors';
 import { ButtonSplit } from '@/shared/ui/material/ButtonSplit';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { fetchInvite } from '@/entities/User/model/services/fetchInvite';
+import { fetchInviteCancel } from '@/entities/User/model/services/fetchInviteCancel';
 
 const lipsumText = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard.'
 
 export const AccountListItemDeprecated = memo((props: AccountListItemProps) => {
     const { className, account, view, target } = props;
+    const dispatch = useAppDispatch();
     const isAdmin = useSelector(isUserAdmin);
     const accountIsAdmin = account.roles?.includes(UserRole.ADMIN) || false;
 
     const handleClick = (value: any) => {
-        console.log(value);
+        dispatch(fetchInvite(value));
+    }
+
+    const handleClickCancel = (value: any) => {
+        dispatch(fetchInviteCancel(value));
     }
 
     const cardActions =
@@ -78,13 +86,16 @@ export const AccountListItemDeprecated = memo((props: AccountListItemProps) => {
                             color={'success'}
                             variant={'outlined'}
                             label={'Verified'}
+                            disabled={account.profile?.isLoadingInviteCancel}
                             onDelete={() => {
+                                handleClickCancel(account.id)
                             }}
                         />
                         :
                         <ButtonSplit
                             options={[UserRoleOptions.MODEL, UserRoleOptions.MANAGER, UserRoleOptions.ADMIN]}
                             id={account.id}
+                            isLoading={account.profile?.isLoadingInvite}
                             onClick={handleClick}
                         >
                             Verify
@@ -185,8 +196,9 @@ export const AccountListItemDeprecated = memo((props: AccountListItemProps) => {
                                 </IconButton>
                             }
                             title={account?.profile?.username}
-                            subheader={account?.profile?.username}
+                            subheader={account.email}
                         />
+
                         <CardContent
                             sx={{ flexGrow: 1 }}
                         >
@@ -280,7 +292,8 @@ export const AccountListItemDeprecated = memo((props: AccountListItemProps) => {
                             <MoreVertIcon />
                         </IconButton>
                     }
-                    subheader={account?.profile?.username}
+                    title={account?.profile?.username}
+                    subheader={account.email}
                 />
                 {cardActions}
             </Box>

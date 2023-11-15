@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, memo, ReactNode, MouseEventHandler } from 'react';
+import { memo, ReactNode } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import cls from './ButtonSplit.module.scss';
 import * as React from 'react';
@@ -27,6 +27,7 @@ interface ButtonProps {
     id?: string;
     options: UserRoleOptions[];
     children?: ReactNode;
+    isLoading?: boolean;
     onClick?: (value: InviteObj) => void;
 }
 
@@ -34,6 +35,7 @@ export const ButtonSplit = memo((props: ButtonProps) => {
     const {
         className,
         id,
+        isLoading,
         onClick,
         options,
         children,
@@ -43,6 +45,8 @@ export const ButtonSplit = memo((props: ButtonProps) => {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLDivElement>(null);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
+
+    const buttonText = isLoading === true ? 'Loading...' : `Invite as ${options[selectedIndex]}`;
 
     const handleClick = () => {
         const selectedOption = options[selectedIndex];
@@ -83,7 +87,7 @@ export const ButtonSplit = memo((props: ButtonProps) => {
     return (
         <React.Fragment>
             <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-                <Button size={'small'} onClick={handleClick}>{`Invite as ${options[selectedIndex]}`}</Button>
+                <Button size={'small'} onClick={handleClick} disabled={isLoading === true}>{buttonText}</Button>
                 <Button
                     size="small"
                     aria-controls={open ? 'split-button-menu' : undefined}

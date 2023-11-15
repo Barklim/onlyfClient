@@ -8,6 +8,7 @@ export interface User {
     accessToken?: string;
     refreshToken?: string;
     username: string;
+    email?: string;
     profileId: string;
     online: boolean;
     avatar?: string;

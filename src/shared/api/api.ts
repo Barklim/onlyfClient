@@ -6,6 +6,7 @@ export const $api = axios.create({
     baseURL: __API__,
 });
 
+// TODO: REFRESH
 $api.interceptors.request.use((config) => {
     if (config.headers) {
         if (isJsonModeServer) {

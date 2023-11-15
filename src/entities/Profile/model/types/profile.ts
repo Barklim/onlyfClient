@@ -17,4 +17,6 @@ export interface Profile {
     countViolationsPercentage?: number;
     countViolationsTotal?: number;
     countActiveDialogs?: number;
+    isLoadingInvite?: boolean;
+    isLoadingInviteCancel?: boolean;
 }
