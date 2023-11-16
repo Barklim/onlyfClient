@@ -2,7 +2,8 @@ import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { settingsActions, settingsReducer } from '../../model/slices/settingsSlice';
-import { Input as InputMaterial } from '@/shared/ui/material/Input';
+import { Input } from '@/shared/ui/material/Input';
+import { Switch } from '@/shared/ui/material/Switch';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './SettingsStopWords.module.scss';
 import { useSelector } from 'react-redux';
@@ -59,9 +60,9 @@ export const SettingsStopWords = memo(() => {
                         <Typography variant='subtitle1' color='primary'>
                             {t('stop words subtext')}
                         </Typography>
-                        <InputMaterial
+                        <Input
                             variant="filled"
-                            label={t('Введите стоп слова')}
+                            placeholder={t('Введите стоп слова')}
                             fullWidth
                             value={data?.stopWords}
                             className={classNames(cls.fullWidth, {}, [])}
@@ -73,7 +74,7 @@ export const SettingsStopWords = memo(() => {
                             variant='contained'
                             size='medium'
                             onClick={onSave}
-                            color='success'
+                            color='primary'
                             data-testid="Settings.SaveButton"
                             disabled={isLoading}
                         >
