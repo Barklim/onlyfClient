@@ -22,6 +22,7 @@ import { NotificationSchema } from '@/features/notificationButton/model/types/No
 import { NotificationCountSchema } from '@/features/notificationButton/model/types/NotificationCountSchema';
 import { RegisterSchema } from '@/features/AuthByUsername/model/types/registerSchema';
 import { SettingsSchema } from '@/features/SettingsStopWords/model/types/settingsSchema';
+import { IncidentsSchema } from '@/features/editableProfileCard/model/types/incidentsSchema';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -34,6 +35,7 @@ export interface StateSchema {
     registerForm?: RegisterSchema;
     settings?: SettingsSchema;
     profile?: ProfileSchema;
+    incidents?: IncidentsSchema;
     userById?: UserByIdSchema;
     accountsPage?: AccountsPageSchema;
     notifications?: NotificationSchema;
