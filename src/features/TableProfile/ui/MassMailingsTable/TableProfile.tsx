@@ -3,22 +3,17 @@ import { useTranslation } from 'react-i18next';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import Print from '@mui/icons-material/Print';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { Typography } from '@/shared/ui/material/Typography';
 import cls from './TableTableProfile.module.scss';
 import { useSelector } from 'react-redux';
-import { fetchUserData, getUserByIdData, isUserAdmin, isUserManager, userByIdReducer, UserRole } from '@/entities/User';
+import { getUserByIdData, UserRole } from '@/entities/User';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { incidentReducer } from '@/features/editableProfileCard/model/slice/incidents';
-import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchIncidentData } from '@/features/editableProfileCard/model/services/fetchIncidentData/fetchIncidentData';
-import { fetchProfileData } from '@/features/editableProfileCard/model/services/fetchProfileData/fetchProfileData';
 import { getIncidentData } from '@/features/editableProfileCard/model/selectors/incidents/getIncidents';
-import { Incident } from '@/features/editableProfileCard/model/types/incidentsSchema';
 import { mockIncidents } from '@/shared/const/global';
 
 function createData(
@@ -125,8 +120,10 @@ export const TableProfile = memo(() => {
     const isManager = userByIdData?.roles?.includes(UserRole.MANAGER) || false;;
     const showStatistics = isManager;
     const dispatch = useAppDispatch();
-    const incidentData = useSelector(getIncidentData);
-    // const incidentData = mockIncidents
+    let minDate = null as any;
+    let maxDate = null as any;
+    // const incidentData = useSelector(getIncidentData);
+    const incidentData = mockIncidents
 
     const aggregatedData: AggregatedData = incidentData?.reduce((acc, incident) => {
         const workShift = getTypeByTime(incident?.incident_created_at, incident?.id);
@@ -151,6 +148,13 @@ export const TableProfile = memo(() => {
 
             const timezoneOffsetInMinutes = new Date().getTimezoneOffset();
             const date = new Date(dateWithoutTimeZoneUtc.getTime() + timezoneOffsetInMinutes * 60 * 1000);
+
+            if (!minDate || date < minDate) {
+                minDate = date;
+            }
+            if (!maxDate || date > maxDate) {
+                maxDate = date;
+            }
 
             const setHoursWithDate = (originalDate: Date, hours: number, minutes: number, seconds: number, milliseconds: number) => {
                 const newDate = new Date(originalDate);
@@ -179,7 +183,59 @@ export const TableProfile = memo(() => {
         return acc;
     }, {} as AggregatedData) || {};
 
-    const resultArray: AggregatedIncident[] = Object.values(aggregatedData) || [];
+
+    const completeAggregatedData = { ...aggregatedData };
+
+    const startDate = minDate;
+    const endDate = maxDate;
+    const shifts = ["1", "2", "3"];
+
+    for (let currentDate = new Date(startDate); currentDate <= endDate; currentDate.setDate(currentDate.getDate() + 1)) {
+        shifts.forEach((shift) => {
+            const key = `${currentDate.toISOString().split('T')[0]}_${shift}`;
+
+            if (!completeAggregatedData[key]) {
+                completeAggregatedData[key] = {
+                    id: 0,
+                    workShift: shift,
+                    incidentCount: 0,
+                    day: getDayOfYear(currentDate),
+                    start: undefined,
+                    end: undefined,
+                };
+            }
+
+            const dateWithoutTimeZoneUtc = currentDate;
+            const timezoneOffsetInMinutes = new Date().getTimezoneOffset();
+            const date = new Date(dateWithoutTimeZoneUtc.getTime() + timezoneOffsetInMinutes * 60 * 1000);
+
+            const setHoursWithDate = (originalDate: Date, hours: number, minutes: number, seconds: number, milliseconds: number) => {
+                const newDate = new Date(originalDate);
+                newDate.setHours(hours, minutes, seconds, milliseconds);
+                return newDate;
+            };
+            switch (shift) {
+                case '1':
+                    completeAggregatedData[key].start = setHoursWithDate(date, 0, 0, 0, 0);
+                    completeAggregatedData[key].end = setHoursWithDate(date, 8, 0, 0, 0);
+                    break;
+                case '2':
+                    completeAggregatedData[key].start = setHoursWithDate(date, 8, 0, 0, 0);
+                    completeAggregatedData[key].end = setHoursWithDate(date, 16, 0, 0, 0);
+                    break;
+                case '3':
+                    completeAggregatedData[key].start = setHoursWithDate(date, 16, 0, 0, 0);
+                    completeAggregatedData[key].end = setHoursWithDate(date, 23, 59, 0, 0);
+                    break;
+                default:
+                    break;
+            }
+        });
+    }
+
+    const completeResultArray: AggregatedIncident[] = Object.values(completeAggregatedData) || [];
+    
+    const resultArray: AggregatedIncident[] = Object.values(completeResultArray) || [];
 
     resultArray.sort((a, b) => {
         if (a?.day !== undefined && b?.day !== undefined) {
@@ -198,7 +254,7 @@ export const TableProfile = memo(() => {
             return shiftOrder.indexOf(b?.workShift as string) - shiftOrder.indexOf(a?.workShift as string);
         }
     });
-    
+
     const rows = createRowsData(resultArray);
 
     useEffect(() => {
@@ -210,7 +266,7 @@ export const TableProfile = memo(() => {
     return <>
         <DynamicModuleLoader reducers={reducers}>
             {showStatistics ?
-                <VStack gap='16'>
+                <VStack gap='16' max>
                     <HStack className={cls.header}>
                         <Typography variant='h5' color='primary'>
                             {t('Violations')}
@@ -235,17 +291,17 @@ export const TableProfile = memo(() => {
                                         key={row.name}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
-                                        <TableCell align="left">
+                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="left">
                                             <div style={{ maxWidth: '100%', width: '52px' }}>
                                                 {row.number}
                                             </div>
                                         </TableCell>
                                         <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="left">{row.name}</TableCell>
                                         <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="left">{row.calories}</TableCell>
-                                        <TableCell align="right">{row.fat}</TableCell>
-                                        <TableCell align="right">{row.carbs}</TableCell>
-                                        <TableCell align="right">{row.protein}</TableCell>
-                                        <TableCell align="right">{row.purchased}</TableCell>
+                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="right">{row.fat}</TableCell>
+                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="right">{row.carbs}</TableCell>
+                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="right">{row.protein}</TableCell>
+                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="right">{row.purchased}</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
