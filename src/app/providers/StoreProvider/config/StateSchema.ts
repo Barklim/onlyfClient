@@ -36,6 +36,7 @@ export interface StateSchema {
     settings?: SettingsSchema;
     profile?: ProfileSchema;
     incidents?: IncidentsSchema;
+    incidentsStopWords?: IncidentsSchema;
     userById?: UserByIdSchema;
     accountsPage?: AccountsPageSchema;
     notifications?: NotificationSchema;

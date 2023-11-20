@@ -2,11 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { Incident } from '@/features/editableProfileCard/model/types/incidentsSchema';
 
-export const fetchIncidentData = createAsyncThunk<
+export const fetchIncidentByStopWordsData = createAsyncThunk<
     Incident[],
     any,
     ThunkConfig<string>
-    >('incident/fetchIncidentData', async (data, thunkApi) => {
+    >('incident/fetchIncidentByStopWordsData', async (data, thunkApi) => {
     const { extra, rejectWithValue } = thunkApi;
 
     try {

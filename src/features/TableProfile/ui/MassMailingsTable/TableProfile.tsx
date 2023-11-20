@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import Print from '@mui/icons-material/Print';
@@ -10,11 +10,44 @@ import cls from './TableTableProfile.module.scss';
 import { useSelector } from 'react-redux';
 import { getUserByIdData, UserRole } from '@/entities/User';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { incidentReducer } from '@/features/editableProfileCard/model/slice/incidents';
+import { incidentReducer, incidentStopReducer } from '@/features/editableProfileCard/model/slice/incidents';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchIncidentData } from '@/features/editableProfileCard/model/services/fetchIncidentData/fetchIncidentData';
-import { getIncidentData } from '@/features/editableProfileCard/model/selectors/incidents/getIncidents';
+import {
+    getIncidentData,
+    getIncidentStopData,
+} from '@/features/editableProfileCard/model/selectors/incidents/getIncidents';
 import { mockIncidents } from '@/shared/const/global';
+import { fetchIncidentByStopWordsData } from '@/features/editableProfileCard/model/services/fetchIncidentByStopWordsData/fetchIncidentByStopWordsData';
+import { Incident } from '@/features/editableProfileCard/model/types/incidentsSchema';
+
+const reducers: ReducersList = {
+    incidents: incidentReducer,
+    incidentsStopWords: incidentStopReducer,
+};
+
+type AggregatedData = {
+    [key: string]: {
+        id: number;
+        workShift: string;
+        incidentCount: number;
+        incidentStopCount: number;
+        day: number;
+        start?: Date;
+        end?: Date;
+    };
+};
+
+type AggregatedIncident = {
+    id?: number;
+    workShift?: string;
+    incidentCount?: number;
+    incidentStopCount?: number;
+    incident_created_at?: string;
+    day?: number;
+    start?: any;
+    end?: any;
+};
 
 function createData(
     number: number,
@@ -30,7 +63,7 @@ function createData(
     return { name, number, calories, fat, carbs, protein, purchased, status, day};
 }
 
-const createRowsData = (resultArray: AggregatedIncident[]) => {
+const createRowsData = (resultArray: AggregatedIncident[], incidentStopWordsData: Incident[]) => {
     const newRows = [] as any[];
 
     resultArray.forEach((item: AggregatedIncident, index) => {
@@ -59,36 +92,12 @@ const createRowsData = (resultArray: AggregatedIncident[]) => {
         const end = `${item.end.toLocaleString('en-us', { month: 'short' })} ${('0' + item.end.getDate()).slice(-2)} | ${dataWorkShiftHoursEnd}`;
 
         newRows.push(
-            createData(index, start, end, String(item.incidentCount), '1%', 0, 0, true, item.day as number)
+            createData(index, start, end, String(item.incidentCount), '1%', Number(item.incidentStopCount), 0, true, item.day as number)
         )
     })
 
     return newRows;
 }
-
-type AggregatedData = {
-    [key: string]: {
-        id: number;
-        workShift: string;
-        incidentCount: number;
-        day: number;
-        start?: Date;
-        end?: Date;
-    };
-};
-
-type AggregatedIncident = {
-    id?: number;
-    workShift?: string;
-    incidentCount?: number;
-    day?: number;
-    start?: any;
-    end?: any;
-};
-
-const reducers: ReducersList = {
-    incidents: incidentReducer,
-};
 
 const getDayOfYear = (dateWithoutTimeZoneUtc: Date) => {
     const timezoneOffsetInMinutes = new Date().getTimezoneOffset();
@@ -122,12 +131,14 @@ export const TableProfile = memo(() => {
     const dispatch = useAppDispatch();
     let minDate = null as any;
     let maxDate = null as any;
-    // const incidentData = useSelector(getIncidentData);
-    const incidentData = mockIncidents
+    // const [incidentData, setIncidentData] = useState<AggregatedIncident[]>(mockIncidents);
+    const [incidentData, setIncidentData] = useState<AggregatedIncident[]>([]);
+    const [incidentStopWordsData, setIncidentStopWordsData] = useState<AggregatedIncident[]>([]);
 
-    const aggregatedData: AggregatedData = incidentData?.reduce((acc, incident) => {
-        const workShift = getTypeByTime(incident?.incident_created_at, incident?.id);
-        const key = `${new Date(incident?.incident_created_at).toISOString().split('T')[0]}_${workShift}`;
+    const aggregatedData: AggregatedData = Array.isArray(incidentData) ? incidentData.reduce((acc, incident) => {
+        const incidentCreatedAt = (incident as any)?.incident_created_at;
+        const workShift = getTypeByTime(incidentCreatedAt, incident?.id);
+        const key = `${new Date(incidentCreatedAt).toISOString().split('T')[0]}_${workShift}`;
 
         if (!acc[key]) {
             // @ts-ignore
@@ -135,7 +146,8 @@ export const TableProfile = memo(() => {
                 id: incident?.id,
                 workShift: workShift,
                 incidentCount: 1,
-                day: getDayOfYear(new Date(incident?.incident_created_at)),
+                incidentStopCount: 0,
+                day: getDayOfYear(new Date(incidentCreatedAt)),
                 start: undefined,
                 end: undefined,
             } as AggregatedData;
@@ -144,7 +156,7 @@ export const TableProfile = memo(() => {
         }
 
         if (acc[key]?.day !== undefined && acc[key]?.workShift !== undefined && acc[key].start === undefined && acc[key].end === undefined) {
-            const dateWithoutTimeZoneUtc = new Date(incident?.incident_created_at);
+            const dateWithoutTimeZoneUtc = new Date(incidentCreatedAt);
 
             const timezoneOffsetInMinutes = new Date().getTimezoneOffset();
             const date = new Date(dateWithoutTimeZoneUtc.getTime() + timezoneOffsetInMinutes * 60 * 1000);
@@ -181,7 +193,7 @@ export const TableProfile = memo(() => {
         }
 
         return acc;
-    }, {} as AggregatedData) || {};
+    }, {} as AggregatedData) : {};
 
 
     const completeAggregatedData = { ...aggregatedData };
@@ -199,6 +211,7 @@ export const TableProfile = memo(() => {
                     id: 0,
                     workShift: shift,
                     incidentCount: 0,
+                    incidentStopCount: 0,
                     day: getDayOfYear(currentDate),
                     start: undefined,
                     end: undefined,
@@ -234,7 +247,9 @@ export const TableProfile = memo(() => {
     }
 
     const completeResultArray: AggregatedIncident[] = Object.values(completeAggregatedData) || [];
-    
+    // console.log('!!! completeAggregatedData');
+    // console.log(completeAggregatedData);
+
     const resultArray: AggregatedIncident[] = Object.values(completeResultArray) || [];
 
     resultArray.sort((a, b) => {
@@ -255,17 +270,72 @@ export const TableProfile = memo(() => {
         }
     });
 
-    const rows = createRowsData(resultArray);
+    resultArray.forEach((resultItem) => {
+        incidentStopWordsData.forEach((stopWordItem) => {
+            const stopWordDateStr = stopWordItem.incident_created_at;
+
+            if (stopWordDateStr) {
+                const stopWordDate = new Date(stopWordDateStr);
+
+                stopWordDate.setMinutes(stopWordDate.getMinutes() + new Date().getTimezoneOffset());
+
+                const resultStartDate = resultItem.start ? new Date(resultItem.start.getTime()) : null;
+                const resultEndDate = resultItem.end ? new Date(resultItem.end.getTime()) : null;
+
+                if (resultStartDate && resultEndDate) {
+                    const stopWordDateTime = stopWordDate.getTime();
+
+                    const isInInterval =
+                        stopWordDateTime >= resultStartDate.getTime() &&
+                        stopWordDateTime <= resultEndDate.getTime();
+
+                    if (isInInterval) {
+                        resultItem.incidentStopCount = (resultItem.incidentStopCount || 0) + 1;
+                    }
+
+                }
+
+            }
+        });
+    });
+
+    const rows = createRowsData(resultArray, incidentStopWordsData as Incident[]);
 
     useEffect(() => {
-        if (userByIdData?.id) {
-            dispatch(fetchIncidentData(userByIdData.id));
-        }
+        const fetchData = async () => {
+            if (userByIdData?.id) {
+                try {
+                    const [incidents, stopWordsIncidents] = await Promise.all([
+                        dispatch(fetchIncidentData({ managerId: userByIdData.id, type: 0 })),
+                        dispatch(fetchIncidentByStopWordsData({ managerId: userByIdData.id, type: 1 })),
+                    ]);
+
+                    if (incidents && stopWordsIncidents) {
+                        // @ts-ignore
+                        setIncidentData(incidents.payload)
+                        // @ts-ignore
+                        setIncidentStopWordsData(stopWordsIncidents.payload);
+
+                    } else {
+                        console.error('Не удалось получить данные');
+                    }
+                } catch (error) {
+                    console.error('Произошла ошибка при получении данных:', error);
+                }
+            }
+        };
+
+        fetchData();
     }, [userByIdData]);
+
+    if (!incidentData || !incidentStopWordsData) {
+        return <div>Loading...</div>;
+    }
+
 
     return <>
         <DynamicModuleLoader reducers={reducers}>
-            {showStatistics ?
+            {showStatistics && incidentData && incidentStopWordsData ?
                 <VStack gap='16' max>
                     <HStack className={cls.header}>
                         <Typography variant='h5' color='primary'>
