@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { getUserByIdData, UserRole } from '@/entities/User';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { incidentReducer, incidentStopReducer } from '@/features/editableProfileCard/model/slice/incidents';
+import { activeDialogsReducer } from '@/features/editableProfileCard/model/slice/activeDialogs';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchIncidentData } from '@/features/editableProfileCard/model/services/fetchIncidentData/fetchIncidentData';
 import {
@@ -20,16 +21,19 @@ import {
 import { mockIncidents } from '@/shared/const/global';
 import { fetchIncidentByStopWordsData } from '@/features/editableProfileCard/model/services/fetchIncidentByStopWordsData/fetchIncidentByStopWordsData';
 import { Incident } from '@/features/editableProfileCard/model/types/incidentsSchema';
+import { fetchActiveDialogsData } from '@/features/editableProfileCard/model/services/fetchActiveDialogs/fetchActiveDialogs';
 
 const reducers: ReducersList = {
     incidents: incidentReducer,
     incidentsStopWords: incidentStopReducer,
+    activeDialogs: activeDialogsReducer,
 };
 
 type AggregatedData = {
     [key: string]: {
         id: number;
         workShift: string;
+        activeDialogsCount: number;
         incidentCount: number;
         incidentStopCount: number;
         day: number;
@@ -41,6 +45,7 @@ type AggregatedData = {
 type AggregatedIncident = {
     id?: number;
     workShift?: string;
+    activeDialogsCount?: number;
     incidentCount?: number;
     incidentStopCount?: number;
     incident_created_at?: string;
@@ -51,16 +56,16 @@ type AggregatedIncident = {
 
 function createData(
     number: number,
-    name: string,
-    calories: string,
-    fat: string,
-    carbs: string,
-    protein: number,
-    purchased: number,
+    startDate: string,
+    endDate: string,
+    incidentCount: string,
+    incidentPercentage: string,
+    incidentStopWords: number,
+    activeDialogs: number,
     status: boolean,
     day: number,
 ) {
-    return { name, number, calories, fat, carbs, protein, purchased, status, day};
+    return { name, startDate, endDate, incidentCount, incidentPercentage, incidentStopWords, activeDialogs, status, day};
 }
 
 const createRowsData = (resultArray: AggregatedIncident[], incidentStopWordsData: Incident[]) => {
@@ -92,7 +97,7 @@ const createRowsData = (resultArray: AggregatedIncident[], incidentStopWordsData
         const end = `${item.end.toLocaleString('en-us', { month: 'short' })} ${('0' + item.end.getDate()).slice(-2)} | ${dataWorkShiftHoursEnd}`;
 
         newRows.push(
-            createData(index, start, end, String(item.incidentCount), '1%', Number(item.incidentStopCount), 0, true, item.day as number)
+            createData(index, start, end, String(item.incidentCount), '1%', Number(item.incidentStopCount), Number(item.activeDialogsCount), true, item.day as number)
         )
     })
 
@@ -134,6 +139,7 @@ export const TableProfile = memo(() => {
     // const [incidentData, setIncidentData] = useState<AggregatedIncident[]>(mockIncidents);
     const [incidentData, setIncidentData] = useState<AggregatedIncident[]>([]);
     const [incidentStopWordsData, setIncidentStopWordsData] = useState<AggregatedIncident[]>([]);
+    const [activeDialogsData, setActiveDialogsData] = useState<any[]>([]);
 
     const aggregatedData: AggregatedData = Array.isArray(incidentData) ? incidentData.reduce((acc, incident) => {
         const incidentCreatedAt = (incident as any)?.incident_created_at;
@@ -145,6 +151,7 @@ export const TableProfile = memo(() => {
             acc[key] = {
                 id: incident?.id,
                 workShift: workShift,
+                activeDialogsCount: 0,
                 incidentCount: 1,
                 incidentStopCount: 0,
                 day: getDayOfYear(new Date(incidentCreatedAt)),
@@ -210,6 +217,7 @@ export const TableProfile = memo(() => {
                 completeAggregatedData[key] = {
                     id: 0,
                     workShift: shift,
+                    activeDialogsCount: 0,
                     incidentCount: 0,
                     incidentStopCount: 0,
                     day: getDayOfYear(currentDate),
@@ -299,22 +307,42 @@ export const TableProfile = memo(() => {
         });
     });
 
+    resultArray.forEach(resultItem => {
+        const matchingDialogs = activeDialogsData.filter(dialogItem => {
+            return (
+                resultItem.day === dialogItem.dayOfYear &&
+                resultItem.workShift === String(dialogItem.type)
+            );
+        });
+
+        resultItem.activeDialogsCount = matchingDialogs.length ? matchingDialogs[0].totalActive : 0;
+        // @ts-ignore
+        resultItem.totalActive = matchingDialogs.filter(dialog => dialog.isActive).length;
+    });
+
     const rows = createRowsData(resultArray, incidentStopWordsData as Incident[]);
 
     useEffect(() => {
         const fetchData = async () => {
             if (userByIdData?.id) {
                 try {
-                    const [incidents, stopWordsIncidents] = await Promise.all([
+                    const currentDate = new Date();
+                    const timezoneOffsetInMinutes = currentDate.getTimezoneOffset();
+                    const timezoneOffsetInHours = Math.abs(timezoneOffsetInMinutes / 60);
+
+                    const [incidents, stopWordsIncidents, activeDialogs] = await Promise.all([
                         dispatch(fetchIncidentData({ managerId: userByIdData.id, type: 0 })),
                         dispatch(fetchIncidentByStopWordsData({ managerId: userByIdData.id, type: 1 })),
+                        dispatch(fetchActiveDialogsData({ managerId: userByIdData.id, mc: 2, uc: 3, tz: timezoneOffsetInHours }))
                     ]);
 
-                    if (incidents && stopWordsIncidents) {
+                    if (incidents && stopWordsIncidents && activeDialogs) {
                         // @ts-ignore
                         setIncidentData(incidents.payload)
                         // @ts-ignore
                         setIncidentStopWordsData(stopWordsIncidents.payload);
+                        // @ts-ignore
+                        setActiveDialogsData(activeDialogs.payload);
 
                     } else {
                         console.error('Не удалось получить данные');
@@ -366,12 +394,12 @@ export const TableProfile = memo(() => {
                                                 {row.number}
                                             </div>
                                         </TableCell>
-                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="left">{row.name}</TableCell>
-                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="left">{row.calories}</TableCell>
-                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="right">{row.fat}</TableCell>
-                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="right">{row.carbs}</TableCell>
-                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="right">{row.protein}</TableCell>
-                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="right">{row.purchased}</TableCell>
+                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="left">{row.startDate}</TableCell>
+                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="left">{row.endDate}</TableCell>
+                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="right">{row.incidentCount}</TableCell>
+                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="right">{row.incidentPercentage}</TableCell>
+                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="right">{row.incidentStopWords}</TableCell>
+                                        <TableCell style={{ backgroundColor: row.day % 2 === 0 ? '#faf4fb' : 'transparent' }} align="right">{row.activeDialogs}</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
