@@ -127,7 +127,11 @@ export const Navbar = memo(({ className, onToggle }: NavbarProps) => {
                                         <Menu color='secondary'/>
                                     </IconButton>
                                     <Typography color='secondary'>{t('OnlyfTracker')}</Typography>
-
+                                    {
+                                        isJsonModeServer ? (
+                                            <Typography color='secondary'>&nbsp; | Dev Stand</Typography>
+                                        ) : null
+                                    }
                                     <div className={cls.links}>
                                         <ThemeSwitcher />
                                         <ButtonDeprecated
