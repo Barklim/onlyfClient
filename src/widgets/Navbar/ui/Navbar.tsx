@@ -22,6 +22,7 @@ import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { useLocalStorage } from '@/app/lib/useLocalStorage';
 import { Theme } from '@/shared/const/theme';
 import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage';
+import { isJsonModeServer } from '@/shared/const/global';
 
 interface NavbarProps {
     className?: string;
@@ -81,7 +82,12 @@ export const Navbar = memo(({ className, onToggle }: NavbarProps) => {
                                             <img className={classNames(cls.IconLogo, {}, [className])} src={LogoDarkIcon} width={24} />
                                         )}
                                     </IconButton>
-                                <Typography color='secondary'>{t('OFTracker')}</Typography>
+                                    <Typography color='secondary'>{t('OFTracker')}</Typography>
+                                    {
+                                        isJsonModeServer ? (
+                                            <Typography color='secondary'>&nbsp; | Dev Stand</Typography>
+                                        ) : null
+                                    }
                                     <HStack gap="16" className={cls.actions}>
                                         <ThemeSwitcher />
                                         <NotificationButton />

@@ -29,6 +29,7 @@ import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { getRouteProfile } from '@/shared/const/router';
 import { Button, Typography, Checkbox, FormControlLabel } from '@mui/material';
 import { initAuthData } from '@/entities/User';
+import { isJsonModeServer } from '@/shared/const/global';
 
 export interface LoginFormProps {
     className?: string;
@@ -243,6 +244,26 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                 ) : (
                     <>
                         <Text title={t('Форма авторизации')} />
+
+                        {
+                            isJsonModeServer ? (
+                                <VStack gap="16" className={cls.isJsonModeServer}>
+                                    <Typography variant="subtitle2" color="primary">
+                                        Examples: login & password
+                                    </Typography>
+                                    <Typography variant="subtitle2">
+                                        admin@gmail.com  :  123123456456
+                                    </Typography>
+                                    <Typography variant="subtitle2">
+                                        manager@gmail.com  :  123123456456
+                                    </Typography>
+                                    <Typography variant="subtitle2">
+                                        user@gmail.com  :  123123456456
+                                    </Typography>
+                                </VStack>
+                            ) : null
+                        }
+
                         {error && (
                             <>
                                 <Text

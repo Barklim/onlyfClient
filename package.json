@@ -1,6 +1,6 @@
 {
     "name": "production-project",
-    "version": "1.0.0",
+    "version": "1.0.3b",
     "description": "",
     "main": "index.js",
     "scripts": {

@@ -32,3 +32,11 @@
 .registerBtnText {
     color: var(--primary-color);
 }
+
+.isJsonModeServer {
+    width: 100%;
+    border: 1px solid #ccc!important;
+    padding: 0.5em;
+    border-radius: 16px;
+    opacity: 0.6;
+}

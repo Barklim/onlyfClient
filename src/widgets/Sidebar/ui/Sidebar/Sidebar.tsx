@@ -3,7 +3,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/deprecated/Button';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import cls from './Sidebar.module.scss';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 import { useSidebarItems } from '../../model/selectors/getSidebarItems';
@@ -11,9 +11,11 @@ import { ToggleFeatures } from '@/shared/lib/features';
 import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
-import { Box, List } from '@mui/material';
+import { Box, List, Toolbar } from '@mui/material';
 import { ContactSupport } from '@mui/icons-material';
 import { IconButton } from '@/shared/ui/material/IconButton';
+import { Typography } from '@/shared/ui/material/Typography';
+import { appVersion } from '@/shared/const/global';
 
 interface SidebarProps {
     className?: string;
@@ -90,6 +92,18 @@ export const Sidebar = memo(({ className, collapsed, onToggle }: SidebarProps) =
                         </IconButton>
                         <LangSwitcher short={collapsed} className={cls.lang} />
                     </div>
+                    {
+                        !collapsed ? (
+                            <HStack justify='between' className={cls.versionSection}>
+                                <Typography color='secondary' fontSize='10px' className={cls.privacyPolicy}>Privacy & Policy</Typography>
+                                <Typography color='secondary' fontSize='10px' className={ collapsed ? cls.version_collapsed : cls.version}>{appVersion}</Typography>
+                            </HStack>
+                        ) : (
+                            <HStack justify='between' className={cls.versionSection_collapsed}>
+                                <Typography color='secondary' fontSize='10px' className={cls.version_collapsed}>{appVersion}</Typography>
+                            </HStack>
+                        )
+                    }
                 </aside>
             }
         />

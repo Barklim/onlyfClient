@@ -65,7 +65,7 @@ function createData(
     status: boolean,
     day: number,
 ) {
-    return { name, startDate, endDate, incidentCount, incidentPercentage, incidentStopWords, activeDialogs, status, day};
+    return { number, startDate, endDate, incidentCount, incidentPercentage, incidentStopWords, activeDialogs, status, day};
 }
 
 const createRowsData = (resultArray: AggregatedIncident[], incidentStopWordsData: Incident[]) => {
@@ -97,7 +97,7 @@ const createRowsData = (resultArray: AggregatedIncident[], incidentStopWordsData
         const end = `${item.end.toLocaleString('en-us', { month: 'short' })} ${('0' + item.end.getDate()).slice(-2)} | ${dataWorkShiftHoursEnd}`;
 
         newRows.push(
-            createData(index, start, end, String(item.incidentCount), '1%', Number(item.incidentStopCount), Number(item.activeDialogsCount), true, item.day as number)
+            createData(index, start, end, String(item.incidentCount), '0%', Number(item.incidentStopCount), Number(item.activeDialogsCount), true, item.day as number)
         )
     })
 
@@ -413,17 +413,17 @@ export const TableProfile = memo(() => {
                             :
                             null
                     }
-                    <VStack gap='16'>
-                        <Typography variant='subtitle1' color='primary'>
-                            Общее количество нарушений за все время:
-                        </Typography>
-                        <Typography variant='subtitle2' color='primary'>
-                            По времени: 2
-                        </Typography>
-                        <Typography variant='subtitle2' color='primary'>
-                            По словам: 2
-                        </Typography>
-                    </VStack>
+                    {/*<VStack gap='16'>*/}
+                    {/*    <Typography variant='subtitle1' color='primary'>*/}
+                    {/*        Общее количество нарушений за все время:*/}
+                    {/*    </Typography>*/}
+                    {/*    <Typography variant='subtitle2' color='primary'>*/}
+                    {/*        По времени: 2*/}
+                    {/*    </Typography>*/}
+                    {/*    <Typography variant='subtitle2' color='primary'>*/}
+                    {/*        По словам: 2*/}
+                    {/*    </Typography>*/}
+                    {/*</VStack>*/}
                 </VStack>
                 :
                 null
