@@ -43,7 +43,7 @@ export const fetchAccountsList = createAsyncThunk<
                 _sort: sort,
                 _order: order,
                 q: search,
-                roles: type === AccountType.ALL ? undefined : type,
+                roles: type === AccountType.ALL ? undefined : type.toLowerCase(),
             },
         });
 
