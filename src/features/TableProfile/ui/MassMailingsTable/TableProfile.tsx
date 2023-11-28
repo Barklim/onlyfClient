@@ -18,10 +18,11 @@ import {
     getIncidentData,
     getIncidentStopData,
 } from '@/features/editableProfileCard/model/selectors/incidents/getIncidents';
-import { mockIncidents } from '@/shared/const/global';
+import { isJsonModeServer } from '@/shared/const/global';
 import { fetchIncidentByStopWordsData } from '@/features/editableProfileCard/model/services/fetchIncidentByStopWordsData/fetchIncidentByStopWordsData';
 import { Incident } from '@/features/editableProfileCard/model/types/incidentsSchema';
 import { fetchActiveDialogsData } from '@/features/editableProfileCard/model/services/fetchActiveDialogs/fetchActiveDialogs';
+import { mockIncidentsType0, mockIncidentsType1, mockActiveDialogs } from '@/shared/mock/incidents';
 
 const reducers: ReducersList = {
     incidents: incidentReducer,
@@ -31,14 +32,14 @@ const reducers: ReducersList = {
 
 type AggregatedData = {
     [key: string]: {
-        id: number;
-        workShift: string;
-        activeDialogsCount: number;
-        incidentCount: number;
-        incidentStopCount: number;
-        day: number;
-        start?: Date;
-        end?: Date;
+        id?: number;
+        workShift?: string;
+        activeDialogsCount?: number;
+        incidentCount?: number;
+        incidentStopCount?: number;
+        day?: number;
+        start?: Date | undefined;
+        end?: Date | undefined;
     };
 };
 
@@ -52,6 +53,7 @@ type AggregatedIncident = {
     day?: number;
     start?: any;
     end?: any;
+    totalActive?: number;
 };
 
 function createData(
@@ -67,6 +69,11 @@ function createData(
 ) {
     return { number, startDate, endDate, incidentCount, incidentPercentage, incidentStopWords, activeDialogs, status, day};
 }
+
+const applyTimezoneOffset = (dateWithoutTimeZoneUtc: Date) => {
+    const timezoneOffsetInMinutes = new Date().getTimezoneOffset();
+    return new Date(dateWithoutTimeZoneUtc.getTime() + timezoneOffsetInMinutes * 60 * 1000);
+};
 
 const createRowsData = (resultArray: AggregatedIncident[], incidentStopWordsData: Incident[]) => {
     const newRows = [] as any[];
@@ -105,8 +112,7 @@ const createRowsData = (resultArray: AggregatedIncident[], incidentStopWordsData
 }
 
 const getDayOfYear = (dateWithoutTimeZoneUtc: Date) => {
-    const timezoneOffsetInMinutes = new Date().getTimezoneOffset();
-    const date = new Date(dateWithoutTimeZoneUtc.getTime() + timezoneOffsetInMinutes * 60 * 1000);
+    const date = applyTimezoneOffset(dateWithoutTimeZoneUtc)
 
     const start = new Date(date.getFullYear(), 0, 0);
     const diff = date.getTime() - start.getTime();
@@ -115,6 +121,8 @@ const getDayOfYear = (dateWithoutTimeZoneUtc: Date) => {
     return dayOfYear + 1;
 };
 
+
+// Function for determining shift by time
 function getTypeByTime(incidentCreatedAt: any, id: any) {
     const createdAtDate = new Date(incidentCreatedAt);
     const hours = createdAtDate.getHours();
@@ -136,10 +144,9 @@ export const TableProfile = memo(() => {
     const dispatch = useAppDispatch();
     let minDate = null as any;
     let maxDate = null as any;
-    // const [incidentData, setIncidentData] = useState<AggregatedIncident[]>(mockIncidents);
-    const [incidentData, setIncidentData] = useState<AggregatedIncident[]>([]);
-    const [incidentStopWordsData, setIncidentStopWordsData] = useState<AggregatedIncident[]>([]);
-    const [activeDialogsData, setActiveDialogsData] = useState<any[]>([]);
+    const [incidentData, setIncidentData] = useState<AggregatedIncident[]>(mockIncidentsType0);
+    const [incidentStopWordsData, setIncidentStopWordsData] = useState<AggregatedIncident[]>(mockIncidentsType1);
+    const [activeDialogsData, setActiveDialogsData] = useState<any[]>(mockActiveDialogs);
 
     const aggregatedData: AggregatedData = Array.isArray(incidentData) ? incidentData.reduce((acc, incident) => {
         const incidentCreatedAt = (incident as any)?.incident_created_at;
@@ -149,8 +156,8 @@ export const TableProfile = memo(() => {
         if (!acc[key]) {
             // @ts-ignore
             acc[key] = {
-                id: incident?.id,
-                workShift: workShift,
+                id: incident?.id || 0,
+                workShift: workShift || '',
                 activeDialogsCount: 0,
                 incidentCount: 1,
                 incidentStopCount: 0,
@@ -159,14 +166,15 @@ export const TableProfile = memo(() => {
                 end: undefined,
             } as AggregatedData;
         } else {
+            // @ts-ignore
             acc[key].incidentCount += 1;
         }
+
 
         if (acc[key]?.day !== undefined && acc[key]?.workShift !== undefined && acc[key].start === undefined && acc[key].end === undefined) {
             const dateWithoutTimeZoneUtc = new Date(incidentCreatedAt);
 
-            const timezoneOffsetInMinutes = new Date().getTimezoneOffset();
-            const date = new Date(dateWithoutTimeZoneUtc.getTime() + timezoneOffsetInMinutes * 60 * 1000);
+            const date = applyTimezoneOffset(dateWithoutTimeZoneUtc)
 
             if (!minDate || date < minDate) {
                 minDate = date;
@@ -227,8 +235,7 @@ export const TableProfile = memo(() => {
             }
 
             const dateWithoutTimeZoneUtc = currentDate;
-            const timezoneOffsetInMinutes = new Date().getTimezoneOffset();
-            const date = new Date(dateWithoutTimeZoneUtc.getTime() + timezoneOffsetInMinutes * 60 * 1000);
+            const date = applyTimezoneOffset(dateWithoutTimeZoneUtc)
 
             const setHoursWithDate = (originalDate: Date, hours: number, minutes: number, seconds: number, milliseconds: number) => {
                 const newDate = new Date(originalDate);
@@ -316,7 +323,6 @@ export const TableProfile = memo(() => {
         });
 
         resultItem.activeDialogsCount = matchingDialogs.length ? matchingDialogs[0].totalActive : 0;
-        // @ts-ignore
         resultItem.totalActive = matchingDialogs.filter(dialog => dialog.isActive).length;
     });
 
@@ -324,7 +330,7 @@ export const TableProfile = memo(() => {
 
     useEffect(() => {
         const fetchData = async () => {
-            if (userByIdData?.id) {
+            if (userByIdData?.id && !isJsonModeServer) {
                 try {
                     const currentDate = new Date();
                     const timezoneOffsetInMinutes = currentDate.getTimezoneOffset();
@@ -337,12 +343,9 @@ export const TableProfile = memo(() => {
                     ]);
 
                     if (incidents && stopWordsIncidents && activeDialogs) {
-                        // @ts-ignore
-                        setIncidentData(incidents.payload)
-                        // @ts-ignore
-                        setIncidentStopWordsData(stopWordsIncidents.payload);
-                        // @ts-ignore
-                        setActiveDialogsData(activeDialogs.payload);
+                        setIncidentData(incidents.payload as AggregatedIncident[])
+                        setIncidentStopWordsData(stopWordsIncidents.payload as AggregatedIncident[]);
+                        setActiveDialogsData(activeDialogs.payload as any[]);
 
                     } else {
                         console.error('Не удалось получить данные');
