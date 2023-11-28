@@ -8,6 +8,8 @@ import { Maintenance } from '@/shared/ui/material/Maintenance';
 import { SettingsStopWords } from '@/features/SettingsStopWords';
 import { useSelector } from 'react-redux';
 import { isUserAdmin } from '@/entities/User';
+import { Chip, Divider } from '@mui/material';
+import cls from './SettingsPage.module.scss';
 
 interface SettingsPageProps {
     className?: string;
@@ -15,15 +17,28 @@ interface SettingsPageProps {
 
 const SettingsPage = memo((props: SettingsPageProps) => {
     const { className } = props;
-    const { t } = useTranslation();
+    const { t } = useTranslation('settings');
     const isAdmin = useSelector(isUserAdmin);
 
     return (
         <Page>
             <VStack gap="16">
-                {/* TODO: show for user.role admin */}
-                {/*<UiDesignSwitcher />*/}
-                {isAdmin ? <SettingsStopWords /> : <Maintenance/>}
+                {isAdmin ?
+                    <>
+                        <Divider textAlign="left" className={cls.divider}>
+                            <Chip variant="outlined" label={t('Настройки агенства')} />
+                        </Divider>
+                        <SettingsStopWords />
+                    </>
+                    : null
+                }
+
+
+                <Divider textAlign="left" className={cls.divider}>
+                    <Chip variant="outlined" label={t('Настройки приложения')} />
+                </Divider>
+                <Maintenance/>
+                <UiDesignSwitcher />
             </VStack>
         </Page>
     );

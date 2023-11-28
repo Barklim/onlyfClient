@@ -1,5 +1,10 @@
 {
   "Стоп слова": "Stop words",
   "Сохранить": "Save",
-  "stop words subtext": "Fill in the field to change agency stop words"
+  "stop words subtext": "Fill in the field to change agency stop words",
+  "Новый": "New",
+  "Старый": "Old",
+  "Вариант интерфейса": "Interface mode",
+  "Настройки агенства": "Agency settings",
+  "Настройки приложения": "Application settings"
 }

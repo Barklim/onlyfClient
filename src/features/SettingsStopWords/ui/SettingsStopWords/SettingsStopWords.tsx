@@ -54,7 +54,7 @@ export const SettingsStopWords = memo(() => {
                         gap="16"
                         max
                     >
-                        <Typography variant='h5' color='primary'>
+                        <Typography variant='h5' color='primary' fontWeight='700'>
                             {t('Стоп слова')}
                         </Typography>
                         <Typography variant='subtitle1' color='primary'>

@@ -16,7 +16,7 @@ interface UiDesignSwitcherProps {
 
 export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
     const { className } = props;
-    const { t } = useTranslation();
+    const { t } = useTranslation('settings');
     const isAppRedesigned = getFeatureFlag('isAppRedesigned');
     const dispatch = useAppDispatch();
     const authData = useSelector(getUserAuthData);
@@ -51,7 +51,7 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
     };
 
     return (
-        <HStack>
+        <HStack gap="16">
             <Text text={t('Вариант интерфейса')} />
             {isLoading ? (
                 <Skeleton width={100} height={40} />
