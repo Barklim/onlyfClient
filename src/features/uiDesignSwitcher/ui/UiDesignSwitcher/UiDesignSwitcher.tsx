@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import React, { memo, useState } from 'react';
+import React, { memo, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { getFeatureFlag, updateFeatureFlag } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { getUserAuthData } from '@/entities/User';
+import { AccountSortField, getUserAuthData } from '@/entities/User';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
@@ -15,6 +15,9 @@ import CardContent from '@mui/material/CardContent';
 import Card from '@mui/material/Card';
 import { Typography } from '@/shared/ui/material/Typography';
 import { Maintenance } from '@/shared/ui/material/Maintenance';
+import { Select as SelectMui } from '@/shared/ui/material/Select';
+import { SelectOption } from '@/shared/ui/deprecated/Select';
+import { SortOrder } from '@/shared/types/sort';
 
 interface UiDesignSwitcherProps {
     className?: string;
@@ -29,16 +32,21 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const forceUpdate = useForceUpdate();
 
-    const items = [
-        {
-            content: t('Новый'),
-            value: 'new',
-        },
-        {
-            content: t('Старый'),
-            value: 'old',
-        },
-    ];
+    type InterfaceModeOption = 'new' | 'old';
+
+    const orderOptions = useMemo<SelectOption<InterfaceModeOption>[]>(
+        () => [
+            {
+                value: 'new',
+                content: t('Новый'),
+            },
+            {
+                value: 'old',
+                content: t('Старый'),
+            },
+        ],
+        [t],
+    );
 
     const onChange = async (value: string) => {
         if (authData) {
@@ -72,11 +80,11 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
                         {isLoading ? (
                             <Skeleton width={100} height={40} />
                         ) : (
-                            <ListBox
-                                onChange={onChange}
-                                items={items}
+                            <SelectMui
+                                options={orderOptions}
                                 value={isAppRedesigned ? 'new' : 'old'}
                                 className={className}
+                                onChange={onChange}
                             />
                         )}
                     </HStack>
