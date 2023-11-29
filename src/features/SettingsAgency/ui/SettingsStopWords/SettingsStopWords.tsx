@@ -3,20 +3,19 @@ import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { settingsActions, settingsReducer } from '../../model/slices/settingsSlice';
 import { Input } from '@/shared/ui/material/Input';
-import { Switch } from '@/shared/ui/material/Switch';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './SettingsStopWords.module.scss';
 import { useSelector } from 'react-redux';
 import {
     getSettingsAgencyIsLoading,
     getSettingsForm,
-} from '@/features/SettingsStopWords/model/selectors/getSettingsForm/getSettingsForm';
+} from '@/features/SettingsAgency/model/selectors/getSettingsForm/getSettingsForm';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchSettingsAgency } from '@/features/SettingsStopWords/model/services/fetchSettingsAgency/fetchSettingsAgency';
+import { fetchSettingsAgency } from '@/features/SettingsAgency/model/services/fetchSettingsAgency/fetchSettingsAgency';
 import { Button as ButtonMui } from '@mui/material';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { fetchAgencyData } from '@/features/SettingsStopWords/model/services/fetchAgency/fetchAgencyData';
+import { fetchAgencyData } from '@/features/SettingsAgency/model/services/fetchAgency/fetchAgencyData';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Typography } from '@/shared/ui/material/Typography';

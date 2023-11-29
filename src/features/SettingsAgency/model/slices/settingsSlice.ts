@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { SettingsSchema } from '../types/settingsSchema';
-import { fetchSettingsAgency } from '@/features/SettingsStopWords/model/services/fetchSettingsAgency/fetchSettingsAgency';
+import { SettingsSchema, SettingsStopWords } from '../types/settingsSchema';
+import { fetchSettingsAgency } from '@/features/SettingsAgency/model/services/fetchSettingsAgency/fetchSettingsAgency';
 import { Profile } from '@/entities/Profile';
-import { fetchAgencyData } from '@/features/SettingsStopWords/model/services/fetchAgency/fetchAgencyData';
+import { fetchAgencyData } from '@/features/SettingsAgency/model/services/fetchAgency/fetchAgencyData';
 
 const initialState: SettingsSchema = {
     isLoading: false,
@@ -13,7 +13,7 @@ export const settingsSlice = createSlice({
     name: 'settings',
     initialState,
     reducers: {
-        updateProfile: (state, action: PayloadAction<Profile>) => {
+        updateProfile: (state, action: PayloadAction<SettingsStopWords>) => {
             state.form = {
                 ...state.form,
                 ...action.payload,

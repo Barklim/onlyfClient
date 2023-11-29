@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { Agency } from '@/features/SettingsStopWords/model/types/settingsSchema';
+import { Agency } from '@/features/SettingsAgency/model/types/settingsSchema';
 
 export const fetchAgencyData = createAsyncThunk<
     Agency,

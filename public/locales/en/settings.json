@@ -2,8 +2,13 @@
   "Стоп слова": "Stop words",
   "Сохранить": "Save",
   "stop words subtext": "Fill in the field to change agency stop words",
+  "Введите стоп слова": "Input stop words",
+  "Название агенства": "Agency name",
+  "Введите название агенства": "Input agency name",
+  "agency name subtext": "Fill in the field to change agency name",
   "Новый": "New",
   "Старый": "Old",
+  "Общие настройки": "General settings",
   "Вариант интерфейса": "Interface mode",
   "Настройки агенства": "Agency settings",
   "Настройки приложения": "Application settings"

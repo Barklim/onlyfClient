@@ -21,7 +21,7 @@ import { UserByIdSchema } from '@/entities/User/model/types/user';
 import { NotificationSchema } from '@/features/notificationButton/model/types/NotificationSchema';
 import { NotificationCountSchema } from '@/features/notificationButton/model/types/NotificationCountSchema';
 import { RegisterSchema } from '@/features/AuthByUsername/model/types/registerSchema';
-import { SettingsSchema } from '@/features/SettingsStopWords/model/types/settingsSchema';
+import { SettingsSchema } from '@/features/SettingsAgency/model/types/settingsSchema';
 import { ActiveDialogsSchema, IncidentsSchema } from '@/features/editableProfileCard/model/types/incidentsSchema';
 
 export interface StateSchema {

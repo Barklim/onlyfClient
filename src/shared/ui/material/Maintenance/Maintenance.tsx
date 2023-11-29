@@ -12,10 +12,6 @@ interface TypographyProps extends HTMLAttributes<HTMLDivElement> {
     className?: string;
 }
 
-/**
- * Устарел, используем новые компоненты из папки redesigned
- * @deprecated
- */
 export const Maintenance = ((props: TypographyProps) => {
     const {
         className,

@@ -1,14 +1,20 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useState } from 'react';
+import React, { memo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { getFeatureFlag, updateFeatureFlag } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getUserAuthData } from '@/entities/User';
-import { HStack } from '@/shared/ui/redesigned/Stack';
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import cls from '@/features/SettingsAgency/ui/SettingsStopWords/SettingsStopWords.module.scss';
+import CardContent from '@mui/material/CardContent';
+import Card from '@mui/material/Card';
+import { Typography } from '@/shared/ui/material/Typography';
+import { Maintenance } from '@/shared/ui/material/Maintenance';
 
 interface UiDesignSwitcherProps {
     className?: string;
@@ -51,18 +57,31 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
     };
 
     return (
-        <HStack gap="16">
-            <Text text={t('Вариант интерфейса')} />
-            {isLoading ? (
-                <Skeleton width={100} height={40} />
-            ) : (
-                <ListBox
-                    onChange={onChange}
-                    items={items}
-                    value={isAppRedesigned ? 'new' : 'old'}
-                    className={className}
-                />
-            )}
-        </HStack>
+        <Card sx={{ minWidth: 275 }} className={classNames(cls.card, {}, [])}>
+            <CardContent>
+                <VStack
+                    gap="16"
+                    max
+                >
+                    <Typography variant='h5' color='primary' fontWeight='700'>
+                        {t('Общие настройки')}
+                    </Typography>
+                    <Maintenance/>
+                    <HStack gap="16">
+                        <Text text={t('Вариант интерфейса')} />
+                        {isLoading ? (
+                            <Skeleton width={100} height={40} />
+                        ) : (
+                            <ListBox
+                                onChange={onChange}
+                                items={items}
+                                value={isAppRedesigned ? 'new' : 'old'}
+                                className={className}
+                            />
+                        )}
+                    </HStack>
+                </VStack>
+            </CardContent>
+        </Card>
     );
 });

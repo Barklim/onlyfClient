@@ -4,8 +4,8 @@ import { Page } from '@/widgets/Page';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { UiDesignSwitcher } from '@/features/uiDesignSwitcher';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Maintenance } from '@/shared/ui/material/Maintenance';
-import { SettingsStopWords } from '@/features/SettingsStopWords';
+import { SettingsStopWords } from '@/features/SettingsAgency';
+import { SettingsAgencyName } from '@/features/SettingsAgency';
 import { useSelector } from 'react-redux';
 import { isUserAdmin } from '@/entities/User';
 import { Chip, Divider } from '@mui/material';
@@ -29,15 +29,15 @@ const SettingsPage = memo((props: SettingsPageProps) => {
                             <Chip variant="outlined" label={t('Настройки агенства')} />
                         </Divider>
                         <SettingsStopWords />
+
+                        <SettingsAgencyName />
                     </>
                     : null
                 }
 
-
                 <Divider textAlign="left" className={cls.divider}>
                     <Chip variant="outlined" label={t('Настройки приложения')} />
                 </Divider>
-                <Maintenance/>
                 <UiDesignSwitcher />
             </VStack>
         </Page>
