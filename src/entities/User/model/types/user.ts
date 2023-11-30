@@ -15,6 +15,7 @@ export interface User {
     roles?: UserRole[];
     features?: FeatureFlags;
     jsonSettings?: JsonSettings;
+    settings?: any;
     profile?: Profile;
 }
 

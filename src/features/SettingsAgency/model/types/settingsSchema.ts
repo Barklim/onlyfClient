@@ -1,8 +1,29 @@
 export interface SettingsSchema {
-    data?: SettingsStopWords;
-    form?: SettingsStopWords;
+    settingsSection?: SettingsSection;
+    stopWords: StopWordsSectionSchema;
+    agencyName: AgencyNameSectionSchema;
+}
+
+export interface StopWordsSectionSchema {
+    data?: StopWords;
+    form?: StopWords;
     isLoading: boolean;
     error?: string;
+}
+
+export interface AgencyNameSectionSchema {
+    data?: AgencyName;
+    form?: AgencyName;
+    isLoading: boolean;
+    error?: string;
+}
+
+export interface StopWords {
+    stopWords?: string;
+}
+
+export interface AgencyName {
+    name?: string;
 }
 
 export interface SettingsStopWords {
@@ -23,4 +44,9 @@ export interface Agency {
     managers: string[];
     models: string[];
     verified: boolean;
+}
+
+export enum SettingsSection {
+    STOPWORDS = 'stopWords',
+    AGENCYNAME = 'agencyName',
 }

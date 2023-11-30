@@ -6,10 +6,14 @@ import { UiDesignSwitcher } from '@/features/uiDesignSwitcher';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { SettingsStopWords } from '@/features/SettingsAgency';
 import { SettingsAgencyName } from '@/features/SettingsAgency';
+import { SettingsNotifications } from '@/features/SettingsUser';
 import { useSelector } from 'react-redux';
-import { isUserAdmin } from '@/entities/User';
+import { getUserAuthData, isUserAdmin } from '@/entities/User';
 import { Chip, Divider } from '@mui/material';
 import cls from './SettingsPage.module.scss';
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { fetchAgencyData } from '@/features/SettingsAgency/model/services/fetchAgency/fetchAgencyData';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface SettingsPageProps {
     className?: string;
@@ -19,6 +23,12 @@ const SettingsPage = memo((props: SettingsPageProps) => {
     const { className } = props;
     const { t } = useTranslation('settings');
     const isAdmin = useSelector(isUserAdmin);
+    const authData = useSelector(getUserAuthData);
+    const dispatch = useAppDispatch();
+
+    useInitialEffect(() => {
+        dispatch(fetchAgencyData());
+    });
 
     return (
         <Page>
@@ -39,6 +49,7 @@ const SettingsPage = memo((props: SettingsPageProps) => {
                     <Chip variant="outlined" label={t('Настройки приложения')} />
                 </Divider>
                 <UiDesignSwitcher />
+                {authData ? <SettingsNotifications /> : null}
             </VStack>
         </Page>
     );

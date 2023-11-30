@@ -9,6 +9,9 @@ export {
     isUserManager,
     getUserRoles,
 } from './model/selectors/roleSelectors';
+export {
+    getUserSettings
+} from './model/selectors/settingsSelectors';
 
 export { userReducer, userActions } from './model/slice/userSlice';
 export { userByIdReducer, userByIdActions } from './model/slice/userByIdSlice';

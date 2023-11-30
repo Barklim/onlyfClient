@@ -11,5 +11,7 @@
   "Общие настройки": "General settings",
   "Вариант интерфейса": "Interface mode",
   "Настройки агенства": "Agency settings",
-  "Настройки приложения": "Application settings"
+  "Настройки приложения": "Application settings",
+  "Notifications": "Notifications",
+  "notifications subtext": "Configure ways to receive notifications"
 }

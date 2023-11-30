@@ -1,14 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { isJsonModeServer } from '@/shared/const/global';
-import { Agency, SettingsSection } from '@/features/SettingsAgency/model/types/settingsSchema';
+import { Agency } from '@/features/SettingsAgency/model/types/settingsSchema';
 import { getSettingsForm } from '@/features/SettingsAgency/model/selectors/getSettingsForm/getSettingsForm';
 
 export const fetchSettingsAgency = createAsyncThunk<
     Agency,
-    SettingsSection,
+    void,
     ThunkConfig<string>
-    >('agency/fetchSettingsAgency', async (settingsSection, thunkApi) => {
+    >('agency/fetchSettingsAgency', async (agencyData, thunkApi) => {
     const { extra, rejectWithValue, getState } = thunkApi;
 
     const formData = getSettingsForm(getState());
@@ -23,9 +23,6 @@ export const fetchSettingsAgency = createAsyncThunk<
         if (!response.data) {
             throw new Error();
         }
-
-        // @ts-ignore
-        response.data.settingsSection = settingsSection;
 
         return response.data;
     } catch (e) {

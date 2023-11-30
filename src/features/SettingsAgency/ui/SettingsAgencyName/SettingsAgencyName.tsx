@@ -2,20 +2,16 @@ import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { settingsActions, settingsReducer } from '../../model/slices/settingsSlice';
+import { SettingsSection } from '../../model/types/settingsSchema';
 import { Input } from '@/shared/ui/material/Input';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './SettingsAgencyName.module.scss';
 import { useSelector } from 'react-redux';
-import {
-    getSettingsAgencyIsLoading,
-    getSettingsForm,
-} from '@/features/SettingsAgency/model/selectors/getSettingsForm/getSettingsForm';
+import { getAgencyIsLoading, getSettingsAgencyNameForm } from '@/features/SettingsAgency/model/selectors/getSettingsForm/getSettingsForm';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchSettingsAgency } from '@/features/SettingsAgency/model/services/fetchSettingsAgency/fetchSettingsAgency';
 import { Button as ButtonMui } from '@mui/material';
 import { VStack } from '@/shared/ui/redesigned/Stack';
-import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { fetchAgencyData } from '@/features/SettingsAgency/model/services/fetchAgency/fetchAgencyData';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Typography } from '@/shared/ui/material/Typography';
@@ -27,22 +23,18 @@ const initialReducers: ReducersList = {
 export const SettingsAgencyName = memo(() => {
     const { t } = useTranslation('settings');
     const dispatch = useAppDispatch();
-    const data = useSelector(getSettingsForm);
-    const isLoading = useSelector(getSettingsAgencyIsLoading);
-
-    useInitialEffect(() => {
-        dispatch(fetchAgencyData());
-    });
+    const data = useSelector(getSettingsAgencyNameForm);
+    const isLoading = useSelector(getAgencyIsLoading);
 
     const onChangeAgencyName = useCallback(
         (value?: string) => {
-            dispatch(settingsActions.updateProfile({ name: value || '' }));
+            dispatch(settingsActions.updateAgencyName({ name: value || '' }));
         },
         [dispatch],
     );
 
     const onSave = useCallback(() => {
-        dispatch(fetchSettingsAgency());
+        dispatch(fetchSettingsAgency(SettingsSection.AGENCYNAME));
     }, [dispatch]);
 
     return (
