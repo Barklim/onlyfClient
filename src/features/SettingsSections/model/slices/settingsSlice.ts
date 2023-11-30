@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SettingsSchema, SettingsSection, SettingsStopWords } from '../types/settingsSchema';
-import { fetchSettingsAgency } from '@/features/SettingsAgency/model/services/fetchSettingsAgency/fetchSettingsAgency';
-import { fetchAgencyData } from '@/features/SettingsAgency/model/services/fetchAgency/fetchAgencyData';
+import { fetchSettingsAgency } from '@/features/SettingsSections/model/services/fetchSettingsAgency/fetchSettingsAgency';
+import { fetchAgencyData } from '@/features/SettingsSections/model/services/fetchAgency/fetchAgencyData';
 
 const initialState: SettingsSchema = {
     stopWords: {

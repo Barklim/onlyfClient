@@ -3,7 +3,6 @@ import React, {
     useEffect,
     useState
 } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Switch.module.scss';
 import { styled } from '@mui/material/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -14,12 +13,16 @@ import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage';
 
 interface SwitchMuiProps {
     className?: string;
-    children: ReactNode;
+    checked?: boolean;
+    onChange?: (checked: any) => void;
+    children?: ReactNode;
 }
 
 export const SwitchMui = ((props: SwitchMuiProps) => {
     const {
         className,
+        checked = false,
+        onChange,
         children,
     } = props;
     const { storageTheme } = useLocalStorage();
@@ -59,6 +62,8 @@ export const SwitchMui = ((props: SwitchMuiProps) => {
         setLsTheme(storageTheme);
     }, [storageTheme, lsTheme]);
 
+    // TODO: smooth animation is lost
+    // https://github.com/mui/material-ui/issues/32186
     const IOSSwitch = styled((props: SwitchProps) => (
         <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
     ))(({ theme }) => ({
@@ -112,7 +117,11 @@ export const SwitchMui = ((props: SwitchMuiProps) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <IOSSwitch />
+            <IOSSwitch
+                checked={checked}
+                onChange={onChange}
+                inputProps={{ 'aria-label': 'controlled' }}
+            />
         </ThemeProvider>
     );
 });

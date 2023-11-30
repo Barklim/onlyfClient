@@ -4,15 +4,13 @@ import { Page } from '@/widgets/Page';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { UiDesignSwitcher } from '@/features/uiDesignSwitcher';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { SettingsStopWords } from '@/features/SettingsAgency';
-import { SettingsAgencyName } from '@/features/SettingsAgency';
-import { SettingsNotifications } from '@/features/SettingsUser';
+import { SettingsStopWords, SettingsAgencyName, SettingsNotifications } from '@/features/SettingsSections';
 import { useSelector } from 'react-redux';
 import { getUserAuthData, isUserAdmin } from '@/entities/User';
 import { Chip, Divider } from '@mui/material';
 import cls from './SettingsPage.module.scss';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { fetchAgencyData } from '@/features/SettingsAgency/model/services/fetchAgency/fetchAgencyData';
+import { fetchAgencyData } from '@/features/SettingsSections/model/services/fetchAgency/fetchAgencyData';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface SettingsPageProps {

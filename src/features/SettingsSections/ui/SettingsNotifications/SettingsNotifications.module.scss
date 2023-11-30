@@ -1,0 +1,32 @@
+.card {
+  width: calc(100% - 330px);
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.notificationsSubtext {
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+.divider {
+  width: 100%;
+}
+
+.settings {
+  &__article {
+    width: 100%;
+    padding-bottom: 8px;
+    margin-top: 24px;
+  }
+}
+
+.leftSide {
+  flex: 0 0 66.66666667%;
+}
+
+.itemSubtext {
+  color: #72899d;
+}

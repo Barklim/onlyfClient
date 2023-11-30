@@ -10,7 +10,7 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from '@/features/SettingsAgency/ui/SettingsStopWords/SettingsStopWords.module.scss';
+import cls from '@/features/SettingsSections/ui/SettingsStopWords/SettingsStopWords.module.scss';
 import CardContent from '@mui/material/CardContent';
 import Card from '@mui/material/Card';
 import { Typography } from '@/shared/ui/material/Typography';

@@ -13,5 +13,11 @@
   "Настройки агенства": "Agency settings",
   "Настройки приложения": "Application settings",
   "Notifications": "Notifications",
-  "notifications subtext": "Configure ways to receive notifications"
+  "notifications subtext": "Configure ways to receive notifications",
+  "notifications comments title": "Comments",
+  "notifications comments subtext": "New comments and messages in your events and posts by experts you follow.",
+  "notifications events title": "Events",
+  "notifications events subtext": "Information about new events and important updates to the existing ones: changing the time, confirming payment and receiving links to video meetings.",
+  "notifications information title": "Information",
+  "notifications information subtext": "Information about interesting events, webinars and courses as well as important platform updates."
 }

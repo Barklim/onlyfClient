@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { isJsonModeServer } from '@/shared/const/global';
-import { Agency, SettingsSection } from '@/features/SettingsAgency/model/types/settingsSchema';
-import { getSettingsForm } from '@/features/SettingsAgency/model/selectors/getSettingsForm/getSettingsForm';
+import { Agency, SettingsSection } from '@/features/SettingsSections/model/types/settingsSchema';
+import { getSettingsForm } from '@/features/SettingsSections/model/selectors/getSettingsForm/getSettingsForm';
 
 export const fetchSettingsAgency = createAsyncThunk<
     Agency,
