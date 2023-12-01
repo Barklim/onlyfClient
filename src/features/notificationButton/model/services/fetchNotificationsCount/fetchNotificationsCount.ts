@@ -12,7 +12,7 @@ export const fetchNotificationsCount = createAsyncThunk<
     FetchAccountsListProps,
     ThunkConfig<string>
 >('notifications/count', async (props, thunkApi) => {
-    const { extra, rejectWithValue, getState } = thunkApi;
+    const { extra, rejectWithValue } = thunkApi;
 
     try {
         const url = isJsonModeServer ? '/notificationCount' : '/notification/count';

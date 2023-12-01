@@ -10,20 +10,29 @@ import Switch, { SwitchProps } from '@mui/material/Switch';
 import { useLocalStorage } from '@/app/lib/useLocalStorage';
 import { Theme } from '@/shared/const/theme';
 import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage';
+import {
+    NotificationsSource,
+    NotificationsType,
+    TUserSettingsNotificationsItem,
+} from '@/entities/User/model/types/settings';
 
 interface SwitchMuiProps {
     className?: string;
-    checked?: boolean;
-    onChange?: (checked: any) => void;
+    handleChange: (item: any) => void;
+    defaultChecked?: boolean;
+    type?: NotificationsType;
+    source?: NotificationsSource;
     children?: ReactNode;
 }
 
 export const SwitchMui = ((props: SwitchMuiProps) => {
     const {
         className,
-        checked = false,
-        onChange,
-        children,
+        handleChange,
+        defaultChecked = false,
+        type,
+        source,
+        children
     } = props;
     const { storageTheme } = useLocalStorage();
     const [lsTheme, setLsTheme] = useState<Theme>(localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme || Theme.LIGHT);
@@ -65,7 +74,25 @@ export const SwitchMui = ((props: SwitchMuiProps) => {
     // TODO: smooth animation is lost
     // https://github.com/mui/material-ui/issues/32186
     const IOSSwitch = styled((props: SwitchProps) => (
-        <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
+        <Switch
+            focusVisibleClassName=".Mui-focusVisible"
+            disableRipple
+            inputProps={{ 'aria-label': 'controlled' }}
+            // disabled
+
+            defaultChecked={defaultChecked}
+            onChange={(event) => {
+                const notificationItem = {
+                    type: type,
+                    source: source,
+                    value: event.target.checked
+                } as TUserSettingsNotificationsItem
+
+                handleChange(notificationItem);
+            }}
+
+
+            {...props} />
     ))(({ theme }) => ({
         width: 42,
         height: 26,
@@ -117,11 +144,7 @@ export const SwitchMui = ((props: SwitchMuiProps) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <IOSSwitch
-                checked={checked}
-                onChange={onChange}
-                inputProps={{ 'aria-label': 'controlled' }}
-            />
+            <IOSSwitch />
         </ThemeProvider>
     );
 });

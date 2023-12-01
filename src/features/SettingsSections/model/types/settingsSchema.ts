@@ -1,7 +1,10 @@
+import { NotificationsSettings } from '@/entities/User/model/types/settings';
+
 export interface SettingsSchema {
     settingsSection?: SettingsSection;
     stopWords: StopWordsSectionSchema;
     agencyName: AgencyNameSectionSchema;
+    notificationsLoaders: NotificationsSettings;
 }
 
 export interface StopWordsSectionSchema {

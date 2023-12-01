@@ -8,6 +8,7 @@ export const useFetchNotificationsCount = (userId: string) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
+            // TODO: rerenders
             dispatch(fetchNotificationsCount({ id: userId }));
         }, 10*1000);
 

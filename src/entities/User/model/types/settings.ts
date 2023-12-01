@@ -20,3 +20,11 @@ export type NotificationsSettingsItem = {
 export type TUserSettings = {
     notifications: NotificationsSettings,
 };
+
+export type TUserSettingsNotificationsItem = {
+    type: NotificationsType,
+    source: NotificationsSource,
+    value: boolean
+};
+
+export type TUserSettingsNotifications = Array<TUserSettingsNotificationsItem>;

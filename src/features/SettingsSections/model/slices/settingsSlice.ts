@@ -2,6 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SettingsSchema, SettingsSection, SettingsStopWords } from '../types/settingsSchema';
 import { fetchSettingsAgency } from '@/features/SettingsSections/model/services/fetchSettingsAgency/fetchSettingsAgency';
 import { fetchAgencyData } from '@/features/SettingsSections/model/services/fetchAgency/fetchAgencyData';
+import { fetchSettingsNotifications } from '@/features/SettingsSections/model/fetchSettingsNotifications/fetchSettingsNotifications';
+import { NotificationsType } from '@/entities/User/model/types/settings';
 
 const initialState: SettingsSchema = {
     stopWords: {
@@ -15,6 +17,18 @@ const initialState: SettingsSchema = {
         error: '',
         data: { name: '' },
         form: { name: '' },
+    },
+    notificationsLoaders: {
+        email: {
+            info: false,
+            events: false,
+            comments: false,
+        },
+        push: {
+            info: false,
+            events: false,
+            comments: false,
+        },
     }
 };
 
@@ -123,6 +137,44 @@ export const settingsSlice = createSlice({
                     state.agencyName.isLoading = false;
                     state.agencyName.error = action.payload as string;
                 }
+            })
+
+            .addCase(fetchSettingsNotifications.pending, (state, action) => {
+                    const settingsNotificationItem = action.meta.arg;
+
+                    // console.log('!!! zxzxzxzxzx pending');
+                    // console.log(settingsNotificationItem);
+                    // console.log('!!!');
+
+                    // state.notificationsLoaders.email.info = true;
+                    // if ()
+                    // NotificationsType.PUSH
+                    // NotificationsSource.COMMENTS
+
+                    // if (settingsSection === SettingsSection.STOPWORDS ) {
+                    //     state.stopWords.isLoading = true;
+                    //     state.stopWords.error = '';
+                    // }
+                    // if (settingsSection === SettingsSection.AGENCYNAME ) {
+                    //     state.agencyName.isLoading = true;
+                    //     state.agencyName.error = '';
+                    // }
+                })
+            .addCase(fetchSettingsNotifications.fulfilled, (state, action) => {
+                const settingsNotificationItem = action.meta.arg;
+
+                // console.log('!!! zxzxzxzxzx fulfilled');
+                // console.log(settingsNotificationItem);
+                // console.log('!!!');
+
+                // state.notificationsLoaders.email.info = false;
+            })
+            .addCase(fetchSettingsNotifications.rejected, (state, action) => {
+                const settingsNotificationItem = action.meta.arg;
+
+                // console.log('!!! zxzxzxzxzx rejected');
+                // console.log(settingsNotificationItem);
+                // console.log('!!!');
             });
     },
 });

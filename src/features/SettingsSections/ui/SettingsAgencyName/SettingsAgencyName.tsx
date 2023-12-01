@@ -41,10 +41,7 @@ export const SettingsAgencyName = memo(() => {
         <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
             <Card sx={{ minWidth: 275 }} className={classNames(cls.card, {}, [])}>
                 <CardContent>
-                    <VStack
-                        gap="16"
-                        max
-                    >
+                    <VStack gap="16" max>
                         <Typography variant='h5' color='primary' fontWeight='700'>
                             {t('Название агенства')}
                         </Typography>

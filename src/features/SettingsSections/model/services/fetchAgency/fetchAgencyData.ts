@@ -6,7 +6,7 @@ export const fetchAgencyData = createAsyncThunk<
     Agency,
     void,
     ThunkConfig<string>
-    >('user/fetchUserData', async (nodata, thunkApi) => {
+    >('agency/fetchAgencyData', async (nodata, thunkApi) => {
     const { extra, rejectWithValue } = thunkApi;
 
     try {

@@ -10,3 +10,4 @@ export const getSettingsStopWordsForm = (state: StateSchema) => state.settings?.
 export const getSettingsAgencyNameForm = (state: StateSchema) => state.settings?.agencyName.form;
 export const getStopWordsIsLoading = (state: StateSchema) => state.settings?.stopWords.isLoading;
 export const getAgencyIsLoading = (state: StateSchema) => state.settings?.agencyName.isLoading;
+export const getSettingsNotificationsLoading = (state: StateSchema) => state.settings?.notificationsLoaders;

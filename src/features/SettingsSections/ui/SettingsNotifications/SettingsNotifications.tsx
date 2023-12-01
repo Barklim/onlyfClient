@@ -1,16 +1,12 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { settingsActions, settingsReducer } from '../../model/slices/settingsSlice';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './SettingsNotifications.module.scss';
 import { useSelector } from 'react-redux';
-import {
-    getAgencyIsLoading,
-    getSettingsForm,
-} from '@/features/SettingsSections/model/selectors/getSettingsForm/getSettingsForm';
+import { getSettingsNotificationsLoading } from '@/features/SettingsSections/model/selectors/getSettingsForm/getSettingsForm';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchSettingsAgency } from '@/features/SettingsSections/model/services/fetchSettingsAgency/fetchSettingsAgency';
 import { Switch } from '@/shared/ui/material/Switch';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import Card from '@mui/material/Card';
@@ -23,6 +19,12 @@ import CommentsSvg from '@/shared/assets/icons/settingsComments.svg';
 import EventsSvg from '@/shared/assets/icons/settingsEvents.svg';
 import BellSvg from '@/shared/assets/icons/settingsBell.svg';
 import { Divider } from '@mui/material';
+import {
+    NotificationsSource,
+    NotificationsType,
+    TUserSettingsNotificationsItem,
+} from '@/entities/User/model/types/settings';
+import { fetchSettingsNotifications } from '@/features/SettingsSections/model/fetchSettingsNotifications/fetchSettingsNotifications';
 
 interface NotificationState {
     push: boolean;
@@ -42,9 +44,8 @@ const initialReducers: ReducersList = {
 export const SettingsNotifications = memo(() => {
     const { t } = useTranslation('settings');
     const dispatch = useAppDispatch();
-    const data = useSelector(getSettingsForm);
-    const isLoading = useSelector(getAgencyIsLoading);
     const userSettings = useSelector(getUserSettings);
+    const notificationLoaders = useSelector(getSettingsNotificationsLoading);
 
     const [notificationsState, setNotificationsState] = useState<NotificationsState>({
         comments: {
@@ -61,15 +62,14 @@ export const SettingsNotifications = memo(() => {
         },
     });
 
-    const onChangeSwitch = useCallback((type: keyof NotificationsState, method: keyof NotificationState) => {
-        setNotificationsState((prevState) => ({
-            ...prevState,
-            [type]: {
-                ...prevState[type],
-                [method]: !prevState[type][method],
-            },
-        }));
-    }, []);
+    const onChangeSwitch = useCallback(
+        (settingsItem: TUserSettingsNotificationsItem) => {
+            dispatch(fetchSettingsNotifications([settingsItem]))
+        },
+        [dispatch],
+    );
+
+    const handleChange = (notificationItem: TUserSettingsNotificationsItem) => onChangeSwitch(notificationItem);
 
     const onChangeAgencyName = useCallback(
         (value?: string) => {
@@ -78,9 +78,10 @@ export const SettingsNotifications = memo(() => {
         [dispatch],
     );
 
-    const onSave = useCallback(() => {
-        // dispatch(fetchSettingsAgency());
-    }, [dispatch]);
+    // console.log('!!! render');
+    // console.log(notificationsState);
+    // console.log(notificationLoaders);
+    // console.log('!!!');
 
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
@@ -114,18 +115,31 @@ export const SettingsNotifications = memo(() => {
                                         <Typography color='primary' fontWeight='500' fontSize='14px'>
                                             Push
                                         </Typography>
+                                        {
+                                            notificationLoaders?.push.comments ?
+                                                <Loader /> : null
+                                        }
                                         <Switch
-                                            checked={notificationsState.comments.push}
-                                            onChange={() => onChangeSwitch('comments', 'push')}
+                                            handleChange={handleChange}
+                                            defaultChecked={notificationsState.comments.push}
+                                            source={NotificationsSource.COMMENTS}
+                                            type={NotificationsType.PUSH}
+
                                         />
                                     </HStack>
                                     <HStack gap='16' max justify='end'>
                                         <Typography color='primary' fontWeight='500' fontSize='14px'>
                                             Email
                                         </Typography>
+                                        {
+                                            notificationLoaders?.email.comments ?
+                                                <Loader /> : null
+                                        }
                                         <Switch
-                                            checked={notificationsState.comments.email}
-                                            onChange={() => onChangeSwitch('comments', 'email')}
+                                            handleChange={handleChange}
+                                            defaultChecked={notificationsState.comments.email}
+                                            source={NotificationsSource.COMMENTS}
+                                            type={NotificationsType.EMAIL}
                                         />
                                     </HStack>
                                 </VStack>
@@ -152,18 +166,30 @@ export const SettingsNotifications = memo(() => {
                                         <Typography color='primary' fontWeight='500' fontSize='14px'>
                                             Push
                                         </Typography>
+                                        {
+                                            notificationLoaders?.push.events ?
+                                                <Loader /> : null
+                                        }
                                         <Switch
-                                            checked={notificationsState.events.push}
-                                            onChange={() => onChangeSwitch('events', 'push')}
+                                            handleChange={handleChange}
+                                            defaultChecked={notificationsState.events.push}
+                                            source={NotificationsSource.EVENTS}
+                                            type={NotificationsType.PUSH}
                                         />
                                     </HStack>
                                     <HStack gap='16' max justify='end'>
                                         <Typography color='primary' fontWeight='500' fontSize='14px'>
                                             Email
                                         </Typography>
+                                        {
+                                            notificationLoaders?.email.events ?
+                                                <Loader /> : null
+                                        }
                                         <Switch
-                                            checked={notificationsState.events.email}
-                                            onChange={() => onChangeSwitch('events', 'email')}
+                                            handleChange={handleChange}
+                                            defaultChecked={notificationsState.events.email}
+                                            source={NotificationsSource.EVENTS}
+                                            type={NotificationsType.EMAIL}
                                         />
                                     </HStack>
                                 </VStack>
@@ -190,18 +216,34 @@ export const SettingsNotifications = memo(() => {
                                         <Typography color='primary' fontWeight='500' fontSize='14px'>
                                             Push
                                         </Typography>
+                                        {
+                                            notificationLoaders?.push.info ?
+                                                <Loader /> : null
+                                        }
                                         <Switch
-                                            checked={notificationsState.information.push}
-                                            onChange={() => onChangeSwitch('information', 'push')}
+                                            handleChange={handleChange}
+                                            defaultChecked={notificationsState.information.push}
+                                            source={NotificationsSource.INFO}
+                                            type={NotificationsType.PUSH}
                                         />
                                     </HStack>
                                     <HStack gap='16' max justify='end'>
+                                        {/*<Typography color='primary' fontWeight='500' fontSize='14px'>*/}
+                                        {/*    Email*/}
+                                        {/*</Typography>*/}
+
                                         <Typography color='primary' fontWeight='500' fontSize='14px'>
-                                            Email
+                                            {!notificationLoaders?.email.info ?
+                                                'Email' :
+                                                '...Loading'
+                                            }
                                         </Typography>
+
                                         <Switch
-                                            checked={notificationsState.information.email}
-                                            onChange={() => onChangeSwitch('information', 'email')}
+                                            handleChange={handleChange}
+                                            defaultChecked={notificationsState.information.email}
+                                            source={NotificationsSource.INFO}
+                                            type={NotificationsType.EMAIL}
                                             data-testid="Settings.switchInfoEmail"
                                         />
                                     </HStack>
@@ -210,7 +252,6 @@ export const SettingsNotifications = memo(() => {
                         </div>
 
                         <Divider className={cls.divider}/>
-                        {/*<Loader />*/}
                     </VStack>
                 </CardContent>
             </Card>

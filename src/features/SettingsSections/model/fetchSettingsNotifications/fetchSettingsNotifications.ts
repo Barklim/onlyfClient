@@ -1,31 +1,24 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { isJsonModeServer } from '@/shared/const/global';
-import { Agency, SettingsSection } from '@/features/SettingsSections/model/types/settingsSchema';
+import { Agency } from '@/features/SettingsSections/model/types/settingsSchema';
 import { getSettingsForm } from '@/features/SettingsSections/model/selectors/getSettingsForm/getSettingsForm';
+import { TUserSettingsNotifications } from '@/entities/User/model/types/settings';
+import { User } from '@/entities/User';
 
-export const fetchSettingsAgency = createAsyncThunk<
-    Agency,
-    SettingsSection,
+export const fetchSettingsNotifications = createAsyncThunk<
+    User,
+    TUserSettingsNotifications,
     ThunkConfig<string>
-    >('settings/fetchSettingsAgency', async (settingsSection, thunkApi) => {
-    const { extra, rejectWithValue, getState } = thunkApi;
-
-    const formData = getSettingsForm(getState());
-    const preparedData = {
-        name: formData?.name,
-        stopWords: formData?.stopWords
-    }
+    >('settings/fetchSettingsNotifications', async (userSettingsNotifications, thunkApi) => {
+    const { extra, rejectWithValue } = thunkApi;
 
     try {
-        const url = isJsonModeServer ? '/agency' : '/agency';
-        const response = await extra.api.patch<Agency>(url, preparedData);
+        const url = isJsonModeServer ? '/users/settings/notifications' : '/users/settings/notifications';
+        const response = await extra.api.post<User>(url, userSettingsNotifications);
         if (!response.data) {
             throw new Error();
         }
-
-        // @ts-ignore
-        response.data.settingsSection = settingsSection;
 
         return response.data;
     } catch (e) {
