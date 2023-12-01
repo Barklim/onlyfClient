@@ -15,9 +15,13 @@
   "Notifications": "Notifications",
   "notifications subtext": "Configure ways to receive notifications",
   "notifications comments title": "Comments",
-  "notifications comments subtext": "New comments and messages in your events and posts by experts you follow.",
+  "notifications comments subtext": "New comments and messages in your agency and posts by masters in your agency.",
   "notifications events title": "Events",
-  "notifications events subtext": "Information about new events and important updates to the existing ones: changing the time, confirming payment and receiving links to video meetings.",
+  "notifications events subtext": "Information about new events and important updates to the existing ones: violations by time answering, violations by stop words and confirming payment.",
   "notifications information title": "Information",
-  "notifications information subtext": "Information about interesting events, webinars and courses as well as important platform updates."
+  "notifications information subtext": "Information about interesting events as well as important platform updates.",
+  "modal notifications title": "Are you sure that you want to disable notifications?",
+  "modal notifications subtext": "You wont receive any notifications about new events, violations or some agency messages. Are you sure?",
+  "disable": "Disable",
+  "no": "No"
 }
