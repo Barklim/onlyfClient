@@ -5,4 +5,5 @@ export interface JsonSettings {
     isFirstVisit?: boolean;
     isArticlesPageWasOpened?: boolean;
     isAccountsPageWasOpened?: boolean;
+    isCookieDefined?: boolean;
 }

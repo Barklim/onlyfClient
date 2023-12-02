@@ -72,5 +72,11 @@
     "Читать далее...": "Read more...",
     "Админка": "AdminUI",
     "Настройки": "Settings",
-    "Сортировать по:": "Sort by:"
+    "Сортировать по:": "Sort by:",
+    "Cookie modal title": "Our use of cookies",
+    "Cookie modal text1": "We use necessary cookies to make our site work. You may disable these by changing your browser settings, but this may affect how the website functions.",
+    "Cookie modal text2": "We‘d also like to set analytics cookies that help us make improvements by measuring how you use the site. These will be set only if you accept.",
+    "Cookie modal text3": "For more detailed information about the cookies we use, see our",
+    "Accept necessary": "Accept necessary",
+    "Accept all": "Accept all"
 }

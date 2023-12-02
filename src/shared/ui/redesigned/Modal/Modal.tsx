@@ -13,12 +13,23 @@ interface ModalProps {
     isOpen?: boolean;
     onClose?: () => void;
     lazy?: boolean;
+    position?: Position;
+    width?: string;
 }
 
 const ANIMATION_DELAY = 300;
 
+export type Position = 'rightBottom' | 'right' | 'bottom' | 'none';
+
+const positionsClasses: Record<Position, string> = {
+    rightBottom: cls.rightBottom,
+    right: cls.rightBottom,
+    bottom: cls.rightBottom,
+    none: ''
+};
+
 export const Modal = (props: ModalProps) => {
-    const { className, children, isOpen, onClose, lazy } = props;
+    const { className, children, isOpen, onClose, lazy, position = 'none', width } = props;
 
     const { close, isClosing, isMounted } = useModal({
         animationDelay: ANIMATION_DELAY,
@@ -27,6 +38,11 @@ export const Modal = (props: ModalProps) => {
     });
 
     const { theme } = useTheme();
+
+    const classesContent = [
+        className,
+        positionsClasses[position],
+    ];
 
     const mods: Mods = {
         [cls.opened]: isOpen,
@@ -52,7 +68,7 @@ export const Modal = (props: ModalProps) => {
                 ])}
             >
                 <Overlay onClick={close} />
-                <div className={cls.content}>{children}</div>
+                <div className={classNames(cls.content, {}, classesContent)} style={{ width: width}} >{children}</div>
             </div>
         </Portal>
     );

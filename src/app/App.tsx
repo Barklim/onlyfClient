@@ -15,6 +15,7 @@ import { useAppToolbar } from './lib/useAppToolbar';
 import { withTheme } from './providers/ThemeProvider/ui/withTheme';
 import { LOCAL_STORAGE_LAST_DESIGN_KEY } from '@/shared/const/localstorage';
 import { CssBaseline } from '@mui/material';
+import { CookieChooser } from '@/features/cookieChooser';
 
 const App = memo(() => {
     const { theme } = useTheme();
@@ -75,6 +76,7 @@ const App = memo(() => {
                             <Sidebar collapsed={collapsed} onToggle={onToggle} />
                             <AppRouter />
                         </div>
+                        <CookieChooser />
                     </Suspense>
                 </div>
             }

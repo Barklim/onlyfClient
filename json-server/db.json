@@ -988,7 +988,8 @@
       "jsonSettings": {
         "isArticlesPageWasOpened": false,
         "theme": "app_orange_theme",
-        "isAccountsPageWasOpened": true
+        "isAccountsPageWasOpened": true,
+        "isCookieDefined": true
       },
       "agencyId": 1,
       "invitedTo": null,
@@ -1013,7 +1014,8 @@
       },
       "isArticlesPageWasOpened": false,
       "theme": "app_orange_theme",
-      "isAccountsPageWasOpened": true
+      "isAccountsPageWasOpened": true,
+      "isCookieDefined": true
     },
     {
       "id": "2",
@@ -1034,7 +1036,8 @@
       "jsonSettings": {
         "isArticlesPageWasOpened": false,
         "theme": "app_orange_theme",
-        "isAccountsPageWasOpened": true
+        "isAccountsPageWasOpened": true,
+        "isCookieDefined": true
       },
       "agencyId": 1,
       "invitedTo": null,
@@ -1076,7 +1079,8 @@
       "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
       "jsonSettings": {
         "isArticlesPageWasOpened": false,
-        "isAccountsPageWasOpened": true
+        "isAccountsPageWasOpened": true,
+        "isCookieDefined": true
       },
       "agencyId": 1,
       "invitedTo": null,
@@ -1324,7 +1328,8 @@
           }
         }
       },
-      "isAccountsPageWasOpened": true
+      "isAccountsPageWasOpened": true,
+      "isCookieDefined": true
     },
     {
       "id": "10",
@@ -1382,7 +1387,8 @@
       "jsonSettings": {
         "isArticlesPageWasOpened": false,
         "theme": "app_orange_theme",
-        "isAccountsPageWasOpened": true
+        "isAccountsPageWasOpened": true,
+        "isCookieDefined": true
       },
       "agencyId": 1,
       "invitedTo": null,

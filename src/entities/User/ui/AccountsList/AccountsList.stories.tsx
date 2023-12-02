@@ -36,7 +36,8 @@ const account = {
     jsonSettings: {
         "isArticlesPageWasOpened": true,
         "theme": "app_orange_theme",
-        "isAccountsPageWasOpened": true
+        "isAccountsPageWasOpened": true,
+        "isCookieDefined": true
     }
 
 } as User;
