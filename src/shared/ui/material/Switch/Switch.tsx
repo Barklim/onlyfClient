@@ -11,15 +11,16 @@ import { useLocalStorage } from '@/app/lib/useLocalStorage';
 import { Theme } from '@/shared/const/theme';
 import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage';
 import {
+    CookiesType,
     NotificationsSource,
-    NotificationsType,
+    NotificationsType, TUserSettingsCookiesItem,
     TUserSettingsNotificationsItem,
 } from '@/entities/User/model/types/settings';
 
 interface SwitchMuiProps {
     className?: string;
-    defaultChecked?: boolean;
-    type?: NotificationsType;
+    disabled?: boolean;
+    type?: NotificationsType | CookiesType;
     source?: NotificationsSource;
     handleChange?: (item: any) => void;
     checked?: boolean;
@@ -28,32 +29,34 @@ interface SwitchMuiProps {
 }
 
 interface SwitchPropsExtended extends SwitchProps {
+    disabled?: boolean;
     // TODO: Additional props
-    type?: NotificationsType;
+    type?: NotificationsType | CookiesType;
     source?: NotificationsSource;
     handleChange?: any;
-    checked?: any;
+    checked?: boolean;
     mainColor?: string;
 }
 
 // DONE: smooth animation is lost
 // https://github.com/mui/material-ui/issues/32186
-const IOSSwitch = styled(({ checked, handleChange, source, type, ...props }: SwitchPropsExtended) => (
+const IOSSwitch = styled(({ disabled, checked, handleChange, source, type, ...props }: SwitchPropsExtended) => (
     <Switch
         focusVisibleClassName=".Mui-focusVisible"
         disableRipple
         inputProps={{ 'aria-label': 'controlled' }}
-        //  TODO: disabled
+        disabled={disabled}
         onChange={(event) => {
             const notificationItem = {
                 type: type,
                 source: source,
                 value: event.target.checked
-            } as TUserSettingsNotificationsItem
+            } as TUserSettingsNotificationsItem | TUserSettingsCookiesItem
 
             handleChange(notificationItem);
         }}
         checked={checked}
+        className={ disabled ? cls.disabled : undefined}
         {...props} />
 ))(({ theme, mainColor }) => ({
     width: 42,
@@ -73,6 +76,8 @@ const IOSSwitch = styled(({ checked, handleChange, source, type, ...props }: Swi
             },
             '&.Mui-disabled + .MuiSwitch-track': {
                 opacity: 0.5,
+                // TODO: no-drop when unchecked
+                cursor: 'no-drop'
             },
         },
         '&.Mui-focusVisible .MuiSwitch-thumb': {
@@ -107,6 +112,7 @@ const IOSSwitch = styled(({ checked, handleChange, source, type, ...props }: Swi
 export const SwitchMui = ((props: SwitchMuiProps) => {
     const {
         className,
+        disabled,
         type,
         source,
         handleChange,
@@ -152,6 +158,7 @@ export const SwitchMui = ((props: SwitchMuiProps) => {
     return (
         <ThemeProvider theme={theme}>
             <IOSSwitch
+                disabled={disabled}
                 checked={checked}
                 handleChange={handleChange}
                 source={source}

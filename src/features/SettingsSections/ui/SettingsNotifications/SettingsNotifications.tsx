@@ -169,10 +169,6 @@ export const SettingsNotifications = memo(() => {
                                         <Typography color='primary' fontWeight='500' fontSize='14px'>
                                             Push
                                         </Typography>
-                                        {
-                                            notificationLoaders?.push.comments ?
-                                                <Loader /> : null
-                                        }
 
                                         <Switch
                                             checked={notificationsState.comments.push}
@@ -184,10 +180,6 @@ export const SettingsNotifications = memo(() => {
                                         <Typography color='primary' fontWeight='500' fontSize='14px'>
                                             Email
                                         </Typography>
-                                        {
-                                            notificationLoaders?.email.comments ?
-                                                <Loader /> : null
-                                        }
 
                                         <Switch
                                             checked={notificationsState.comments.email}
@@ -219,10 +211,6 @@ export const SettingsNotifications = memo(() => {
                                         <Typography color='primary' fontWeight='500' fontSize='14px'>
                                             Push
                                         </Typography>
-                                        {
-                                            notificationLoaders?.push.events ?
-                                                <Loader /> : null
-                                        }
 
                                         <Switch
                                             checked={notificationsState.events.push}
@@ -234,10 +222,6 @@ export const SettingsNotifications = memo(() => {
                                         <Typography color='primary' fontWeight='500' fontSize='14px'>
                                             Email
                                         </Typography>
-                                        {
-                                            notificationLoaders?.email.events ?
-                                                <Loader /> : null
-                                        }
 
                                         <Switch
                                             checked={notificationsState.events.email}
@@ -269,10 +253,6 @@ export const SettingsNotifications = memo(() => {
                                         <Typography color='primary' fontWeight='500' fontSize='14px'>
                                             Push
                                         </Typography>
-                                        {
-                                            notificationLoaders?.push.info ?
-                                                <Loader /> : null
-                                        }
 
                                         <Switch
                                             checked={notificationsState.information.push}
@@ -281,15 +261,8 @@ export const SettingsNotifications = memo(() => {
                                             type={NotificationsType.PUSH} />
                                     </HStack>
                                     <HStack gap='16' max justify='end'>
-                                        {/*<Typography color='primary' fontWeight='500' fontSize='14px'>*/}
-                                        {/*    Email*/}
-                                        {/*</Typography>*/}
-
                                         <Typography color='primary' fontWeight='500' fontSize='14px'>
-                                            {!notificationLoaders?.email.info ?
-                                                'Email' :
-                                                '...Loading'
-                                            }
+                                            Email
                                         </Typography>
 
                                         <Switch
@@ -302,6 +275,12 @@ export const SettingsNotifications = memo(() => {
                                 </VStack>
                             </HStack>
                         </div>
+
+                        {/* TOOD: loaders for switchers? */}
+                        {/*{!notificationLoaders?.email.info ?*/}
+                        {/*    'Email' :*/}
+                        {/*    '...Loading'*/}
+                        {/*}*/}
 
                         <Divider className={cls.divider}/>
                     </VStack>

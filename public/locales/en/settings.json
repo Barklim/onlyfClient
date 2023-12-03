@@ -23,5 +23,10 @@
   "modal notifications title": "Are you sure that you want to disable notifications?",
   "modal notifications subtext": "You wont receive any notifications about new events, violations or some agency messages. Are you sure?",
   "disable": "Disable",
-  "no": "No"
+  "no": "No",
+  "Cookies": "Cookies",
+  "necessary cookies title": "Necessary cookies",
+  "necessary cookies subtext": "We use necessary cookies to make our site work. You may disable these by changing your browser settings, but this may affect how the website functions.",
+  "analytical cookies title": "Analytical cookies",
+  "analytical cookies subtext": "We use analytics cookies that help us make improvements by measuring how you use the site and personalize the site for you. These will be set only if you accept."
 }

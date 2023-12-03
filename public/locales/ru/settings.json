@@ -15,7 +15,7 @@
   "Notifications": "Уведомления",
   "notifications subtext": "Настройте способы получения уведомлений",
   "notifications comments title": "Комментарии",
-  "notifications comments subtext": "Новые комментарии и сообщения в вашем агентстве и посты мастеров в вашем агентстве.",
+  "notifications comments subtext": "Новые комментарии и сообщения в вашем агентстве и посты в вашем агентстве.",
   "notifications events title": "События",
   "notifications events subtext": "Информация о новых событиях и важных обновлениях существующих: нарушения по времени ответа, нарушения по стоп-словам и подтверждению оплаты.",
   "notifications information title": "Информация",
@@ -23,5 +23,10 @@
   "modal notifications title": "Вы уверены, что хотите отключить уведомления?",
   "modal notifications subtext": "Вы не будете получать никаких уведомлений о новых событиях, нарушениях или сообщениях агентства. Вы уверены?",
   "disable": "Запретить",
-  "no": "Отмена"
+  "no": "Отмена",
+  "Cookies": "Cookies",
+  "necessary cookies title": "Necessary cookies",
+  "necessary cookies subtext": "Мы используем необходимые файлы cookie для работы нашего сайта. Вы можете отключить их, изменив настройки браузера, но это может повлиять на работу веб-сайта.",
+  "analytical cookies title": "Analytical cookies",
+  "analytical cookies subtext": "Мы используем аналитические файлы cookie, которые помогают нам вносить улучшения, измеряя, как вы используете сайт, и персонализируя его для вас. Они будут установлены только в том случае, если вы примете их."
 }

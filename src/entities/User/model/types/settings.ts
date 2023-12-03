@@ -28,3 +28,13 @@ export type TUserSettingsNotificationsItem = {
 };
 
 export type TUserSettingsNotifications = Array<TUserSettingsNotificationsItem>;
+
+export enum CookiesType {
+    ANALYTICAL = 'analytical',
+    NECESSARY = 'necessary',
+}
+
+export type TUserSettingsCookiesItem = {
+    type: CookiesType,
+    value: boolean
+};

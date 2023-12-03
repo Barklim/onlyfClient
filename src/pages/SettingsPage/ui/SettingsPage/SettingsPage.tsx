@@ -4,7 +4,7 @@ import { Page } from '@/widgets/Page';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { UiDesignSwitcher } from '@/features/uiDesignSwitcher';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { SettingsStopWords, SettingsAgencyName, SettingsNotifications } from '@/features/SettingsSections';
+import { SettingsStopWords, SettingsAgencyName, SettingsNotifications, SettingsCookies } from '@/features/SettingsSections';
 import { useSelector } from 'react-redux';
 import { getUserAuthData, isUserAdmin } from '@/entities/User';
 import { Chip, Divider } from '@mui/material';
@@ -47,7 +47,10 @@ const SettingsPage = memo((props: SettingsPageProps) => {
                     <Chip variant="outlined" label={t('Настройки приложения')} />
                 </Divider>
                 <UiDesignSwitcher />
-                {authData ? <SettingsNotifications /> : null}
+                {authData ? <>
+                    <SettingsNotifications />
+                    <SettingsCookies />
+                </> : null}
             </VStack>
         </Page>
     );
