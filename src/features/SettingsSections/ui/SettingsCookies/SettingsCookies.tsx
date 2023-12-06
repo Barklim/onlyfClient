@@ -45,8 +45,8 @@ export const SettingsCookies = memo(() => {
 
                         <div className={cls.settings__article}>
                             <HStack align='start' gap='4' justify='between'>
-                                <VStack gap='8'>
-                                    <HStack gap='8' max justify='between'>
+                                <VStack gap='8' max>
+                                    <HStack gap='8' justify='between' max>
                                         <Typography color='primary' fontWeight='700' fontSize='14px'>
                                             {t('necessary cookies title')}
                                         </Typography>
@@ -67,7 +67,7 @@ export const SettingsCookies = memo(() => {
 
                         <div className={cls.settings__article}>
                             <HStack align='start' gap='4' justify='between'>
-                                <VStack gap='8'>
+                                <VStack gap='8' max>
                                     <HStack gap='8'max justify='between'>
                                         <Typography color='primary' fontWeight='700' fontSize='14px'>
                                             {t('analytical cookies title')}

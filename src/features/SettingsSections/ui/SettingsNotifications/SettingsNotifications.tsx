@@ -24,7 +24,7 @@ import {
     NotificationsType,
     TUserSettingsNotificationsItem,
 } from '@/entities/User/model/types/settings';
-import { fetchSettingsNotifications } from '@/features/SettingsSections/model/fetchSettingsNotifications/fetchSettingsNotifications';
+import { fetchSettingsNotifications } from '@/features/SettingsSections/model/services/fetchSettingsNotifications/fetchSettingsNotifications';
 import { Modal } from '@/shared/ui/redesigned/Modal';
 
 interface NotificationState {

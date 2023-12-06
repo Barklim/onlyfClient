@@ -1,4 +1,5 @@
 import { NotificationsSettings } from '@/entities/User/model/types/settings';
+import { Theme } from '@/shared/const/theme';
 
 export interface SettingsSchema {
     settingsSection?: SettingsSection;
@@ -32,6 +33,19 @@ export interface AgencyName {
 export interface SettingsStopWords {
     stopWords?: string;
     name?: string;
+}
+
+export type TUserFeatures = {
+    [key: string]: boolean;
+};
+
+export interface UpdateUserDto {
+    isVisible?: boolean;
+    isAccountsPageWasOpened?: boolean;
+    isCookieDefined?: boolean;
+    isArticlesPageWasOpened?: boolean;
+    theme?: Theme;
+    features?: TUserFeatures;
 }
 
 export interface Agency {

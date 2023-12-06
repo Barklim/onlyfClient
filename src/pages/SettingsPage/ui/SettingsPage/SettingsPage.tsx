@@ -12,6 +12,7 @@ import cls from './SettingsPage.module.scss';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { fetchAgencyData } from '@/features/SettingsSections/model/services/fetchAgency/fetchAgencyData';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import SettingsVisible from '@/features/SettingsSections/ui/SettingsVisible/SettingsVisible';
 
 interface SettingsPageProps {
     className?: string;
@@ -50,6 +51,7 @@ const SettingsPage = memo((props: SettingsPageProps) => {
                 {authData ? <>
                     <SettingsNotifications />
                     <SettingsCookies />
+                    <SettingsVisible />
                 </> : null}
             </VStack>
         </Page>

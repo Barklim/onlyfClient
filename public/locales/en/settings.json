@@ -28,5 +28,13 @@
   "necessary cookies title": "Necessary cookies",
   "necessary cookies subtext": "We use necessary cookies to make our site work. You may disable these by changing your browser settings, but this may affect how the website functions.",
   "analytical cookies title": "Analytical cookies",
-  "analytical cookies subtext": "We use analytics cookies that help us make improvements by measuring how you use the site and personalize the site for you. These will be set only if you accept."
+  "analytical cookies subtext": "We use analytics cookies that help us make improvements by measuring how you use the site and personalize the site for you. These will be set only if you accept.",
+  "Visibility": "Visibility",
+  "Hide account": "Hide account",
+  "visibility subtext": "Your account will not appear on the model search page for agencies.",
+  "Delete account": "Delete account",
+  "delete subtext": "Your account will be permanently deleted.",
+  "delete": "delete",
+  "modal delete title": "Delete account",
+  "modal delete subtext": "Are you sure that you want to delete account?"
 }
