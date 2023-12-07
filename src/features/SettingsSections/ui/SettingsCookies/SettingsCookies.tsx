@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { settingsActions, settingsReducer } from '../../model/slices/settingsSlice';
@@ -12,6 +12,7 @@ import { Typography } from '@/shared/ui/material/Typography';
 import { Divider } from '@mui/material';
 import { CookiesType } from '@/entities/User/model/types/settings';
 import { COOKIE_ANALYTICAL_LOCALSTORAGE_KEY, COOKIE_NECESSARY_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import { useToolbarRefs } from '@/app/providers/ToolbarProvider';
 
 const initialReducers: ReducersList = {
     settings: settingsReducer,
@@ -21,6 +22,12 @@ export const SettingsCookies = memo(() => {
     const { t } = useTranslation('settings');
     const [cookieNec, setCookieNec] = useState<boolean>(localStorage.getItem(COOKIE_NECESSARY_LOCALSTORAGE_KEY) === 'true');
     const [cookieAn, setCookieAn] = useState<boolean>(localStorage.getItem(COOKIE_ANALYTICAL_LOCALSTORAGE_KEY) === 'true');
+    const { cookiesRef } = useToolbarRefs();
+    const ref = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        cookiesRef.current = ref.current;
+    }, [cookiesRef]);
 
     const handleChange = (settingsItem: any) => {
         if (settingsItem.type === CookiesType.NECESSARY) {
@@ -35,8 +42,7 @@ export const SettingsCookies = memo(() => {
 
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
-
-            <Card sx={{ minWidth: 275 }} className={classNames(cls.card, {}, [])}>
+            <Card ref={ref} sx={{ minWidth: 275 }} className={classNames(cls.fullWidth, {}, [])}>
                 <CardContent>
                     <VStack max>
                         <Typography variant='h5' color='primary' fontWeight='700'>
@@ -63,7 +69,7 @@ export const SettingsCookies = memo(() => {
                             </HStack>
                         </div>
 
-                        <Divider className={cls.divider}/>
+                        <Divider className={cls.fullWidth}/>
 
                         <div className={cls.settings__article}>
                             <HStack align='start' gap='4' justify='between'>
@@ -84,7 +90,7 @@ export const SettingsCookies = memo(() => {
                             </HStack>
                         </div>
 
-                        <Divider className={cls.divider}/>
+                        <Divider className={cls.fullWidth}/>
                     </VStack>
                 </CardContent>
             </Card>

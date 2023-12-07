@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
 import { Page } from '@/widgets/Page';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { UiDesignSwitcher } from '@/features/uiDesignSwitcher';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { SettingsStopWords, SettingsAgencyName, SettingsNotifications, SettingsCookies } from '@/features/SettingsSections';
@@ -13,6 +13,7 @@ import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitial
 import { fetchAgencyData } from '@/features/SettingsSections/model/services/fetchAgency/fetchAgencyData';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import SettingsVisible from '@/features/SettingsSections/ui/SettingsVisible/SettingsVisible';
+import { ToolbarSettings } from '@/features/toolbar';
 
 interface SettingsPageProps {
     className?: string;
@@ -31,29 +32,31 @@ const SettingsPage = memo((props: SettingsPageProps) => {
 
     return (
         <Page>
-            <VStack gap="16">
-                {isAdmin ?
-                    <>
-                        <Divider textAlign="left" className={cls.divider}>
-                            <Chip variant="outlined" label={t('Настройки агенства')} />
-                        </Divider>
-                        <SettingsStopWords />
+            <HStack align='start'>
+                <VStack gap="16" className={cls.content}>
+                    {isAdmin ?
+                        <>
+                            <Divider textAlign="left" className={cls.fullWidth}>
+                                <Chip variant="outlined" label={t('Настройки агенства')} />
+                            </Divider>
+                            <SettingsStopWords />
+                            <SettingsAgencyName />
+                        </>
+                        : null
+                    }
 
-                        <SettingsAgencyName />
-                    </>
-                    : null
-                }
-
-                <Divider textAlign="left" className={cls.divider}>
-                    <Chip variant="outlined" label={t('Настройки приложения')} />
-                </Divider>
-                <UiDesignSwitcher />
-                {authData ? <>
-                    <SettingsNotifications />
-                    <SettingsCookies />
-                    <SettingsVisible />
-                </> : null}
-            </VStack>
+                    <Divider textAlign="left" className={cls.fullWidth}>
+                        <Chip variant="outlined" label={t('Настройки приложения')} />
+                    </Divider>
+                    <UiDesignSwitcher />
+                    {authData ? <>
+                        <SettingsNotifications />
+                        <SettingsCookies />
+                        <SettingsVisible />
+                    </> : null}
+                </VStack>
+                <ToolbarSettings className={cls.toolbar} />
+            </HStack>
         </Page>
     );
 });

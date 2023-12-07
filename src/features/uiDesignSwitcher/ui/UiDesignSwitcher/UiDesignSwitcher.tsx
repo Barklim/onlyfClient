@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import React, { memo, useMemo, useState } from 'react';
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { Text } from '@/shared/ui/redesigned/Text';
@@ -18,6 +18,7 @@ import { Maintenance } from '@/shared/ui/material/Maintenance';
 import { Select as SelectMui } from '@/shared/ui/material/Select';
 import { SelectOption } from '@/shared/ui/deprecated/Select';
 import { SortOrder } from '@/shared/types/sort';
+import { useToolbarRefs } from '@/app/providers/ToolbarProvider';
 
 interface UiDesignSwitcherProps {
     className?: string;
@@ -31,6 +32,12 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
     const authData = useSelector(getUserAuthData);
     const [isLoading, setIsLoading] = useState(false);
     const forceUpdate = useForceUpdate();
+    const { designSwitcherRef } = useToolbarRefs();
+    const ref = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        designSwitcherRef.current = ref.current;
+    }, [designSwitcherRef]);
 
     type InterfaceModeOption = 'new' | 'old';
 
@@ -65,7 +72,7 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
     };
 
     return (
-        <Card sx={{ minWidth: 275 }} className={classNames(cls.card, {}, [])}>
+        <Card ref={ref} sx={{ minWidth: 275 }} className={classNames(cls.fullWidth, {}, [])}>
             <CardContent>
                 <VStack
                     gap="16"

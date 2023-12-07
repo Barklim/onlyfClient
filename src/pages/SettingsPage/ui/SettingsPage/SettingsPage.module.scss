@@ -1,3 +1,11 @@
-.divider {
+.fullWidth {
+  width: 100%;
+}
+
+.content {
   width: calc(100% - 330px);
+}
+
+.toolbar {
+  width: 330px;
 }

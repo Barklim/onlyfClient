@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { settingsActions, settingsReducer } from '../../model/slices/settingsSlice';
@@ -15,6 +15,7 @@ import { VStack } from '@/shared/ui/redesigned/Stack';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Typography } from '@/shared/ui/material/Typography';
+import { useToolbarRefs } from '@/app/providers/ToolbarProvider';
 
 const initialReducers: ReducersList = {
     settings: settingsReducer,
@@ -25,6 +26,12 @@ export const SettingsStopWords = memo(() => {
     const dispatch = useAppDispatch();
     const data = useSelector(getSettingsStopWordsForm);
     const isLoading = useSelector(getStopWordsIsLoading);
+    const { stopWordsRef } = useToolbarRefs();
+    const ref = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        stopWordsRef.current = ref.current;
+    }, [stopWordsRef]);
 
     const onChangeStopWords = useCallback(
         (value?: string) => {
@@ -39,7 +46,7 @@ export const SettingsStopWords = memo(() => {
 
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
-            <Card sx={{ minWidth: 275 }} className={classNames(cls.card, {}, [])}>
+            <Card ref={ref} sx={{ minWidth: 275 }} className={classNames(cls.fullWidth, {}, [])} >
                 <CardContent>
                     <VStack
                         gap="16"

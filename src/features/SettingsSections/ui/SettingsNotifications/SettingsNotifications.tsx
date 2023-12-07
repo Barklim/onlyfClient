@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { settingsActions, settingsReducer } from '../../model/slices/settingsSlice';
@@ -26,6 +26,7 @@ import {
 } from '@/entities/User/model/types/settings';
 import { fetchSettingsNotifications } from '@/features/SettingsSections/model/services/fetchSettingsNotifications/fetchSettingsNotifications';
 import { Modal } from '@/shared/ui/redesigned/Modal';
+import { useToolbarRefs } from '@/app/providers/ToolbarProvider';
 
 interface NotificationState {
     push: boolean;
@@ -49,6 +50,12 @@ export const SettingsNotifications = memo(() => {
     const userSettings = useSelector(getUserSettings);
     const notificationLoaders = useSelector(getSettingsNotificationsLoading);
     const [currentNotification, setCurrentNotification] = useState({} as TUserSettingsNotificationsItem);
+    const { notificationsRef } = useToolbarRefs();
+    const ref = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        notificationsRef.current = ref.current;
+    }, [notificationsRef]);
 
     const [notificationsState, setNotificationsState] = useState<NotificationsState>({
         comments: {
@@ -141,7 +148,7 @@ export const SettingsNotifications = memo(() => {
                 </VStack>
             </Modal>
 
-            <Card sx={{ minWidth: 275 }} className={classNames(cls.card, {}, [])}>
+            <Card ref={ref} sx={{ minWidth: 275 }} className={classNames(cls.fullWidth, {}, [])}>
                 <CardContent>
                     <VStack max>
                         <Typography variant='h5' color='primary' fontWeight='700'>
@@ -191,7 +198,7 @@ export const SettingsNotifications = memo(() => {
                             </HStack>
                         </div>
 
-                        <Divider className={cls.divider}/>
+                        <Divider className={cls.fullWidth}/>
 
                         <div className={cls.settings__article}>
                             <HStack align='start' gap='4' justify='between'>
@@ -233,7 +240,7 @@ export const SettingsNotifications = memo(() => {
                             </HStack>
                         </div>
 
-                        <Divider className={cls.divider}/>
+                        <Divider className={cls.fullWidth}/>
 
                         <div className={cls.settings__article}>
                             <HStack align='start' gap='4' justify='between'>
@@ -282,7 +289,7 @@ export const SettingsNotifications = memo(() => {
                         {/*    '...Loading'*/}
                         {/*}*/}
 
-                        <Divider className={cls.divider}/>
+                        <Divider className={cls.fullWidth}/>
                     </VStack>
                 </CardContent>
             </Card>

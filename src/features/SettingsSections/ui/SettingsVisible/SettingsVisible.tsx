@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { settingsActions, settingsReducer } from '../../model/slices/settingsSlice';
@@ -18,6 +18,7 @@ import { UpdateUserDto } from '@/features/SettingsSections/model/types/settingsS
 import { Modal } from '@/shared/ui/redesigned/Modal';
 import { fetchDelete } from '@/features/SettingsSections/model/services/fetchDelete/fetchDelete';
 import { useNavigate } from 'react-router-dom';
+import { useToolbarRefs } from '@/app/providers/ToolbarProvider';
 
 const initialReducers: ReducersList = {
     settings: settingsReducer,
@@ -31,6 +32,12 @@ export const SettingsVisible = memo(() => {
     const [isHidden, setVisibility] = useState<boolean>(!settingsIsVisible);
     const [isModalOpen, setModalOpen] = useState(false);
     const navigate = useNavigate();
+    const { visibleRef } = useToolbarRefs();
+    const ref = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        visibleRef.current = ref.current;
+    }, [visibleRef]);
 
     const handleChange = (settingsItem: any) => {
         setVisibility(settingsItem.value)
@@ -94,7 +101,7 @@ export const SettingsVisible = memo(() => {
                 </VStack>
             </Modal>
 
-            <Card sx={{ minWidth: 275 }} className={classNames(cls.card, {}, [])}>
+            <Card ref={ref} sx={{ minWidth: 275 }} className={classNames(cls.fullWidth, {}, [])}>
                 <CardContent>
                     <VStack max>
                         <Typography variant='h5' color='primary' fontWeight='700'>
@@ -120,7 +127,7 @@ export const SettingsVisible = memo(() => {
                             </HStack>
                         </div>
 
-                        <Divider className={cls.divider}/>
+                        <Divider className={cls.fullWidth}/>
 
                         <div className={cls.settings__article}>
                             <VStack gap='8' max>
