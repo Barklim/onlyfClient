@@ -8,8 +8,6 @@
 
 ## TODO
 
-- добавить фичу на странице пользователей последнюю карточку, 
-  которая создает пользователей
 - jsdoc
 - check redux normalization
 - roadmap for progress
