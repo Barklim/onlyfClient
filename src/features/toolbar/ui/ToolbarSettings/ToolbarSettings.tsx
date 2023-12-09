@@ -7,7 +7,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { getUserAuthData } from '@/entities/User';
+import { getUserAuthData, isUserAdmin } from '@/entities/User';
 import { Typography } from '@/shared/ui/material/Typography';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 
@@ -41,6 +41,7 @@ export const ToolbarSettings = (props: ToolbarSettingsProps) => {
     const [activeButton, setActiveButton] = useState('');
     const { t } = useTranslation('settings');
     const TIME_DELAY = 700;
+    const isAdmin = useSelector(isUserAdmin);
     const authData = useSelector(getUserAuthData);
 
     const classes = [
@@ -67,8 +68,12 @@ export const ToolbarSettings = (props: ToolbarSettingsProps) => {
     };
 
     const buttonsData = [
-        { ref: stopWordsRef, label: t('Стоп слова'), name: 'stopWords' },
-        { ref: agencyNameRef, label: t('Название агенства'), name: 'agencyName' },
+        ...(isAdmin
+            ? [
+                { ref: stopWordsRef, label: t('Стоп слова'), name: 'stopWords' },
+                { ref: agencyNameRef, label: t('Название агенства'), name: 'agencyName' },
+            ]
+            : []),
         { ref: designSwitcherRef, label: t('Общие настройки'), name: 'designSwitcher' },
         { ref: notificationsRef, label: t('Notifications'), name: 'notifications' },
         { ref: cookiesRef, label: t('Cookies'), name: 'cookies' },
