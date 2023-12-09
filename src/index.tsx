@@ -8,6 +8,8 @@ import './shared/config/i18n/i18n';
 import { ErrorBoundary } from './app/providers/ErrorBoundary';
 import { ForceUpdateProvider } from '@/shared/lib/render/forceUpdate';
 import { ToolbarProvider } from '@/app/providers/ToolbarProvider';
+import i18n from 'i18next';
+import { I18N_STORAGE_KEY } from '@/shared/const/localstorage';
 
 const container = document.getElementById('root');
 
@@ -18,6 +20,12 @@ if (!container) {
 }
 
 const root = createRoot(container);
+
+const i18nextLng = localStorage.getItem(I18N_STORAGE_KEY);
+if (!i18nextLng) {
+    const browserLanguage = window.navigator.language;
+    i18n.changeLanguage(browserLanguage);
+}
 
 root.render(
     <BrowserRouter>

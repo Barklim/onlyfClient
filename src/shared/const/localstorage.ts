@@ -5,3 +5,4 @@ export const LOCAL_STORAGE_LAST_DESIGN_KEY = 'last_design';
 export const ACCESS_TOKEN_LOCALSTORAGE_KEY = 'accessToken';
 export const COOKIE_NECESSARY_LOCALSTORAGE_KEY = 'cookieNecessary';
 export const COOKIE_ANALYTICAL_LOCALSTORAGE_KEY = 'cookieAnalytical';
+export const I18N_STORAGE_KEY = 'i18nextLng';
