@@ -38,16 +38,6 @@ export const ToolbarSettings = (props: ToolbarSettingsProps) => {
         ...otherProps
     } = props;
 
-    const [activeButton, setActiveButton] = useState('');
-    const { t } = useTranslation('settings');
-    const TIME_DELAY = 700;
-    const isAdmin = useSelector(isUserAdmin);
-    const authData = useSelector(getUserAuthData);
-
-    const classes = [
-        className,
-    ];
-
     const {
         stopWordsRef,
         agencyNameRef,
@@ -57,15 +47,10 @@ export const ToolbarSettings = (props: ToolbarSettingsProps) => {
         visibleRef,
     } = useToolbarRefs();
 
-    const handleClickWithDelay = (ref: React.RefObject<HTMLElement>, buttonName: string) => {
-        ref.current?.scrollIntoView({
-            behavior: 'smooth',
-        });
-
-        setTimeout(() => {
-            setActiveButton(buttonName);
-        }, TIME_DELAY);
-    };
+    const { t } = useTranslation('settings');
+    const TIME_DELAY = 700;
+    const isAdmin = useSelector(isUserAdmin);
+    const authData = useSelector(getUserAuthData);
 
     const buttonsData = [
         ...(isAdmin
@@ -80,12 +65,35 @@ export const ToolbarSettings = (props: ToolbarSettingsProps) => {
         { ref: visibleRef, label: t('Visibility'), name: 'visible' },
     ];
 
+    const [activeButton, setActiveButton] = useState(buttonsData[0].name);
+
+    const classes = [
+        className,
+    ];
+
+    const handleClickWithDelay = (ref: React.RefObject<HTMLElement>, buttonName: string) => {
+        ref.current?.scrollIntoView({
+            behavior: 'smooth',
+        });
+
+        setTimeout(() => {
+            setActiveButton(buttonName);
+        }, TIME_DELAY);
+    };
+
     const handleScroll = useDebounce(() => {
         const container = document.getElementById('PAGE_ID');
         const currentScrollPosition = container?.scrollTop || 0;
+        const containerHeight = container?.scrollHeight || 0;
+        const windowHeight = window.innerHeight;
 
         for (const { ref, name } of buttonsData) {
             const offset = ref.current.offsetTop;
+
+            if (currentScrollPosition + windowHeight > containerHeight) {
+                setActiveButton('visible');
+                break;
+            }
 
             if (currentScrollPosition < offset) {
                 setActiveButton(name);
