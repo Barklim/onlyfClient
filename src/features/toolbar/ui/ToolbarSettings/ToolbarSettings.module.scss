@@ -1,3 +1,28 @@
 .wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding-left: 12px;
+}
 
+.toolbarItem {
+  cursor: pointer;
+  border-radius: 0 16px 16px 0;
+  border-left: 4px solid rgba(0,0,0,0);
+  padding: 12px 0 12px 32px;
+  width: 100%;
+
+  &__text {
+    &:hover {
+      color: var(--toolbar-hover);
+      text-decoration: none;
+      outline: 0;
+    }
+  }
+}
+
+.activeButton {
+  border-left: 4px solid var(--toolbar-item);
+  border-color: var(--toolbar-item);
+  background-color: var(--toolbar-bg);
 }

@@ -51,6 +51,6 @@ OnlyFans autochat and tracker activity for models and web agencies.
 [<img title="postgres" alt="postgres" height=48 src="https://raw.githubusercontent.com/Barklim/course/main/hostImg/onlyfIcons/pg.svg"/>](https://www.postgresql.org/)
 [<img title="redis" alt="redis" height=48 src="https://raw.githubusercontent.com/Barklim/course/main/hostImg/onlyfIcons/redis.svg"/>](https://www.npmjs.com/package/ioredis)
 [<img title="google" alt="google" height=48 src="https://raw.githubusercontent.com/Barklim/course/main/hostImg/onlyfIcons/google.png"/>](https://www.npmjs.com/package/google-auth-library)
-[<img title="tg" alt="tg" height=48 src="https://raw.githubusercontent.com/Barklim/course/main/hostImg/onlyfIcons/tg.svg"/>](node-telegram-bot-api)
+[<img title="tg" alt="tg" height=48 src="https://raw.githubusercontent.com/Barklim/course/main/hostImg/onlyfIcons/tg.svg"/>](https://www.npmjs.com/package/node-telegram-bot-api)
 [<img title="puppeteer" alt="puppeteer" height=48 src="https://raw.githubusercontent.com/Barklim/course/main/hostImg/onlyfIcons/puppeteer.png"/>](https://www.npmjs.com/package/puppeteer)
 </div>
